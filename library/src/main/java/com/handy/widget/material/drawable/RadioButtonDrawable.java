@@ -289,15 +289,15 @@ public class RadioButtonDrawable extends Drawable implements Animatable {
         }
 
 		public Builder(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes){
-			TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.RadioButtonDrawable, defStyleAttr, defStyleRes);
-			
-			width(a.getDimensionPixelSize(R.styleable.RadioButtonDrawable_rbd_width, ThemeUtil.dpToPx(context, 32)));
-			height(a.getDimensionPixelSize(R.styleable.RadioButtonDrawable_rbd_height, ThemeUtil.dpToPx(context, 32)));
-			strokeSize(a.getDimensionPixelSize(R.styleable.RadioButtonDrawable_rbd_strokeSize, ThemeUtil.dpToPx(context, 2)));
-			radius(a.getDimensionPixelSize(R.styleable.RadioButtonDrawable_rbd_radius, ThemeUtil.dpToPx(context, 10)));
-			innerRadius(a.getDimensionPixelSize(R.styleable.RadioButtonDrawable_rbd_innerRadius, ThemeUtil.dpToPx(context, 5)));
-			strokeColor(a.getColorStateList(R.styleable.RadioButtonDrawable_rbd_strokeColor));
-			animDuration(a.getInt(R.styleable.RadioButtonDrawable_rbd_animDuration, context.getResources().getInteger(android.R.integer.config_mediumAnimTime)));
+			TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.HDWRadioButtonDrawable, defStyleAttr, defStyleRes);
+
+			width(a.getDimensionPixelSize(R.styleable.HDWRadioButtonDrawable_hdw_rbd_width, ThemeUtil.dpToPx(context, 32)));
+			height(a.getDimensionPixelSize(R.styleable.HDWRadioButtonDrawable_hdw_rbd_height, ThemeUtil.dpToPx(context, 32)));
+			strokeSize(a.getDimensionPixelSize(R.styleable.HDWRadioButtonDrawable_hdw_rbd_strokeSize, ThemeUtil.dpToPx(context, 2)));
+			radius(a.getDimensionPixelSize(R.styleable.HDWRadioButtonDrawable_hdw_rbd_radius, ThemeUtil.dpToPx(context, 10)));
+			innerRadius(a.getDimensionPixelSize(R.styleable.HDWRadioButtonDrawable_hdw_rbd_innerRadius, ThemeUtil.dpToPx(context, 5)));
+			strokeColor(a.getColorStateList(R.styleable.HDWRadioButtonDrawable_hdw_rbd_strokeColor));
+			animDuration(a.getInt(R.styleable.HDWRadioButtonDrawable_hdw_rbd_animDuration, context.getResources().getInteger(android.R.integer.config_mediumAnimTime)));
 			
 			a.recycle();
 			

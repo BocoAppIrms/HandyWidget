@@ -258,14 +258,14 @@
         </attr>
     </declare-styleable>
 
-    <declare-styleable name="RadioButtonDrawable">
-        <attr name="rbd_width" format="reference|dimension"/><!--rbd_width - 宽度。-->
-        <attr name="rbd_height" format="reference|dimension"/><!--rbd_height - 高度。-->
-        <attr name="rbd_strokeSize" format="reference|dimension"/><!--rbd_radius - 框的半径。-->
-        <attr name="rbd_radius" format="reference|dimension"/><!--rbd_innerRadius - 刻度框的半径。-->
-        <attr name="rbd_innerRadius" format="reference|dimension"/><!--rbd_strokeSize - 笔画的大小。-->
-        <attr name="rbd_strokeColor" format="reference|color"/><!--rbd_strokeColor - 中风的颜色。 接受颜色值或ColorStateList资源。-->
-        <attr name="rbd_animDuration" format="reference|integer"/><!--rbd_animDuration - 切换检查状态时的动画持续时间。-->
+    <declare-styleable name="HDWRadioButtonDrawable">
+        <attr name="hdw_rbd_width" format="reference|dimension"/><!--rbd_width - 宽度。-->
+        <attr name="hdw_rbd_height" format="reference|dimension"/><!--rbd_height - 高度。-->
+        <attr name="hdw_rbd_strokeSize" format="reference|dimension"/><!--rbd_radius - 框的半径。-->
+        <attr name="hdw_rbd_radius" format="reference|dimension"/><!--rbd_innerRadius - 刻度框的半径。-->
+        <attr name="hdw_rbd_innerRadius" format="reference|dimension"/><!--rbd_strokeSize - 笔画的大小。-->
+        <attr name="hdw_rbd_strokeColor" format="reference|color"/><!--rbd_strokeColor - 中风的颜色。 接受颜色值或ColorStateList资源。-->
+        <attr name="hdw_rbd_animDuration" format="reference|integer"/><!--rbd_animDuration - 切换检查状态时的动画持续时间。-->
     </declare-styleable>
 
     <declare-styleable name="CheckBoxDrawable">

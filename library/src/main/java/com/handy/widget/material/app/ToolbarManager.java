@@ -1,4 +1,4 @@
-package com.handy.widget.app;
+package com.handy.widget.material.app;
 
 import android.os.Build;
 import android.os.SystemClock;
@@ -23,9 +23,9 @@ import android.view.animation.DecelerateInterpolator;
 import android.view.animation.Interpolator;
 import android.view.animation.TranslateAnimation;
 
-import com.handy.widget.drawable.NavigationDrawerDrawable;
-import com.handy.widget.drawable.ToolbarRippleDrawable;
-import com.handy.widget.util.ViewUtil;
+import com.handy.widget.material.drawable.NavigationDrawerDrawable;
+import com.handy.widget.material.drawable.ToolbarRippleDrawable;
+import com.handy.widget.material.util.ViewUtil;
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
@@ -49,32 +49,14 @@ public class ToolbarManager {
     private int mCurrentGroup = 0;
     private boolean mGroupChanged = false;
     private boolean mMenuDataChanged = true;
-
-    /**
-     * Interface definition for a callback to be invoked when the current group is changed.
-     */
-    public interface OnToolbarGroupChangedListener {
-
-        /**
-         * Called when the current group changed.
-         * @param oldGroupId The id of old group.
-         * @param groupId The id of new group.
-         */
-        public void onToolbarGroupChanged(int oldGroupId, int groupId);
-
-    }
-
     private ArrayList<WeakReference<OnToolbarGroupChangedListener>> mListeners = new ArrayList<>();
-
     private ViewTreeObserver.OnGlobalLayoutListener mOnGlobalLayoutListener = new ViewTreeObserver.OnGlobalLayoutListener() {
         @Override
         public void onGlobalLayout() {
             ToolbarManager.this.onGlobalLayout();
         }
     };
-
     private ArrayList<Animation> mAnimations = new ArrayList<>();
-
     private Animation.AnimationListener mOutAnimationEndListener = new Animation.AnimationListener() {
         @Override
         public void onAnimationStart(Animation animation) {
@@ -92,7 +74,6 @@ public class ToolbarManager {
         public void onAnimationRepeat(Animation animation) {
         }
     };
-
     private NavigationManager mNavigationManager;
 
     public ToolbarManager(AppCompatDelegate delegate, Toolbar toolbar, int defaultGroupId, int rippleStyle, int animIn, int animOut){
@@ -330,6 +311,21 @@ public class ToolbarManager {
     }
 
     /**
+     * Interface definition for a callback to be invoked when the current group is changed.
+     */
+    public interface OnToolbarGroupChangedListener {
+
+        /**
+         * Called when the current group changed.
+         *
+         * @param oldGroupId The id of old group.
+         * @param groupId    The id of new group.
+         */
+        void onToolbarGroupChanged(int oldGroupId, int groupId);
+
+    }
+
+    /**
      * Interface definition for creating animation of menu item view when switch group.
      */
     public interface Animator{
@@ -340,7 +336,7 @@ public class ToolbarManager {
          * @param position The position of item.
          * @return
          */
-        public Animation getOutAnimation(View v, int position);
+        Animation getOutAnimation(View v, int position);
 
         /**
          * Get the animation of the menu item view will be added.
@@ -348,7 +344,7 @@ public class ToolbarManager {
          * @param position The position of item.
          * @return
          */
-        public Animation getInAnimation(View v, int position);
+        Animation getInAnimation(View v, int position);
     }
 
     private static class SimpleAnimator implements Animator{
@@ -731,11 +727,9 @@ public class ToolbarManager {
         /**
          * Check if should sync progress of drawer sliding animation with navigation state changing animation.
          */
-        protected boolean shouldSyncDrawerSlidingProgress(){
-            if(mFragmentManager.getBackStackEntryCount() > 1)
-                return false;
+        protected boolean shouldSyncDrawerSlidingProgress() {
+            return mFragmentManager.getBackStackEntryCount() <= 1;
 
-            return true;
         }
 
         protected void onFragmentChanged(){

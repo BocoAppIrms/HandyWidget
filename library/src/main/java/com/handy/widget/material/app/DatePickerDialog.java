@@ -1,4 +1,4 @@
-package com.handy.widget.app;
+package com.handy.widget.material.app;
 
 import android.content.Context;
 import android.content.res.Configuration;
@@ -9,7 +9,6 @@ import android.graphics.Path;
 import android.graphics.Rect;
 import android.graphics.RectF;
 import android.os.Parcel;
-import android.os.Parcelable;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,40 +17,19 @@ import android.view.animation.Animation;
 import android.widget.FrameLayout;
 
 import com.handy.widget.R;
-import com.handy.widget.util.ThemeUtil;
-import com.handy.widget.widget.DatePicker;
-import com.handy.widget.widget.YearPicker;
+import com.handy.widget.material.util.ThemeUtil;
+import com.handy.widget.material.widget.DatePicker;
+import com.handy.widget.material.widget.YearPicker;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
 
-/**
- * Created by Rey on 12/30/2014.
- */
 public class DatePickerDialog extends Dialog {
 
     private DatePickerLayout mDatePickerLayout;
     private float mCornerRadius;
-
-    /**
-     * Interface definition for a callback to be invoked when the selected date is changed.
-     */
-    public interface OnDateChangedListener{
-
-        /**
-         * Called when the selected date is changed.
-         * @param oldDay The day value of old date.
-         * @param oldMonth The month value of old date.
-         * @param oldYear The year value of old date.
-         * @param newDay The day value of new date.
-         * @param newMonth The month value of new date.
-         * @param newYear The year value of new date.
-         */
-        public void onDateChanged(int oldDay, int oldMonth, int oldYear, int newDay, int newMonth, int newYear);
-    }
-
     private OnDateChangedListener mOnDateChangedListener;
 
     public DatePickerDialog(Context context) {
@@ -198,11 +176,199 @@ public class DatePickerDialog extends Dialog {
         return mDatePickerLayout.getFormattedDate(formatter);
     }
 
+    /**
+     * Interface definition for a callback to be invoked when the selected date is changed.
+     */
+    public interface OnDateChangedListener {
+
+        /**
+         * Called when the selected date is changed.
+         *
+         * @param oldDay   The day value of old date.
+         * @param oldMonth The month value of old date.
+         * @param oldYear  The year value of old date.
+         * @param newDay   The day value of new date.
+         * @param newMonth The month value of new date.
+         * @param newYear  The year value of new date.
+         */
+        void onDateChanged(int oldDay, int oldMonth, int oldYear, int newDay, int newMonth, int newYear);
+    }
+
+    public static class Builder extends Dialog.Builder implements OnDateChangedListener {
+
+        public static final Creator<Builder> CREATOR = new Creator<Builder>() {
+            public Builder createFromParcel(Parcel in) {
+                return new Builder(in);
+            }
+
+            public Builder[] newArray(int size) {
+                return new Builder[size];
+            }
+        };
+        protected int mMinDay;
+        protected int mMinMonth;
+        protected int mMinYear;
+        protected int mMaxDay;
+        protected int mMaxMonth;
+        protected int mMaxYear;
+        protected int mDay;
+        protected int mMonth;
+        protected int mYear;
+        private Calendar mCalendar;
+
+        public Builder() {
+            this(R.style.Material_App_Dialog_DatePicker_Light);
+        }
+
+        public Builder(int styleId) {
+            super(styleId);
+            Calendar cal = Calendar.getInstance();
+            mDay = cal.get(Calendar.DAY_OF_MONTH);
+            mMonth = cal.get(Calendar.MONTH);
+            mYear = cal.get(Calendar.YEAR);
+            mMinDay = mDay;
+            mMinMonth = mMonth;
+            mMinYear = mYear - 12;
+            mMaxDay = mDay;
+            mMaxMonth = mMonth;
+            mMaxYear = mYear + 12;
+        }
+
+        public Builder(int minDay, int minMonth, int minYear, int maxDay, int maxMonth, int maxYear, int day, int month, int year) {
+            this(R.style.Material_App_Dialog_DatePicker_Light, minDay, minMonth, minYear, maxDay, maxMonth, maxYear, day, month, year);
+        }
+
+        public Builder(int styleId, int minDay, int minMonth, int minYear, int maxDay, int maxMonth, int maxYear, int day, int month, int year) {
+            super(styleId);
+            mMinDay = minDay;
+            mMinMonth = minMonth;
+            mMinYear = minYear;
+            mMaxDay = maxDay;
+            mMaxMonth = maxMonth;
+            mMaxYear = maxYear;
+            mDay = day;
+            mMonth = month;
+            mYear = year;
+        }
+
+        protected Builder(Parcel in) {
+            super(in);
+        }
+
+        public Builder dateRange(int minDay, int minMonth, int minYear, int maxDay, int maxMonth, int maxYear) {
+            mMinDay = minDay;
+            mMinMonth = minMonth;
+            mMinYear = minYear;
+            mMaxDay = maxDay;
+            mMaxMonth = maxMonth;
+            mMaxYear = maxYear;
+            return this;
+        }
+
+        public Builder dateRange(long minTime, long maxTime) {
+            if (mCalendar == null)
+                mCalendar = Calendar.getInstance();
+
+            mCalendar.setTimeInMillis(minTime);
+            int minDay = mCalendar.get(Calendar.DAY_OF_MONTH);
+            int minMonth = mCalendar.get(Calendar.MONTH);
+            int minYear = mCalendar.get(Calendar.YEAR);
+            mCalendar.setTimeInMillis(maxTime);
+            int maxDay = mCalendar.get(Calendar.DAY_OF_MONTH);
+            int maxMonth = mCalendar.get(Calendar.MONTH);
+            int maxYear = mCalendar.get(Calendar.YEAR);
+
+            return dateRange(minDay, minMonth, minYear, maxDay, maxMonth, maxYear);
+        }
+
+        public Builder date(int day, int month, int year) {
+            mDay = day;
+            mMonth = month;
+            mYear = year;
+            return this;
+        }
+
+        public Builder date(long time) {
+            if (mCalendar == null)
+                mCalendar = Calendar.getInstance();
+
+            mCalendar.setTimeInMillis(time);
+            int day = mCalendar.get(Calendar.DAY_OF_MONTH);
+            int month = mCalendar.get(Calendar.MONTH);
+            int year = mCalendar.get(Calendar.YEAR);
+
+            return date(day, month, year);
+        }
+
+        public int getDay() {
+            return mDay;
+        }
+
+        public int getMonth() {
+            return mMonth;
+        }
+
+        public int getYear() {
+            return mYear;
+        }
+
+        @Override
+        public Dialog.Builder contentView(int layoutId) {
+            return this;
+        }
+
+        @Override
+        protected Dialog onBuild(Context context, int styleId) {
+            DatePickerDialog dialog = new DatePickerDialog(context, styleId);
+
+            dialog.dateRange(mMinDay, mMinMonth, mMinYear, mMaxDay, mMaxMonth, mMaxYear)
+                    .date(mDay, mMonth, mYear)
+                    .onDateChangedListener(this);
+
+            return dialog;
+        }
+
+        @Override
+        public void onDateChanged(int oldDay, int oldMonth, int oldYear, int newDay, int newMonth, int newYear) {
+            date(newDay, newMonth, newYear);
+        }
+
+        @Override
+        protected void onReadFromParcel(Parcel in) {
+            mMinDay = in.readInt();
+            mMinMonth = in.readInt();
+            mMinYear = in.readInt();
+            mMaxDay = in.readInt();
+            mMaxMonth = in.readInt();
+            mMaxYear = in.readInt();
+            mDay = in.readInt();
+            mMonth = in.readInt();
+            mYear = in.readInt();
+        }
+
+        @Override
+        protected void onWriteToParcel(Parcel dest, int flags) {
+            dest.writeInt(mMinDay);
+            dest.writeInt(mMinMonth);
+            dest.writeInt(mMinYear);
+            dest.writeInt(mMaxDay);
+            dest.writeInt(mMaxMonth);
+            dest.writeInt(mMaxYear);
+            dest.writeInt(mDay);
+            dest.writeInt(mMonth);
+            dest.writeInt(mYear);
+        }
+
+
+    }
+
     private class DatePickerLayout extends FrameLayout implements DatePicker.OnDateChangedListener, YearPicker.OnYearChangedListener {
 
+        private static final String BASE_TEXT = "0";
+        private static final String DAY_FORMAT = "%2d";
+        private static final String YEAR_FORMAT = "%4d";
         private YearPicker mYearPicker;
         private DatePicker mDatePicker;
-
         private int mHeaderPrimaryHeight;
         private int mHeaderPrimaryColor;
         private int mHeaderSecondaryHeight;
@@ -210,25 +376,19 @@ public class DatePickerDialog extends Dialog {
         private int mHeaderPrimaryTextSize;
         private int mHeaderSecondaryTextSize;
         private int mTextHeaderColor = 0xFF000000;
-
         private Paint mPaint;
         private int mHeaderPrimaryRealHeight;
         private int mHeaderRealWidth;
         private RectF mRect;
         private Path mHeaderSecondaryBackground;
-
         private int mPadding;
-
         private boolean mDaySelectMode = true;
-
         private boolean mMonthFirst = true;
         private boolean mLocationDirty = true;
-
         private String mWeekDay;
         private String mMonth;
         private String mDay;
         private String mYear;
-
         private float mBaseX;
         private float mWeekDayY;
         private float mMonthY;
@@ -237,10 +397,6 @@ public class DatePickerDialog extends Dialog {
         private float mFirstWidth;
         private float mCenterY;
         private float mSecondWidth;
-
-        private static final String BASE_TEXT = "0";
-        private static final String DAY_FORMAT = "%2d";
-        private static final String YEAR_FORMAT = "%4d";
 
         public DatePickerLayout(Context context) {
             super(context);
@@ -694,176 +850,6 @@ public class DatePickerDialog extends Dialog {
 
             return false;
         }
-
-    }
-
-    public static class Builder extends Dialog.Builder implements OnDateChangedListener {
-
-        protected int mMinDay;
-        protected int mMinMonth;
-        protected int mMinYear;
-        protected int mMaxDay;
-        protected int mMaxMonth;
-        protected int mMaxYear;
-        protected int mDay;
-        protected int mMonth;
-        protected int mYear;
-
-        private Calendar mCalendar;
-
-        public Builder(){
-            this(R.style.Material_App_Dialog_DatePicker_Light);
-        }
-
-        public Builder(int styleId){
-            super(styleId);
-            Calendar cal = Calendar.getInstance();
-            mDay = cal.get(Calendar.DAY_OF_MONTH);
-            mMonth = cal.get(Calendar.MONTH);
-            mYear = cal.get(Calendar.YEAR);
-            mMinDay = mDay;
-            mMinMonth = mMonth;
-            mMinYear = mYear - 12;
-            mMaxDay = mDay;
-            mMaxMonth = mMonth;
-            mMaxYear = mYear + 12;
-        }
-
-        public Builder(int minDay, int minMonth, int minYear, int maxDay, int maxMonth, int maxYear, int day, int month, int year){
-            this(R.style.Material_App_Dialog_DatePicker_Light, minDay, minMonth, minYear, maxDay, maxMonth, maxYear, day, month, year);
-        }
-
-        public Builder(int styleId, int minDay, int minMonth, int minYear, int maxDay, int maxMonth, int maxYear, int day, int month, int year){
-            super(styleId);
-            mMinDay = minDay;
-            mMinMonth = minMonth;
-            mMinYear = minYear;
-            mMaxDay = maxDay;
-            mMaxMonth = maxMonth;
-            mMaxYear = maxYear;
-            mDay = day;
-            mMonth = month;
-            mYear = year;
-        }
-
-        public Builder dateRange(int minDay, int minMonth, int minYear, int maxDay, int maxMonth, int maxYear){
-            mMinDay = minDay;
-            mMinMonth = minMonth;
-            mMinYear = minYear;
-            mMaxDay = maxDay;
-            mMaxMonth = maxMonth;
-            mMaxYear = maxYear;
-            return this;
-        }
-
-        public Builder dateRange(long minTime, long maxTime){
-            if(mCalendar == null)
-                mCalendar = Calendar.getInstance();
-
-            mCalendar.setTimeInMillis(minTime);
-            int minDay = mCalendar.get(Calendar.DAY_OF_MONTH);
-            int minMonth = mCalendar.get(Calendar.MONTH);
-            int minYear = mCalendar.get(Calendar.YEAR);
-            mCalendar.setTimeInMillis(maxTime);
-            int maxDay = mCalendar.get(Calendar.DAY_OF_MONTH);
-            int maxMonth = mCalendar.get(Calendar.MONTH);
-            int maxYear = mCalendar.get(Calendar.YEAR);
-
-            return dateRange(minDay, minMonth, minYear, maxDay, maxMonth, maxYear);
-        }
-
-        public Builder date(int day, int month, int year){
-            mDay = day;
-            mMonth = month;
-            mYear = year;
-            return this;
-        }
-
-        public Builder date(long time) {
-            if (mCalendar == null)
-                mCalendar = Calendar.getInstance();
-
-            mCalendar.setTimeInMillis(time);
-            int day = mCalendar.get(Calendar.DAY_OF_MONTH);
-            int month = mCalendar.get(Calendar.MONTH);
-            int year = mCalendar.get(Calendar.YEAR);
-
-            return date(day, month, year);
-        }
-
-        public int getDay(){
-            return mDay;
-        }
-
-        public int getMonth(){
-            return mMonth;
-        }
-
-        public int getYear(){
-            return mYear;
-        }
-
-        @Override
-        public Dialog.Builder contentView(int layoutId) {
-            return this;
-        }
-
-        @Override
-        protected Dialog onBuild(Context context, int styleId) {
-            DatePickerDialog dialog = new DatePickerDialog(context, styleId);
-
-            dialog.dateRange(mMinDay, mMinMonth, mMinYear, mMaxDay, mMaxMonth, mMaxYear)
-                    .date(mDay, mMonth, mYear)
-                    .onDateChangedListener(this);
-
-            return dialog;
-        }
-
-        @Override
-        public void onDateChanged(int oldDay, int oldMonth, int oldYear, int newDay, int newMonth, int newYear) {
-            date(newDay, newMonth, newYear);
-        }
-
-        protected Builder(Parcel in){
-            super(in);
-        }
-
-        @Override
-        protected void onReadFromParcel(Parcel in) {
-            mMinDay = in.readInt();
-            mMinMonth = in.readInt();
-            mMinYear = in.readInt();
-            mMaxDay = in.readInt();
-            mMaxMonth = in.readInt();
-            mMaxYear = in.readInt();
-            mDay = in.readInt();
-            mMonth = in.readInt();
-            mYear = in.readInt();
-        }
-
-        @Override
-        protected void onWriteToParcel(Parcel dest, int flags) {
-            dest.writeInt(mMinDay);
-            dest.writeInt(mMinMonth);
-            dest.writeInt(mMinYear);
-            dest.writeInt(mMaxDay);
-            dest.writeInt(mMaxMonth);
-            dest.writeInt(mMaxYear);
-            dest.writeInt(mDay);
-            dest.writeInt(mMonth);
-            dest.writeInt(mYear);
-        }
-
-        public static final Parcelable.Creator<Builder> CREATOR = new Parcelable.Creator<Builder>() {
-            public Builder createFromParcel(Parcel in) {
-                return new Builder(in);
-            }
-
-            public Builder[] newArray(int size) {
-                return new Builder[size];
-            }
-        };
-
 
     }
 }

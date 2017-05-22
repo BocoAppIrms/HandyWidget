@@ -1,4 +1,4 @@
-package com.handy.widget.drawable;
+package com.handy.widget.material.drawable;
 
 import android.content.res.ColorStateList;
 import android.graphics.Canvas;
@@ -13,7 +13,7 @@ import android.graphics.drawable.Animatable;
 import android.graphics.drawable.Drawable;
 import android.os.SystemClock;
 
-import com.handy.widget.util.ViewUtil;
+import com.handy.widget.material.util.ViewUtil;
 
 public class DividerDrawable extends Drawable implements Animatable{
 	
@@ -21,20 +21,24 @@ public class DividerDrawable extends Drawable implements Animatable{
 	private long mStartTime;
 	private float mAnimProgress;
 	private int mAnimDuration;
-	
+	private final Runnable mUpdater = new Runnable() {
+
+		@Override
+		public void run() {
+			update();
+		}
+
+	};
 	private Paint mPaint;
 	private ColorStateList mColorStateList;
 	private int mHeight;
 	private int mPrevColor;
 	private int mCurColor;
-	
 	private boolean mEnable = true;
-	private PathEffect mPathEffect;		
+	private PathEffect mPathEffect;
 	private Path mPath;
-	
 	private boolean mInEditMode = false;
 	private boolean mAnimEnable = true;
-
     private int mPaddingLeft;
     private int mPaddingRight;
 
@@ -47,19 +51,23 @@ public class DividerDrawable extends Drawable implements Animatable{
         mPaddingLeft = paddingLeft;
         mPaddingRight = paddingRight;
 		mAnimDuration = animDuration;
-		
+
 		mPaint = new Paint();
 		mPaint.setAntiAlias(true);
 		mPaint.setStyle(Paint.Style.STROKE);
 		mPaint.setStrokeWidth(mHeight);
 		mPaint.setStrokeCap(Paint.Cap.ROUND);
 		mPaint.setStrokeJoin(Paint.Join.ROUND);
-		
+
 		mPath = new Path();
-		
+
 		mAnimEnable = false;
 		setColor(colorStateList);
 		mAnimEnable = true;
+	}
+
+	public int getDividerHeight() {
+		return mHeight;
 	}
 
     public void setDividerHeight(int height){
@@ -68,10 +76,6 @@ public class DividerDrawable extends Drawable implements Animatable{
             mPaint.setStrokeWidth(mHeight);
             invalidateSelf();
         }
-    }
-
-    public int getDividerHeight(){
-        return mHeight;
     }
 
     public void setPadding(int left, int right){
@@ -97,7 +101,7 @@ public class DividerDrawable extends Drawable implements Animatable{
 	public void setAnimEnable(boolean b){
 		mAnimEnable = b;
 	}
-	
+
 	public void setColor(ColorStateList colorStateList){
 		mColorStateList = colorStateList;
 		onStateChange(getState());
@@ -110,10 +114,10 @@ public class DividerDrawable extends Drawable implements Animatable{
 	private PathEffect getPathEffect(){
 		if(mPathEffect == null)
 			mPathEffect = new DashPathEffect(new float[]{0.2f, mHeight * 2}, 0f);
-		
+
 		return mPathEffect;
 	}
-	
+
 	@Override
 	public void draw(Canvas canvas) {
         if(mHeight == 0)
@@ -134,19 +138,19 @@ public class DividerDrawable extends Drawable implements Animatable{
             float centerX = (bounds.right + bounds.left - mPaddingRight + mPaddingLeft) / 2f;
 			float start = centerX * (1f - mAnimProgress) + (bounds.left + mPaddingLeft) * mAnimProgress;
 			float end = centerX * (1f - mAnimProgress) + (bounds.right + mPaddingRight) * mAnimProgress;
-			
+
 			mPaint.setPathEffect(null);
-			
+
 			if(mAnimProgress < 1f){
-				mPaint.setColor(mPrevColor);				
+				mPaint.setColor(mPrevColor);
 				mPath.reset();
 				mPath.moveTo(bounds.left + mPaddingLeft, y);
 				mPath.lineTo(start, y);
 				mPath.moveTo(bounds.right - mPaddingRight, y);
-				mPath.lineTo(end, y);				
+				mPath.lineTo(end, y);
 				canvas.drawPath(mPath, mPaint);
 			}
-			
+
 			mPaint.setColor(mCurColor);
 			mPath.reset();
 			mPath.moveTo(start, y);
@@ -154,10 +158,10 @@ public class DividerDrawable extends Drawable implements Animatable{
 			canvas.drawPath(mPath, mPaint);
 		}
 	}
-			
+
 	@Override
 	public void setAlpha(int alpha) {
-		mPaint.setAlpha(alpha);			
+		mPaint.setAlpha(alpha);
 	}
 
 	@Override
@@ -177,37 +181,37 @@ public class DividerDrawable extends Drawable implements Animatable{
 
 	@Override
 	protected boolean onStateChange(int[] state) {
-		mEnable = ViewUtil.hasState(state, android.R.attr.state_enabled);		
-		int color = mColorStateList.getColorForState(state, mCurColor);		
-				
+		mEnable = ViewUtil.hasState(state, android.R.attr.state_enabled);
+		int color = mColorStateList.getColorForState(state, mCurColor);
+
 		if(mCurColor != color){
 			if(!mInEditMode && mAnimEnable && mEnable && mAnimDuration > 0){
 				mPrevColor = isRunning() ? mPrevColor : mCurColor;
-				mCurColor = color;	
-				start();				
+				mCurColor = color;
+				start();
 			}
 			else{
 				mPrevColor = color;
 				mCurColor = color;
-			}		
+			}
 			return true;
 		}
 		else if(!isRunning())
 			mPrevColor = color;
-			
+
 		return false;
 	}
 
-	private void resetAnimation(){	
+	private void resetAnimation() {
 		mStartTime = SystemClock.uptimeMillis();
 		mAnimProgress = 0f;
 	}
-	
+
 	@Override
 	public void start() {
-		resetAnimation();			
+		resetAnimation();
 		scheduleSelf(mUpdater, SystemClock.uptimeMillis() + ViewUtil.FRAME_DURATION);
-	    invalidateSelf();  
+		invalidateSelf();
 	}
 
 	@Override
@@ -227,15 +231,6 @@ public class DividerDrawable extends Drawable implements Animatable{
 		mRunning = true;
 	    super.scheduleSelf(what, when);
 	}
-	
-	private final Runnable mUpdater = new Runnable() {
-
-	    @Override
-	    public void run() {
-	    	update();
-	    }
-		    
-	};
 		
 	private void update(){
 		long curTime = SystemClock.uptimeMillis();

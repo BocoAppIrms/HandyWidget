@@ -1,4 +1,4 @@
-package com.handy.widget.drawable;
+package com.handy.widget.material.drawable;
 
 import android.content.Context;
 import android.content.res.ColorStateList;
@@ -13,9 +13,9 @@ import android.os.SystemClock;
 import android.util.AttributeSet;
 
 import com.handy.widget.R;
-import com.handy.widget.util.ColorUtil;
-import com.handy.widget.util.ThemeUtil;
-import com.handy.widget.util.ViewUtil;
+import com.handy.widget.material.util.ColorUtil;
+import com.handy.widget.material.util.ThemeUtil;
+import com.handy.widget.material.util.ViewUtil;
 
 public class RadioButtonDrawable extends Drawable implements Animatable {
 	
@@ -26,6 +26,14 @@ public class RadioButtonDrawable extends Drawable implements Animatable {
 	private long mStartTime;
 	private float mAnimProgress;
 	private int mAnimDuration;
+	private final Runnable mUpdater = new Runnable() {
+
+		@Override
+		public void run() {
+			update();
+		}
+
+	};
 	private int mStrokeSize;
 	private int mWidth;
 	private int mHeight;
@@ -34,8 +42,7 @@ public class RadioButtonDrawable extends Drawable implements Animatable {
 	private int mPrevColor;
 	private int mCurColor;
 	private ColorStateList mStrokeColor;
-	private boolean mChecked = false;	
-	
+	private boolean mChecked = false;
 	private boolean mInEditMode = false;
 	private boolean mAnimEnable = true;
 	
@@ -47,7 +54,7 @@ public class RadioButtonDrawable extends Drawable implements Animatable {
 		mRadius = radius;
 		mInnerRadius = innerRadius;
 		mStrokeColor = strokeColor;
-		
+
 		mPaint = new Paint();
 		mPaint.setAntiAlias(true);
 	}
@@ -56,14 +63,14 @@ public class RadioButtonDrawable extends Drawable implements Animatable {
 		mInEditMode = b;
 	}
 	
-	public void setAnimEnable(boolean b){
-		mAnimEnable = b;
-	}
-	
 	public boolean isAnimEnable(){
 		return mAnimEnable;
 	}
-	
+
+	public void setAnimEnable(boolean b) {
+		mAnimEnable = b;
+	}
+
 	@Override
 	public int getIntrinsicWidth() {
 		return mWidth;
@@ -88,122 +95,122 @@ public class RadioButtonDrawable extends Drawable implements Animatable {
 	public boolean isStateful() {
 		return true;
 	}
-	
+
 	@Override
-	public void draw(Canvas canvas) {				
+	public void draw(Canvas canvas) {
 		if(mChecked)
 			drawChecked(canvas);
 		else
 			drawUnchecked(canvas);
 	}
-		
+
 	private void drawChecked(Canvas canvas){
 		float cx = getBounds().exactCenterX();
 		float cy = getBounds().exactCenterY();
-		
+
 		if(isRunning()){
 			float halfStrokeSize = mStrokeSize / 2f;
 			float inTime = (mRadius - halfStrokeSize) / (mRadius - halfStrokeSize + mRadius - mStrokeSize - mInnerRadius);
-			
+
 			if(mAnimProgress < inTime){
-				float inProgress = mAnimProgress / inTime;				
-				float outerRadius = mRadius + halfStrokeSize * (1f - inProgress);	
+				float inProgress = mAnimProgress / inTime;
+				float outerRadius = mRadius + halfStrokeSize * (1f - inProgress);
 				float innerRadius = (mRadius - halfStrokeSize) * (1f - inProgress);
-				
+
 				mPaint.setColor(ColorUtil.getMiddleColor(mPrevColor, mCurColor, inProgress));
 				mPaint.setStrokeWidth(outerRadius - innerRadius);
-				mPaint.setStyle(Paint.Style.STROKE);					
+				mPaint.setStyle(Paint.Style.STROKE);
 				canvas.drawCircle(cx, cy, (outerRadius + innerRadius) / 2, mPaint);
 			}
 			else{
-				float outProgress = (mAnimProgress - inTime) / (1f - inTime);				
-				float innerRadius = (mRadius - mStrokeSize) * (1 - outProgress) + mInnerRadius * outProgress;	
-				
+				float outProgress = (mAnimProgress - inTime) / (1f - inTime);
+				float innerRadius = (mRadius - mStrokeSize) * (1 - outProgress) + mInnerRadius * outProgress;
+
 				mPaint.setColor(mCurColor);
-				mPaint.setStyle(Paint.Style.FILL);					
+				mPaint.setStyle(Paint.Style.FILL);
 				canvas.drawCircle(cx, cy, innerRadius, mPaint);
-				
+
 				float outerRadius = mRadius + halfStrokeSize * outProgress;
 				mPaint.setStrokeWidth(mStrokeSize);
 				mPaint.setStyle(Paint.Style.STROKE);
 				canvas.drawCircle(cx, cy, outerRadius - halfStrokeSize, mPaint);
-			}			
+			}
 		}
 		else{
 			mPaint.setColor(mCurColor);
 			mPaint.setStrokeWidth(mStrokeSize);
-			mPaint.setStyle(Paint.Style.STROKE);			
+			mPaint.setStyle(Paint.Style.STROKE);
 			canvas.drawCircle(cx, cy, mRadius, mPaint);
-			
-			mPaint.setStyle(Paint.Style.FILL);			
-			canvas.drawCircle(cx, cy, mInnerRadius, mPaint);			
-		}		
+
+			mPaint.setStyle(Paint.Style.FILL);
+			canvas.drawCircle(cx, cy, mInnerRadius, mPaint);
+		}
 	}
 	
 	private void drawUnchecked(Canvas canvas){
 		float cx = getBounds().exactCenterX();
 		float cy = getBounds().exactCenterY();
-		
+
 		if(isRunning()){
-			float halfStrokeSize = mStrokeSize / 2f;			
+			float halfStrokeSize = mStrokeSize / 2f;
 			float inTime = (mRadius - mStrokeSize - mInnerRadius) / (mRadius - halfStrokeSize + mRadius - mStrokeSize - mInnerRadius);
-			
+
 			if(mAnimProgress < inTime){
 				float inProgress = mAnimProgress / inTime;
 				float innerRadius = (mRadius - mStrokeSize) * inProgress + mInnerRadius * (1f - inProgress);
-				
+
 				mPaint.setColor(ColorUtil.getMiddleColor(mPrevColor, mCurColor, inProgress));
-				mPaint.setStyle(Paint.Style.FILL);					
+				mPaint.setStyle(Paint.Style.FILL);
 				canvas.drawCircle(cx, cy, innerRadius, mPaint);
-				
+
 				float outerRadius = mRadius + halfStrokeSize * (1f - inProgress);
 				mPaint.setStrokeWidth(mStrokeSize);
 				mPaint.setStyle(Paint.Style.STROKE);
 				canvas.drawCircle(cx, cy, outerRadius - halfStrokeSize, mPaint);
 			}
 			else{
-				float outProgress = (mAnimProgress - inTime) / (1f - inTime);				
+				float outProgress = (mAnimProgress - inTime) / (1f - inTime);
 				float outerRadius = mRadius + halfStrokeSize * outProgress;
 				float innerRadius = (mRadius - halfStrokeSize) * outProgress;
-				
+
 				mPaint.setColor(mCurColor);
 				mPaint.setStrokeWidth(outerRadius - innerRadius);
-				mPaint.setStyle(Paint.Style.STROKE);					
+				mPaint.setStyle(Paint.Style.STROKE);
 				canvas.drawCircle(cx, cy, (outerRadius + innerRadius) / 2, mPaint);
 			}
 		}
 		else{
 			mPaint.setColor(mCurColor);
 			mPaint.setStrokeWidth(mStrokeSize);
-			mPaint.setStyle(Paint.Style.STROKE);			
+			mPaint.setStyle(Paint.Style.STROKE);
 			canvas.drawCircle(cx, cy, mRadius, mPaint);
 		}
 	}
 	
 	@Override
-	protected boolean onStateChange(int[] state) {		
-		boolean checked = ViewUtil.hasState(state, android.R.attr.state_checked);		
+	protected boolean onStateChange(int[] state) {
+		boolean checked = ViewUtil.hasState(state, android.R.attr.state_checked);
 		int color = mStrokeColor.getColorForState(state, mCurColor);
 		boolean needRedraw = false;
-				
+
 		if(mChecked != checked){
 			mChecked = checked;
-			needRedraw =  true;			
+			needRedraw = true;
 			if(!mInEditMode && mAnimEnable)
 				start();
 		}
-				
+
 		if(mCurColor != color){
 			mPrevColor = isRunning() ? mCurColor : color;
 			mCurColor = color;
 			needRedraw = true;
 		}
 		else if(!isRunning())
-			mPrevColor = color;	
-		
+			mPrevColor = color;
+
 		return needRedraw;
 	}
-	
+
 	@Override
 	public void setAlpha(int alpha) {
 		mPaint.setAlpha(alpha);
@@ -214,28 +221,28 @@ public class RadioButtonDrawable extends Drawable implements Animatable {
 		mPaint.setColorFilter(cf);
 	}
 
+	//Animation: based on http://cyrilmottier.com/2012/11/27/actionbar-on-the-move/
+	
 	@Override
 	public int getOpacity() {
 		return PixelFormat.TRANSLUCENT;
 	}
-	
-	//Animation: based on http://cyrilmottier.com/2012/11/27/actionbar-on-the-move/
-	
-	private void resetAnimation(){	
+
+	private void resetAnimation() {
 		mStartTime = SystemClock.uptimeMillis();
 		mAnimProgress = 0f;
 	}
-		
+
 	@Override
-	public void start() {			
+	public void start() {
 		resetAnimation();
-		
+
 		scheduleSelf(mUpdater, SystemClock.uptimeMillis() + ViewUtil.FRAME_DURATION);
-	    invalidateSelf();  
+		invalidateSelf();
 	}
 
 	@Override
-	public void stop() {				
+	public void stop() {
 		mRunning = false;
 		unscheduleSelf(mUpdater);
 		invalidateSelf();
@@ -251,15 +258,6 @@ public class RadioButtonDrawable extends Drawable implements Animatable {
 		mRunning = true;
 	    super.scheduleSelf(what, when);
 	}
-	
-	private final Runnable mUpdater = new Runnable() {
-
-	    @Override
-	    public void run() {
-	    	update();
-	    }
-		    
-	};
 		
 	private void update(){
 		long curTime = SystemClock.uptimeMillis();

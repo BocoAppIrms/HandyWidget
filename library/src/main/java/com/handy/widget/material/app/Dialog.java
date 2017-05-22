@@ -1,4 +1,4 @@
-package com.handy.widget.app;
+package com.handy.widget.material.app;
 
 import android.annotation.TargetApi;
 import android.content.Context;
@@ -28,60 +28,14 @@ import android.view.animation.AnimationUtils;
 import android.widget.FrameLayout;
 
 import com.handy.widget.R;
-import com.handy.widget.drawable.BlankDrawable;
-import com.handy.widget.drawable.RippleDrawable;
-import com.handy.widget.util.ThemeUtil;
-import com.handy.widget.util.ViewUtil;
-import com.handy.widget.widget.Button;
-import com.handy.widget.widget.TextView;
+import com.handy.widget.material.drawable.BlankDrawable;
+import com.handy.widget.material.drawable.RippleDrawable;
+import com.handy.widget.material.util.ThemeUtil;
+import com.handy.widget.material.util.ViewUtil;
+import com.handy.widget.material.widget.Button;
+import com.handy.widget.material.widget.TextView;
 
-/**
- * Created by Rey on 12/10/2014.
- */
 public class Dialog extends android.app.Dialog{
-
-    private ContainerFrameLayout mContainer;
-    private int mLayoutWidth = ViewGroup.LayoutParams.WRAP_CONTENT;
-    private int mLayoutHeight = ViewGroup.LayoutParams.WRAP_CONTENT;
-    private int mMaxWidth;
-    private int mMaxHeight;
-
-    protected TextView mTitle;
-    protected Button mPositiveAction;
-    protected Button mNegativeAction;
-    protected Button mNeutralAction;
-    private View mContent;
-    private DialogCardView mCardView;
-
-    protected int mContentPadding;
-    protected int mActionHeight;
-    protected int mActionOuterHeight;
-    protected int mActionOuterPadding;
-    protected int mActionMinWidth;
-    protected int mActionPadding;
-    protected int mDialogHorizontalPadding;
-    protected int mDialogVerticalPadding;
-
-    protected int mInAnimationId;
-    protected int mOutAnimationId;
-
-    private final Handler mHandler = new Handler();
-    private final Runnable mDismissAction = new Runnable() {
-        public void run() {
-            //dirty fix for java.lang.IllegalArgumentException: View not attached to window manager
-            try {
-                Dialog.super.dismiss();
-            }
-            catch(IllegalArgumentException ex){}
-        }
-    };
-
-
-    private boolean mLayoutActionVertical = false;
-
-    private boolean mCancelable = true;
-    private boolean mCanceledOnTouchOutside = true;
-    private boolean mDismissPending = false;
 
     /**
      * The viewId of title view.
@@ -99,6 +53,41 @@ public class Dialog extends android.app.Dialog{
      * The viewId of neutral action button.
      */
     public static final int ACTION_NEUTRAL = ViewUtil.generateViewId();
+    private final Handler mHandler = new Handler();
+    private final Runnable mDismissAction = new Runnable() {
+        public void run() {
+            //dirty fix for java.lang.IllegalArgumentException: View not attached to window manager
+            try {
+                Dialog.super.dismiss();
+            } catch (IllegalArgumentException ex) {
+            }
+        }
+    };
+    protected TextView mTitle;
+    protected Button mPositiveAction;
+    protected Button mNegativeAction;
+    protected Button mNeutralAction;
+    protected int mContentPadding;
+    protected int mActionHeight;
+    protected int mActionOuterHeight;
+    protected int mActionOuterPadding;
+    protected int mActionMinWidth;
+    protected int mActionPadding;
+    protected int mDialogHorizontalPadding;
+    protected int mDialogVerticalPadding;
+    protected int mInAnimationId;
+    protected int mOutAnimationId;
+    private ContainerFrameLayout mContainer;
+    private int mLayoutWidth = ViewGroup.LayoutParams.WRAP_CONTENT;
+    private int mLayoutHeight = ViewGroup.LayoutParams.WRAP_CONTENT;
+    private int mMaxWidth;
+    private int mMaxHeight;
+    private View mContent;
+    private DialogCardView mCardView;
+    private boolean mLayoutActionVertical = false;
+    private boolean mCancelable = true;
+    private boolean mCanceledOnTouchOutside = true;
+    private boolean mDismissPending = false;
 
     public Dialog(Context context) {
         this(context, R.style.Material_App_Dialog_Light);
@@ -1074,6 +1063,171 @@ public class Dialog extends android.app.Dialog{
             mHandler.post(mDismissAction);
     }
 
+    public static class Builder implements DialogFragment.Builder, Parcelable {
+
+        public static final Creator<Builder> CREATOR = new Creator<Builder>() {
+            public Builder createFromParcel(Parcel in) {
+                return new Builder(in);
+            }
+
+            public Builder[] newArray(int size) {
+                return new Builder[size];
+            }
+        };
+        protected int mStyleId;
+        protected int mContentViewId;
+        protected CharSequence mTitle;
+        protected CharSequence mPositive;
+        protected CharSequence mNegative;
+        protected CharSequence mNeutral;
+        protected Dialog mDialog;
+
+        public Builder() {
+            this(R.style.Material_App_Dialog_Light);
+        }
+
+        public Builder(int styleId) {
+            mStyleId = styleId;
+        }
+
+        protected Builder(Parcel in) {
+            mStyleId = in.readInt();
+            mContentViewId = in.readInt();
+            mTitle = in.readParcelable(null);
+            mPositive = in.readParcelable(null);
+            mNegative = in.readParcelable(null);
+            mNeutral = in.readParcelable(null);
+
+            onReadFromParcel(in);
+        }
+
+        public Builder style(int styleId) {
+            mStyleId = styleId;
+            return this;
+        }
+
+        public Builder contentView(int layoutId) {
+            mContentViewId = layoutId;
+            return this;
+        }
+
+        public Builder title(CharSequence title) {
+            mTitle = title;
+            return this;
+        }
+
+        public Builder positiveAction(CharSequence action) {
+            mPositive = action;
+            return this;
+        }
+
+        public Builder negativeAction(CharSequence action) {
+            mNegative = action;
+            return this;
+        }
+
+        public Builder neutralAction(CharSequence action) {
+            mNeutral = action;
+            return this;
+        }
+
+        public Dialog getDialog() {
+            return mDialog;
+        }
+
+        @Override
+        public void onPositiveActionClicked(DialogFragment fragment) {
+            fragment.dismiss();
+        }
+
+        @Override
+        public void onNegativeActionClicked(DialogFragment fragment) {
+            fragment.dismiss();
+        }
+
+        @Override
+        public void onNeutralActionClicked(DialogFragment fragment) {
+            fragment.dismiss();
+        }
+
+        @Override
+        public void onCancel(DialogInterface dialog) {
+        }
+
+        @Override
+        public void onDismiss(DialogInterface dialog) {
+        }
+
+        @Override
+        public Dialog build(Context context) {
+            mDialog = onBuild(context, mStyleId);
+
+            mDialog.title(mTitle)
+                    .positiveAction(mPositive)
+                    .negativeAction(mNegative)
+                    .neutralAction(mNeutral);
+
+            if (mContentViewId != 0)
+                mDialog.contentView(mContentViewId);
+
+            onBuildDone(mDialog);
+
+            return mDialog;
+        }
+
+        /**
+         * Get a appropriate Dialog instance will be used for styling later.
+         * Child class should override this function to return appropriate Dialog instance.
+         * If you want to apply styling to dialog, or get content view, you should do it in {@link #onBuildDone(Dialog)}
+         *
+         * @param context A Context instance.
+         * @param styleId The resourceId of Dialog's style.
+         * @return A Dialog instance will be used for styling later.
+         */
+        protected Dialog onBuild(Context context, int styleId) {
+            return new Dialog(context, styleId);
+        }
+
+        /**
+         * This function will be called after Builder done apply styling to Dialog.
+         *
+         * @param dialog The Dialog instance.
+         */
+        protected void onBuildDone(Dialog dialog) {
+        }
+
+        /**
+         * Child class should override this function and read back any saved attributes.
+         * All read methods should be called after super.onReadFromParcel() call to keep the order.
+         */
+        protected void onReadFromParcel(Parcel in) {
+        }
+
+        /**
+         * Child class should override this function and write down all attributes will be saved.
+         * All write methods should be called after super.onWriteToParcel() call to keep the order.
+         */
+        protected void onWriteToParcel(Parcel dest, int flags) {
+        }
+
+        @Override
+        public void writeToParcel(Parcel dest, int flags) {
+            dest.writeInt(mStyleId);
+            dest.writeInt(mContentViewId);
+            dest.writeValue(mTitle);
+            dest.writeValue(mPositive);
+            dest.writeValue(mNegative);
+            dest.writeValue(mNeutral);
+            onWriteToParcel(dest, flags);
+        }
+
+        @Override
+        public int describeContents() {
+            return 0;
+        }
+
+    }
+
     private class ContainerFrameLayout extends FrameLayout{
 
         private boolean mClickOutside = false;
@@ -1210,8 +1364,8 @@ public class Dialog extends android.app.Dialog{
 
         @Override
         protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-            int widthSize = View.MeasureSpec.getSize(widthMeasureSpec);
-            int heightSize = View.MeasureSpec.getSize(heightMeasureSpec);
+            int widthSize = MeasureSpec.getSize(widthMeasureSpec);
+            int heightSize = MeasureSpec.getSize(heightMeasureSpec);
 
             int paddingLeft = Math.max(mDialogHorizontalPadding, mCardView.getPaddingLeft());
             int paddingRight = Math.max(mDialogHorizontalPadding, mCardView.getPaddingRight());
@@ -1234,9 +1388,9 @@ public class Dialog extends android.app.Dialog{
             int titleWidth = 0;
             int titleHeight = 0;
 
-            if(mTitle.getVisibility() == View.VISIBLE){
-                widthMs = View.MeasureSpec.makeMeasureSpec(width == ViewGroup.LayoutParams.WRAP_CONTENT ? maxWidth : width, View.MeasureSpec.AT_MOST);
-                heightMs = View.MeasureSpec.makeMeasureSpec(maxHeight, View.MeasureSpec.AT_MOST);
+            if(mTitle.getVisibility() == View.VISIBLE) {
+                widthMs = MeasureSpec.makeMeasureSpec(width == ViewGroup.LayoutParams.WRAP_CONTENT ? maxWidth : width, MeasureSpec.AT_MOST);
+                heightMs = MeasureSpec.makeMeasureSpec(maxHeight, MeasureSpec.AT_MOST);
                 mTitle.measure(widthMs, heightMs);
                 titleWidth = mTitle.getMeasuredWidth();
                 titleHeight = mTitle.getMeasuredHeight();
@@ -1245,9 +1399,9 @@ public class Dialog extends android.app.Dialog{
             int contentWidth = 0;
             int contentHeight = 0;
 
-            if(mContent != null){
-                widthMs = View.MeasureSpec.makeMeasureSpec((width == ViewGroup.LayoutParams.WRAP_CONTENT ? maxWidth : width) - mContentMarginLeft - mContentMarginRight, View.MeasureSpec.AT_MOST);
-                heightMs = View.MeasureSpec.makeMeasureSpec(maxHeight - mContentMarginTop - mContentMarginBottom, View.MeasureSpec.AT_MOST);
+            if (mContent != null) {
+                widthMs = MeasureSpec.makeMeasureSpec((width == ViewGroup.LayoutParams.WRAP_CONTENT ? maxWidth : width) - mContentMarginLeft - mContentMarginRight, MeasureSpec.AT_MOST);
+                heightMs = MeasureSpec.makeMeasureSpec(maxHeight - mContentMarginTop - mContentMarginBottom, MeasureSpec.AT_MOST);
                 mContent.measure(widthMs, heightMs);
                 contentWidth = mContent.getMeasuredWidth();
                 contentHeight = mContent.getMeasuredHeight();
@@ -1256,15 +1410,15 @@ public class Dialog extends android.app.Dialog{
             int visibleActions = 0;
             int positiveActionWidth = 0;
 
-            if(mPositiveAction.getVisibility() == View.VISIBLE){
-                widthMs = View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED);
-                heightMs = View.MeasureSpec.makeMeasureSpec(mActionHeight, View.MeasureSpec.EXACTLY);
+            if(mPositiveAction.getVisibility() == View.VISIBLE) {
+                widthMs = MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED);
+                heightMs = MeasureSpec.makeMeasureSpec(mActionHeight, MeasureSpec.EXACTLY);
                 mPositiveAction.measure(widthMs, heightMs);
 
                 positiveActionWidth = mPositiveAction.getMeasuredWidth();
 
-                if(positiveActionWidth < mActionMinWidth){
-                    mPositiveAction.measure(View.MeasureSpec.makeMeasureSpec(mActionMinWidth, View.MeasureSpec.EXACTLY), heightMs);
+                if(positiveActionWidth < mActionMinWidth) {
+                    mPositiveAction.measure(MeasureSpec.makeMeasureSpec(mActionMinWidth, MeasureSpec.EXACTLY), heightMs);
                     positiveActionWidth = mActionMinWidth;
                 }
 
@@ -1273,15 +1427,15 @@ public class Dialog extends android.app.Dialog{
 
             int negativeActionWidth = 0;
 
-            if(mNegativeAction.getVisibility() == View.VISIBLE){
-                widthMs = View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED);
-                heightMs = View.MeasureSpec.makeMeasureSpec(mActionHeight, View.MeasureSpec.EXACTLY);
+            if(mNegativeAction.getVisibility() == View.VISIBLE) {
+                widthMs = MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED);
+                heightMs = MeasureSpec.makeMeasureSpec(mActionHeight, MeasureSpec.EXACTLY);
                 mNegativeAction.measure(widthMs, heightMs);
 
                 negativeActionWidth = mNegativeAction.getMeasuredWidth();
 
-                if(negativeActionWidth < mActionMinWidth){
-                    mNegativeAction.measure(View.MeasureSpec.makeMeasureSpec(mActionMinWidth, View.MeasureSpec.EXACTLY), heightMs);
+                if(negativeActionWidth < mActionMinWidth) {
+                    mNegativeAction.measure(MeasureSpec.makeMeasureSpec(mActionMinWidth, MeasureSpec.EXACTLY), heightMs);
                     negativeActionWidth = mActionMinWidth;
                 }
 
@@ -1290,15 +1444,15 @@ public class Dialog extends android.app.Dialog{
 
             int neutralActionWidth = 0;
 
-            if(mNeutralAction.getVisibility() == View.VISIBLE){
-                widthMs = View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED);
-                heightMs = View.MeasureSpec.makeMeasureSpec(mActionHeight, View.MeasureSpec.EXACTLY);
+            if(mNeutralAction.getVisibility() == View.VISIBLE) {
+                widthMs = MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED);
+                heightMs = MeasureSpec.makeMeasureSpec(mActionHeight, MeasureSpec.EXACTLY);
                 mNeutralAction.measure(widthMs, heightMs);
 
                 neutralActionWidth = mNeutralAction.getMeasuredWidth();
 
-                if(neutralActionWidth < mActionMinWidth){
-                    mNeutralAction.measure(View.MeasureSpec.makeMeasureSpec(mActionMinWidth, View.MeasureSpec.EXACTLY), heightMs);
+                if(neutralActionWidth < mActionMinWidth) {
+                    mNeutralAction.measure(MeasureSpec.makeMeasureSpec(mActionMinWidth, MeasureSpec.EXACTLY), heightMs);
                     neutralActionWidth = mActionMinWidth;
                 }
 
@@ -1321,8 +1475,8 @@ public class Dialog extends android.app.Dialog{
             if(height == ViewGroup.LayoutParams.WRAP_CONTENT)
                 height = Math.min(maxHeight, contentHeight + nonContentHeight);
 
-            if(mContent != null)
-                mContent.measure(View.MeasureSpec.makeMeasureSpec(width - mContentMarginLeft - mContentMarginRight, View.MeasureSpec.EXACTLY), View.MeasureSpec.makeMeasureSpec(height - nonContentHeight, View.MeasureSpec.EXACTLY));
+            if (mContent != null)
+                mContent.measure(MeasureSpec.makeMeasureSpec(width - mContentMarginLeft - mContentMarginRight, MeasureSpec.EXACTLY), MeasureSpec.makeMeasureSpec(height - nonContentHeight, MeasureSpec.EXACTLY));
 
             setMeasuredDimension(width + getPaddingLeft() + getPaddingRight(), height + getPaddingTop() + getPaddingBottom());
         }
@@ -1420,166 +1574,6 @@ public class Dialog extends android.app.Dialog{
             if(mShowDivider && (mPositiveAction.getVisibility() == View.VISIBLE || mNegativeAction.getVisibility() == View.VISIBLE || mNeutralAction.getVisibility() == View.VISIBLE))
                 canvas.drawLine(getPaddingLeft(), mDividerPos, getWidth() - getPaddingRight(), mDividerPos, mDividerPaint);
         }
-
-    }
-
-    public static class Builder implements DialogFragment.Builder, Parcelable{
-
-        protected int mStyleId;
-        protected int mContentViewId;
-        protected CharSequence mTitle;
-        protected CharSequence mPositive;
-        protected CharSequence mNegative;
-        protected CharSequence mNeutral;
-
-        protected Dialog mDialog;
-
-        public Builder(){
-            this(R.style.Material_App_Dialog_Light);
-        }
-
-        public Builder(int styleId){
-            mStyleId = styleId;
-        }
-
-        public Builder style(int styleId){
-            mStyleId = styleId;
-            return this;
-        }
-
-        public Builder contentView(int layoutId){
-            mContentViewId = layoutId;
-            return this;
-        }
-
-        public Builder title(CharSequence title){
-            mTitle = title;
-            return this;
-        }
-
-        public Builder positiveAction(CharSequence action){
-            mPositive = action;
-            return this;
-        }
-
-        public Builder negativeAction(CharSequence action){
-            mNegative = action;
-            return this;
-        }
-
-        public Builder neutralAction(CharSequence action){
-            mNeutral = action;
-            return this;
-        }
-
-        public Dialog getDialog(){
-            return mDialog;
-        }
-
-        @Override
-        public void onPositiveActionClicked(DialogFragment fragment) {
-            fragment.dismiss();
-        }
-
-        @Override
-        public void onNegativeActionClicked(DialogFragment fragment) {
-            fragment.dismiss();
-        }
-
-        @Override
-        public void onNeutralActionClicked(DialogFragment fragment) {
-            fragment.dismiss();
-        }
-
-        @Override
-        public void onCancel(DialogInterface dialog) {}
-
-        @Override
-        public void onDismiss(DialogInterface dialog) {}
-
-        @Override
-        public Dialog build(Context context) {
-            mDialog = onBuild(context, mStyleId);
-
-            mDialog.title(mTitle)
-                    .positiveAction(mPositive)
-                    .negativeAction(mNegative)
-                    .neutralAction(mNeutral);
-
-            if(mContentViewId != 0)
-                mDialog.contentView(mContentViewId);
-
-            onBuildDone(mDialog);
-
-            return mDialog;
-        }
-
-        /**
-         * Get a appropriate Dialog instance will be used for styling later.
-         * Child class should override this function to return appropriate Dialog instance.
-         * If you want to apply styling to dialog, or get content view, you should do it in {@link #onBuildDone(Dialog)}
-         * @param context A Context instance.
-         * @param styleId The resourceId of Dialog's style.
-         * @return A Dialog instance will be used for styling later.
-         */
-        protected Dialog onBuild(Context context, int styleId){
-            return new Dialog(context, styleId);
-        }
-
-        /**
-         * This function will be called after Builder done apply styling to Dialog.
-         * @param dialog The Dialog instance.
-         */
-        protected void onBuildDone(Dialog dialog){}
-
-        protected Builder(Parcel in) {
-            mStyleId = in.readInt();
-            mContentViewId = in.readInt();
-            mTitle = (CharSequence)in.readParcelable(null);
-            mPositive = (CharSequence)in.readParcelable(null);
-            mNegative = (CharSequence)in.readParcelable(null);
-            mNeutral = (CharSequence)in.readParcelable(null);
-
-            onReadFromParcel(in);
-        }
-
-        /**
-         * Child class should override this function and read back any saved attributes.
-         * All read methods should be called after super.onReadFromParcel() call to keep the order.
-         */
-        protected void onReadFromParcel(Parcel in){}
-
-        /**
-         * Child class should override this function and write down all attributes will be saved.
-         * All write methods should be called after super.onWriteToParcel() call to keep the order.
-         */
-        protected void onWriteToParcel(Parcel dest, int flags){}
-
-        @Override
-        public void writeToParcel(Parcel dest, int flags) {
-            dest.writeInt(mStyleId);
-            dest.writeInt(mContentViewId);
-            dest.writeValue(mTitle);
-            dest.writeValue(mPositive);
-            dest.writeValue(mNegative);
-            dest.writeValue(mNeutral);
-            onWriteToParcel(dest, flags);
-        }
-
-        @Override
-        public int describeContents() {
-            return 0;
-        }
-
-        public static final Creator<Builder> CREATOR = new Creator<Builder>() {
-            public Builder createFromParcel(Parcel in) {
-                return new Builder(in);
-            }
-
-            public Builder[] newArray(int size) {
-                return new Builder[size];
-            }
-        };
 
     }
 }

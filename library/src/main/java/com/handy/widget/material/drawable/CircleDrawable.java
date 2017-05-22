@@ -1,4 +1,4 @@
-package com.handy.widget.drawable;
+package com.handy.widget.material.drawable;
 
 import android.graphics.Canvas;
 import android.graphics.ColorFilter;
@@ -11,26 +11,28 @@ import android.os.SystemClock;
 import android.view.animation.DecelerateInterpolator;
 import android.view.animation.Interpolator;
 
-import com.handy.widget.util.ViewUtil;
+import com.handy.widget.material.util.ViewUtil;
 
-/**
- * Created by Rey on 12/26/2014.
- */
 public class CircleDrawable extends Drawable implements Animatable {
 
     private boolean mRunning = false;
     private long mStartTime;
     private float mAnimProgress;
     private int mAnimDuration = 1000;
+    private final Runnable mUpdater = new Runnable() {
+
+        @Override
+        public void run() {
+            update();
+        }
+
+    };
     private Interpolator mInInterpolator = new DecelerateInterpolator();
     private Interpolator mOutInterpolator = new DecelerateInterpolator();
-
     private Paint mPaint;
-
     private float mX;
     private float mY;
     private float mRadius;
-
     private boolean mVisible;
     private boolean mInEditMode = false;
     private boolean mAnimEnable = true;
@@ -143,15 +145,6 @@ public class CircleDrawable extends Drawable implements Animatable {
         mRunning = true;
         super.scheduleSelf(what, when);
     }
-
-    private final Runnable mUpdater = new Runnable() {
-
-        @Override
-        public void run() {
-            update();
-        }
-
-    };
 
     private void update() {
         long curTime = SystemClock.uptimeMillis();

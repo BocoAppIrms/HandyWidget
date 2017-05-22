@@ -1,4 +1,4 @@
-package com.handy.widget.drawable;
+package com.handy.widget.material.drawable;
 
 import android.content.Context;
 import android.content.res.ColorStateList;
@@ -16,19 +16,27 @@ import android.os.SystemClock;
 import android.util.AttributeSet;
 
 import com.handy.widget.R;
-import com.handy.widget.util.ColorUtil;
-import com.handy.widget.util.ThemeUtil;
-import com.handy.widget.util.ViewUtil;
+import com.handy.widget.material.util.ColorUtil;
+import com.handy.widget.material.util.ThemeUtil;
+import com.handy.widget.material.util.ViewUtil;
 
 public class CheckBoxDrawable extends Drawable implements Animatable {
-	
+
+	private static final float[] TICK_DATA = new float[]{0f, 0.473f, 0.367f, 0.839f, 1f, 0.207f};
+	private static final float FILL_TIME = 0.4f;
 	private boolean mRunning = false;
-	
 	private Paint mPaint;
-	
 	private long mStartTime;
 	private float mAnimProgress;
 	private int mAnimDuration;
+	private final Runnable mUpdater = new Runnable() {
+
+		@Override
+		public void run() {
+			update();
+		}
+
+	};
 	private int mStrokeSize;
 	private int mWidth;
 	private int mHeight;
@@ -42,12 +50,8 @@ public class CheckBoxDrawable extends Drawable implements Animatable {
 	private Path mTickPath;
 	private float mTickPathProgress = -1f;
 	private boolean mChecked = false;
-	
 	private boolean mInEditMode = false;
 	private boolean mAnimEnable = true;
-	
-	private static final float[] TICK_DATA = new float[]{0f, 0.473f, 0.367f, 0.839f, 1f, 0.207f};
-	private static final float FILL_TIME = 0.4f;
 	
 	private CheckBoxDrawable(int width, int height, int boxSize, int cornerRadius, int strokeSize, ColorStateList strokeColor, int tickColor, int animDuration){
 		mWidth = width;
@@ -58,10 +62,10 @@ public class CheckBoxDrawable extends Drawable implements Animatable {
 		mStrokeColor = strokeColor;
 		mTickColor = tickColor;
 		mAnimDuration = animDuration;
-		
+
 		mPaint = new Paint();
 		mPaint.setAntiAlias(true);
-		
+
 		mBoxRect = new RectF();
 		mTickPath = new Path();
 	}
@@ -70,14 +74,14 @@ public class CheckBoxDrawable extends Drawable implements Animatable {
 		mInEditMode = b;
 	}
 	
-	public void setAnimEnable(boolean b){
-		mAnimEnable = b;
-	}
-	
 	public boolean isAnimEnable(){
 		return mAnimEnable;
 	}
-	
+
+	public void setAnimEnable(boolean b) {
+		mAnimEnable = b;
+	}
+
 	@Override
 	public int getIntrinsicWidth() {
 		return mWidth;
@@ -97,7 +101,7 @@ public class CheckBoxDrawable extends Drawable implements Animatable {
 	public int getMinimumHeight() {
 		return mHeight;
 	}
-	
+
 	@Override
 	public boolean isStateful() {
 		return true;
@@ -107,50 +111,50 @@ public class CheckBoxDrawable extends Drawable implements Animatable {
 	protected void onBoundsChange(Rect bounds) {
 		mBoxRect.set(bounds.exactCenterX() - mBoxSize / 2, bounds.exactCenterY() - mBoxSize / 2, bounds.exactCenterX() + mBoxSize / 2, bounds.exactCenterY() + mBoxSize / 2);
 	}
-	
+
 	@Override
-	public void draw(Canvas canvas) {					
+	public void draw(Canvas canvas) {
 		if(mChecked)
 			drawChecked(canvas);
 		else
 			drawUnchecked(canvas);
 	}
-		
+
 	private Path getTickPath(Path path, float x, float y, float size, float progress, boolean in){
 		if(mTickPathProgress == progress)
 			return path;
-		
+
 		mTickPathProgress = progress;
-		
+
 		float x1 = x + size * TICK_DATA[0];
 		float y1 = y + size * TICK_DATA[1];
 		float x2 = x + size * TICK_DATA[2];
 		float y2 = y + size * TICK_DATA[3];
 		float x3 = x + size * TICK_DATA[4];
 		float y3 = y + size * TICK_DATA[5];
-		
+
 		float d1 = (float)Math.sqrt(Math.pow(x1 - x2, 2) + Math.pow(y1 - y2, 2));
 		float d2 = (float)Math.sqrt(Math.pow(x1 - x2, 2) + Math.pow(y1 - y2, 2));
 		float midProgress = d1 / (d1 + d2);
-		
+
 		path.reset();
-		
+
 		if(in){
-			path.moveTo(x1, y1);			
-			
+			path.moveTo(x1, y1);
+
 			if(progress < midProgress){
 				progress = progress / midProgress;
 				path.lineTo(x1 * (1 - progress) + x2 * progress, y1 * (1 - progress) + y2 * progress);
 			}
 			else{
 				progress = (progress - midProgress) / (1f - midProgress);
-				path.lineTo(x2, y2);				
+				path.lineTo(x2, y2);
 				path.lineTo(x2 * (1 - progress) + x3 * progress, y2 * (1 - progress) + y3 * progress);
-			}	
-		}	
+			}
+		}
 		else{
 			path.moveTo(x3, y3);
-			
+
 			if(progress < midProgress){
 				progress = progress / midProgress;
 				path.lineTo(x2, y2);
@@ -161,7 +165,7 @@ public class CheckBoxDrawable extends Drawable implements Animatable {
 				path.lineTo(x2 * (1 - progress) + x3 * progress, y2 * (1 - progress) + y3 * progress);
 			}
 		}
-		
+
 		return path;
 	}
 	
@@ -169,117 +173,117 @@ public class CheckBoxDrawable extends Drawable implements Animatable {
 		float size = mBoxSize - mStrokeSize * 2;
 		float x = mBoxRect.left + mStrokeSize;
 		float y = mBoxRect.top + mStrokeSize;
-		
+
 		if(isRunning()){
 			if(mAnimProgress < FILL_TIME){
 				float progress = mAnimProgress / FILL_TIME;
 				float fillWidth = (mBoxSize - mStrokeSize) / 2f * progress;
 				float padding = mStrokeSize / 2f + fillWidth / 2f - 0.5f;
-				
+
 				mPaint.setColor(ColorUtil.getMiddleColor(mPrevColor, mCurColor, progress));
 				mPaint.setStrokeWidth(fillWidth);
 				mPaint.setStyle(Paint.Style.STROKE);
 				canvas.drawRect(mBoxRect.left + padding, mBoxRect.top + padding, mBoxRect.right - padding, mBoxRect.bottom - padding, mPaint);
-								
-				mPaint.setStrokeWidth(mStrokeSize);		
-				canvas.drawRoundRect(mBoxRect, mCornerRadius, mCornerRadius, mPaint);	
+
+				mPaint.setStrokeWidth(mStrokeSize);
+				canvas.drawRoundRect(mBoxRect, mCornerRadius, mCornerRadius, mPaint);
 			}
 			else{
 				float progress = (mAnimProgress - FILL_TIME) / (1f - FILL_TIME);
-				
+
 				mPaint.setColor(mCurColor);
 				mPaint.setStrokeWidth(mStrokeSize);
-				mPaint.setStyle(Paint.Style.FILL_AND_STROKE);			
-				canvas.drawRoundRect(mBoxRect, mCornerRadius, mCornerRadius, mPaint);	
-				
+				mPaint.setStyle(Paint.Style.FILL_AND_STROKE);
+				canvas.drawRoundRect(mBoxRect, mCornerRadius, mCornerRadius, mPaint);
+
 				mPaint.setStyle(Paint.Style.STROKE);
 				mPaint.setStrokeJoin(Paint.Join.MITER);
 				mPaint.setStrokeCap(Paint.Cap.BUTT);
 				mPaint.setColor(mTickColor);
-				
-				canvas.drawPath(getTickPath(mTickPath, x, y, size, progress, true), mPaint);				
-			}						
+
+				canvas.drawPath(getTickPath(mTickPath, x, y, size, progress, true), mPaint);
+			}
 		}
 		else{
 			mPaint.setColor(mCurColor);
 			mPaint.setStrokeWidth(mStrokeSize);
-			mPaint.setStyle(Paint.Style.FILL_AND_STROKE);			
-			canvas.drawRoundRect(mBoxRect, mCornerRadius, mCornerRadius, mPaint);		
-						
+			mPaint.setStyle(Paint.Style.FILL_AND_STROKE);
+			canvas.drawRoundRect(mBoxRect, mCornerRadius, mCornerRadius, mPaint);
+
 			mPaint.setStyle(Paint.Style.STROKE);
 			mPaint.setStrokeJoin(Paint.Join.MITER);
 			mPaint.setStrokeCap(Paint.Cap.BUTT);
 			mPaint.setColor(mTickColor);
-			
-			canvas.drawPath(getTickPath(mTickPath, x, y, size, 1f, true), mPaint);	
-		}		
+
+			canvas.drawPath(getTickPath(mTickPath, x, y, size, 1f, true), mPaint);
+		}
 	}
-	
-	private void drawUnchecked(Canvas canvas){		
+
+	private void drawUnchecked(Canvas canvas) {
 		if(isRunning()){
 			if(mAnimProgress < 1f - FILL_TIME){
 				float size = mBoxSize - mStrokeSize * 2;
 				float x = mBoxRect.left + mStrokeSize;
 				float y = mBoxRect.top + mStrokeSize;
 				float progress = mAnimProgress / (1f -FILL_TIME);
-				
+
 				mPaint.setColor(mPrevColor);
 				mPaint.setStrokeWidth(mStrokeSize);
-				mPaint.setStyle(Paint.Style.FILL_AND_STROKE);			
-				canvas.drawRoundRect(mBoxRect, mCornerRadius, mCornerRadius, mPaint);	
-				
+				mPaint.setStyle(Paint.Style.FILL_AND_STROKE);
+				canvas.drawRoundRect(mBoxRect, mCornerRadius, mCornerRadius, mPaint);
+
 				mPaint.setStyle(Paint.Style.STROKE);
 				mPaint.setStrokeJoin(Paint.Join.MITER);
 				mPaint.setStrokeCap(Paint.Cap.BUTT);
 				mPaint.setColor(mTickColor);
-				
-				canvas.drawPath(getTickPath(mTickPath, x, y, size, progress, false), mPaint);	
+
+				canvas.drawPath(getTickPath(mTickPath, x, y, size, progress, false), mPaint);
 			}
 			else{
-				float progress = (mAnimProgress + FILL_TIME - 1f) / FILL_TIME;				
+				float progress = (mAnimProgress + FILL_TIME - 1f) / FILL_TIME;
 				float fillWidth = (mBoxSize - mStrokeSize) / 2f * (1f - progress);
 				float padding = mStrokeSize / 2f + fillWidth / 2f - 0.5f;
-				
+
 				mPaint.setColor(ColorUtil.getMiddleColor(mPrevColor, mCurColor, progress));
 				mPaint.setStrokeWidth(fillWidth);
 				mPaint.setStyle(Paint.Style.STROKE);
 				canvas.drawRect(mBoxRect.left + padding, mBoxRect.top + padding, mBoxRect.right - padding, mBoxRect.bottom - padding, mPaint);
-								
-				mPaint.setStrokeWidth(mStrokeSize);		
-				canvas.drawRoundRect(mBoxRect, mCornerRadius, mCornerRadius, mPaint);	
+
+				mPaint.setStrokeWidth(mStrokeSize);
+				canvas.drawRoundRect(mBoxRect, mCornerRadius, mCornerRadius, mPaint);
 			}
 		}
 		else{
 			mPaint.setColor(mCurColor);
 			mPaint.setStrokeWidth(mStrokeSize);
-			mPaint.setStyle(Paint.Style.STROKE);			
+			mPaint.setStyle(Paint.Style.STROKE);
 			canvas.drawRoundRect(mBoxRect, mCornerRadius, mCornerRadius, mPaint);
 		}
 	}
-	
+
 	@Override
 	protected boolean onStateChange(int[] state) {
-		boolean checked = ViewUtil.hasState(state, android.R.attr.state_checked);		
+		boolean checked = ViewUtil.hasState(state, android.R.attr.state_checked);
 		int color = mStrokeColor.getColorForState(state, mCurColor);
 		boolean needRedraw = false;
-				
+
 		if(mChecked != checked){
 			mChecked = checked;
 			needRedraw = true;
 			if(!mInEditMode && mAnimEnable)
 				start();
 		}
-				
+
 		if(mCurColor != color){
 			mPrevColor = isRunning() ? mCurColor : color;
 			mCurColor = color;
 			needRedraw = true;
 		}
 		else if(!isRunning())
-			mPrevColor = color;		
-		
+			mPrevColor = color;
+
 		return needRedraw;
-	}	
+	}
 
 	@Override
 	public void setAlpha(int alpha) {
@@ -291,28 +295,28 @@ public class CheckBoxDrawable extends Drawable implements Animatable {
 		mPaint.setColorFilter(cf);
 	}
 
+	//Animation: based on http://cyrilmottier.com/2012/11/27/actionbar-on-the-move/
+		
 	@Override
 	public int getOpacity() {
 		return PixelFormat.TRANSLUCENT;
 	}
-	
-	//Animation: based on http://cyrilmottier.com/2012/11/27/actionbar-on-the-move/
-		
-	private void resetAnimation(){	
+
+	private void resetAnimation() {
 		mStartTime = SystemClock.uptimeMillis();
 		mAnimProgress = 0f;
 	}
-	
+
 	@Override
-	public void start() {						
+	public void start() {
 		resetAnimation();
-		
+
 		scheduleSelf(mUpdater, SystemClock.uptimeMillis() + ViewUtil.FRAME_DURATION);
-	    invalidateSelf();  
+		invalidateSelf();
 	}
 
 	@Override
-	public void stop() {		
+	public void stop() {
 		mRunning = false;
 		unscheduleSelf(mUpdater);
 		invalidateSelf();
@@ -328,15 +332,6 @@ public class CheckBoxDrawable extends Drawable implements Animatable {
 		mRunning = true;
 	    super.scheduleSelf(what, when);
 	}
-	
-	private final Runnable mUpdater = new Runnable() {
-
-	    @Override
-	    public void run() {
-	    	update();
-	    }
-		    
-	};
 		
 	private void update(){
 		long curTime = SystemClock.uptimeMillis();

@@ -1,4 +1,4 @@
-package com.handy.widget.drawable;
+package com.handy.widget.material.drawable;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -22,8 +22,8 @@ import android.view.animation.AnimationUtils;
 import android.view.animation.Interpolator;
 
 import com.handy.widget.R;
-import com.handy.widget.util.ThemeUtil;
-import com.handy.widget.util.ViewUtil;
+import com.handy.widget.material.util.ThemeUtil;
+import com.handy.widget.material.util.ViewUtil;
 
 import org.xmlpull.v1.XmlPullParser;
 
@@ -60,6 +60,14 @@ public class LineMorphingDrawable extends Drawable implements Animatable{
 	private Path mPath;
 	
 	private State[] mStates;
+	private final Runnable mUpdater = new Runnable() {
+
+		@Override
+		public void run() {
+			update();
+		}
+
+	};
 	
 	private LineMorphingDrawable(State[] states, int curState, int paddingLeft, int paddingTop, int paddingRight, int paddingBottom, int animDuration, Interpolator interpolator, int strokeSize, int strokeColor, Paint.Cap strokeCap, Paint.Join strokeJoin, boolean clockwise, boolean isRtl){
 		mStates = states;
@@ -67,7 +75,7 @@ public class LineMorphingDrawable extends Drawable implements Animatable{
 		mPaddingTop = paddingTop;
 		mPaddingRight = paddingRight;
 		mPaddingBottom = paddingBottom;
-		
+
 		mAnimDuration = animDuration;
 		mInterpolator = interpolator;
 		mStrokeSize = strokeSize;
@@ -76,7 +84,7 @@ public class LineMorphingDrawable extends Drawable implements Animatable{
 		mStrokeJoin = strokeJoin;
 		mClockwise = clockwise;
         mIsRtl = isRtl;
-		
+
 		mPaint = new Paint();
 		mPaint.setAntiAlias(true);
 		mPaint.setStyle(Paint.Style.STROKE);
@@ -84,27 +92,27 @@ public class LineMorphingDrawable extends Drawable implements Animatable{
 		mPaint.setStrokeJoin(mStrokeJoin);
 		mPaint.setColor(mStrokeColor);
 		mPaint.setStrokeWidth(mStrokeSize);
-		
+
 		mDrawBound = new RectF();
-		
-		mPath = new Path();			
-			
+
+		mPath = new Path();
+
 		switchLineState(curState, false);
 	}
 	
 	@Override
 	public void draw(Canvas canvas) {
-		int restoreCount = canvas.save();		
+		int restoreCount = canvas.save();
 		float degrees = (mClockwise ? 180 : -180) * ((mPrevState < mCurState ?  0f : 1f) + mAnimProgress);
 
         if(mIsRtl)
             canvas.scale(-1f, 1f, mDrawBound.centerX(), mDrawBound.centerY());
 
-		canvas.rotate(degrees, mDrawBound.centerX(), mDrawBound.centerY());		
+		canvas.rotate(degrees, mDrawBound.centerX(), mDrawBound.centerY());
 		canvas.drawPath(mPath, mPaint);
 		canvas.restoreToCount(restoreCount);
 	}
-	
+
 	@Override
 	public void setAlpha(int alpha) {
 		mPaint.setAlpha(alpha);
@@ -123,12 +131,12 @@ public class LineMorphingDrawable extends Drawable implements Animatable{
 	@Override
 	protected void onBoundsChange(Rect bounds) {
 		super.onBoundsChange(bounds);
-		
+
 		mDrawBound.left = bounds.left + mPaddingLeft;
 		mDrawBound.top = bounds.top + mPaddingTop;
 		mDrawBound.right = bounds.right - mPaddingRight;
 		mDrawBound.bottom = bounds.bottom - mPaddingBottom;
-		
+
 		updatePath();
 	}
 	
@@ -156,13 +164,12 @@ public class LineMorphingDrawable extends Drawable implements Animatable{
 			mAnimProgress = progress;
 			updatePath();
 			return true;
-		}
-		else if(mAnimProgress != progress){				
+		} else if (mAnimProgress != progress) {
 			mAnimProgress = progress;
 			updatePath();
 			return true;
 		}
-		
+
 		return false;
 	}
 	
@@ -180,17 +187,17 @@ public class LineMorphingDrawable extends Drawable implements Animatable{
 	
 	private void updatePath(){
 		mPath.reset();
-		
+
 		if(mStates == null)
 			return;
-		
+
 		if(mAnimProgress == 0f || (mStates[mPrevState].links != null && mAnimProgress < 0.05f))
 			updatePathWithState(mPath, mStates[mPrevState]);
 		else if(mAnimProgress == 1f || (mStates[mCurState].links != null && mAnimProgress >0.95f))
 			updatePathWithState(mPath, mStates[mCurState]);
 		else
 			updatePathBetweenStates(mPath, mStates[mPrevState], mStates[mCurState], mInterpolator.getInterpolation(mAnimProgress));
-			
+
 		invalidateSelf();
 	}
 	
@@ -199,17 +206,17 @@ public class LineMorphingDrawable extends Drawable implements Animatable{
 			for(int i = 0; i < state.links.length; i+= 2){
 				int index1 = state.links[i] * 4;
 				int index2 = state.links[i + 1] * 4;
-				
+
 				float x1 = getX(state.points[index1]);
 				float y1 = getY(state.points[index1 + 1]);
 				float x2 = getX(state.points[index1 + 2]);
 				float y2 = getY(state.points[index1 + 3]);
-				
+
 				float x3 = getX(state.points[index2]);
 				float y3 = getY(state.points[index2 + 1]);
 				float x4 = getX(state.points[index2 + 2]);
 				float y4 = getY(state.points[index2 + 3]);
-				
+
 				if(x1 == x3 && y1 == y3){
 					path.moveTo(x2, y2);
 					path.lineTo(x1, y1);
@@ -231,7 +238,7 @@ public class LineMorphingDrawable extends Drawable implements Animatable{
 					path.lineTo(x3, y3);
 				}
 			}
-			
+
 			for(int i = 0, count = state.points.length / 4; i < count; i ++){
 				boolean exist = false;
 				for(int j = 0; j < state.links.length; j++)
@@ -239,20 +246,20 @@ public class LineMorphingDrawable extends Drawable implements Animatable{
 						exist = true;
 						break;
 					}
-				
+
 				if(exist)
 					continue;
-				
+
 				int index = i * 4;
-				
+
 				path.moveTo(getX(state.points[index]), getY(state.points[index + 1]));
 				path.lineTo(getX(state.points[index + 2]), getY(state.points[index + 3]));
 			}
 		}
 		else{
-			for(int i = 0, count = state.points.length / 4; i < count; i ++){				
+			for (int i = 0, count = state.points.length / 4; i < count; i++) {
 				int index = i * 4;
-				
+
 				path.moveTo(getX(state.points[index]), getY(state.points[index + 1]));
 				path.lineTo(getX(state.points[index + 2]), getY(state.points[index + 3]));
 			}
@@ -261,14 +268,14 @@ public class LineMorphingDrawable extends Drawable implements Animatable{
 	
 	private void updatePathBetweenStates(Path path, State prev, State cur, float progress){
 		int count = Math.max(prev.points.length, cur.points.length) / 4;
-		
+
 		for(int i = 0; i < count; i++){
 			int index = i * 4;
-			
+
 			float x1;
 			float y1;
 			float x2;
-			float y2;			
+			float y2;
 			if(index >= prev.points.length){
 				x1 = 0.5f;
 				y1 = 0.5f;
@@ -281,11 +288,11 @@ public class LineMorphingDrawable extends Drawable implements Animatable{
 				x2 = prev.points[index + 2];
 				y2 = prev.points[index + 3];
 			}
-			
+
 			float x3;
 			float y3;
 			float x4;
-			float y4;			
+			float y4;
 			if(index >= cur.points.length){
 				x3 = 0.5f;
 				y3 = 0.5f;
@@ -298,23 +305,23 @@ public class LineMorphingDrawable extends Drawable implements Animatable{
 				x4 = cur.points[index + 2];
 				y4 = cur.points[index + 3];
 			}
-			
+
 			mPath.moveTo(getX(x1 + (x3 - x1) * progress), getY(y1 + (y3 - y1) * progress));
 			mPath.lineTo(getX(x2 + (x4 - x2) * progress), getY(y2 + (y4 - y2) * progress));
 		}
-	}	
+	}
 	
 	private float getX(float value){
 		return mDrawBound.left + mDrawBound.width() * value;
 	}
-	
+
+	//Animation: based on http://cyrilmottier.com/2012/11/27/actionbar-on-the-move/
+		
 	private float getY(float value){
 		return mDrawBound.top + mDrawBound.height() * value;
 	}
-	
-	//Animation: based on http://cyrilmottier.com/2012/11/27/actionbar-on-the-move/
-		
-	private void resetAnimation(){	
+
+	private void resetAnimation() {
 		mStartTime = SystemClock.uptimeMillis();
 		mAnimProgress = 0f;
 	}
@@ -327,16 +334,16 @@ public class LineMorphingDrawable extends Drawable implements Animatable{
 	@Override
 	public void start() {
 		resetAnimation();
-		
+
 		scheduleSelf(mUpdater, SystemClock.uptimeMillis() + ViewUtil.FRAME_DURATION);
-	    invalidateSelf();  
+		invalidateSelf();
 	}
 
 	@Override
 	public void stop() {
-		if(!isRunning()) 
+		if (!isRunning())
 			return;
-				
+
 		mRunning = false;
 		unscheduleSelf(mUpdater);
 		invalidateSelf();
@@ -352,15 +359,6 @@ public class LineMorphingDrawable extends Drawable implements Animatable{
 		mRunning = true;
 	    super.scheduleSelf(what, when);
 	}
-	
-	private final Runnable mUpdater = new Runnable() {
-
-	    @Override
-	    public void run() {
-	    	update();
-	    }
-		    
-	};
 		
 	private void update(){
 		long curTime = SystemClock.uptimeMillis();
@@ -390,13 +388,16 @@ public class LineMorphingDrawable extends Drawable implements Animatable{
 	}
 	
 	public static class Builder{
+		private static final String TAG_STATE_LIST = "state-list";
+		private static final String TAG_STATE = "state";
+		private static final String TAG_POINTS = "points";
+		private static final String TAG_LINKS = "links";
+		private static final String TAG_ITEM = "item";
 		private int mCurState;
-		
 		private int mPaddingLeft;
 		private int mPaddingTop;
 		private int mPaddingRight;
 		private int mPaddingBottom;
-		
 		private int mAnimDuration;
 		private Interpolator mInterpolator;
 		private int mStrokeSize;
@@ -405,14 +406,7 @@ public class LineMorphingDrawable extends Drawable implements Animatable{
 		private Paint.Cap mStrokeCap;
 		private Paint.Join mStrokeJoin;
         private boolean mIsRtl;
-		
 		private State[] mStates;
-		
-		private static final String TAG_STATE_LIST = "state-list";
-		private static final String TAG_STATE = "state";
-		private static final String TAG_POINTS = "points";
-		private static final String TAG_LINKS = "links";
-		private static final String TAG_ITEM = "item";
 		
 		public Builder(){}
 

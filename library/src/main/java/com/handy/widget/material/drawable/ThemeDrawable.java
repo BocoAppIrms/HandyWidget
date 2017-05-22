@@ -1,13 +1,10 @@
-package com.handy.widget.drawable;
+package com.handy.widget.material.drawable;
 
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.LevelListDrawable;
 
-import com.handy.widget.app.ThemeManager;
+import com.handy.widget.material.app.ThemeManager;
 
-/**
- * Created by Rey on 5/27/2015.
- */
 public class ThemeDrawable extends LevelListDrawable implements ThemeManager.OnThemeChangedListener {
     private int mStyleId;
 

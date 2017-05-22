@@ -1,4 +1,4 @@
-package com.handy.widget.app;
+package com.handy.widget.material.app;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -20,26 +20,9 @@ import android.view.animation.Transformation;
 import android.widget.FrameLayout;
 
 import com.handy.widget.R;
-import com.handy.widget.drawable.BlankDrawable;
+import com.handy.widget.material.drawable.BlankDrawable;
 
-/**
- * Created by Rey on 7/25/2015.
- */
 public class BottomSheetDialog extends android.app.Dialog{
-
-    private boolean mCancelable = true;
-    private boolean mCanceledOnTouchOutside = true;
-    private int mLayoutHeight = ViewGroup.LayoutParams.WRAP_CONTENT;
-    private Interpolator mInInterpolator;
-    private int mInDuration;
-    private Interpolator mOutInterpolator;
-    private int mOutDuration;
-
-    private ContainerFrameLayout mContainer;
-    private View mContentView;
-
-    private GestureDetector mGestureDetector;
-    private int mMinFlingVelocity;
 
     private final Handler mHandler = new Handler();
     private final Runnable mDismissAction = new Runnable() {
@@ -47,11 +30,21 @@ public class BottomSheetDialog extends android.app.Dialog{
             //dirty fix for java.lang.IllegalArgumentException: View not attached to window manager
             try {
                 BottomSheetDialog.super.dismiss();
+            } catch (IllegalArgumentException ex) {
             }
-            catch(IllegalArgumentException ex){}
         }
     };
-
+    private boolean mCancelable = true;
+    private boolean mCanceledOnTouchOutside = true;
+    private int mLayoutHeight = ViewGroup.LayoutParams.WRAP_CONTENT;
+    private Interpolator mInInterpolator;
+    private int mInDuration;
+    private Interpolator mOutInterpolator;
+    private int mOutDuration;
+    private ContainerFrameLayout mContainer;
+    private View mContentView;
+    private GestureDetector mGestureDetector;
+    private int mMinFlingVelocity;
     private boolean mRunShowAnimation = false;
     private Animation mAnimation;
 
@@ -470,10 +463,8 @@ public class BottomSheetDialog extends android.app.Dialog{
                 return true;
 
             View child = getChildAt(0);
-            if(child != null && y > mChildTop + child.getMeasuredHeight())
-                return true;
+            return child != null && y > mChildTop + child.getMeasuredHeight();
 
-            return false;
         }
 
         @Override

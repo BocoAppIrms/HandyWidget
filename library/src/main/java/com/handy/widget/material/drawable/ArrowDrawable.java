@@ -1,4 +1,4 @@
-package com.handy.widget.drawable;
+package com.handy.widget.material.drawable;
 
 import android.content.res.ColorStateList;
 import android.graphics.Canvas;
@@ -13,27 +13,31 @@ import android.os.SystemClock;
 import android.view.animation.DecelerateInterpolator;
 import android.view.animation.Interpolator;
 
-import com.handy.widget.util.ViewUtil;
+import com.handy.widget.material.util.ViewUtil;
 
 public class ArrowDrawable extends Drawable implements Animatable{
-	
+
+	public static int MODE_DOWN = 0;
+	public static int MODE_UP = 1;
 	private boolean mRunning = false;
 	private long mStartTime;
 	private float mAnimProgress;
 	private int mAnimDuration;
-	
+	private final Runnable mUpdater = new Runnable() {
+
+		@Override
+		public void run() {
+			update();
+		}
+
+	};
 	private Paint mPaint;
 	private ColorStateList mColorStateList;
 	private int mSize;
 	private int mCurColor;
 	private int mMode;
 	private Interpolator mInterpolator;
-	
 	private Path mPath;
-		
-	public static int MODE_DOWN = 0;
-	public static int MODE_UP = 1;
-	
 	private boolean mClockwise = true;
 	
 	public ArrowDrawable(int mode, int size, ColorStateList colorStateList, int animDuration, Interpolator interpolator, boolean clockwise){
@@ -44,16 +48,16 @@ public class ArrowDrawable extends Drawable implements Animatable{
 		if(mInterpolator == null)
 			mInterpolator = new DecelerateInterpolator();
 		mClockwise = clockwise;
-		
+
 		mPaint = new Paint();
 		mPaint.setAntiAlias(true);
 		mPaint.setStyle(Paint.Style.FILL);
-		
+
 		mPath = new Path();
-		
+
 		setColor(colorStateList);
 	}
-	
+
 	public void setColor(ColorStateList colorStateList){
 		mColorStateList = colorStateList;
 		onStateChange(getState());
@@ -80,23 +84,23 @@ public class ArrowDrawable extends Drawable implements Animatable{
 
 	public void setMode(int mode, boolean animation){
 		if(mMode != mode){
-			mMode = mode;			
+			mMode = mode;
 			if(animation && mAnimDuration > 0)
-				start();			
+				start();
 			else
 				invalidateSelf();
 		}
-	}	
-	
+	}
+		
 	public int getMode(){
 		return mMode;
 	}
-		
+
 	@Override
 	protected void onBoundsChange(Rect bounds) {
 		float x = bounds.exactCenterX();
 		float y = bounds.exactCenterY();
-		
+
 		mPath.reset();
 		mPath.moveTo(x, y + mSize / 2f);
 		mPath.lineTo(x - mSize, y - mSize / 2f);
@@ -108,7 +112,7 @@ public class ArrowDrawable extends Drawable implements Animatable{
 	public void draw(Canvas canvas) {
 		int saveCount = canvas.save();
 		Rect bounds = getBounds();
-		
+
 		if(!isRunning()){
 			if(mMode == MODE_UP)
 				canvas.rotate(180, bounds.exactCenterX(), bounds.exactCenterY());
@@ -116,7 +120,7 @@ public class ArrowDrawable extends Drawable implements Animatable{
 		else{
 			float value = mInterpolator.getInterpolation(mAnimProgress);
 			float degree;
-			
+
 			if(mClockwise){
 				if(mMode == MODE_UP) // move down > up
 					degree = 180 * value;
@@ -129,19 +133,19 @@ public class ArrowDrawable extends Drawable implements Animatable{
 				else // move up > down
 					degree = -180 * (1 + value);
 			}
-			
+
 			canvas.rotate(degree, bounds.exactCenterX(), bounds.exactCenterY());
 		}
-		
+
 		mPaint.setColor(mCurColor);
 		canvas.drawPath(mPath, mPaint);
-		
+
 		canvas.restoreToCount(saveCount);
 	}
-			
+
 	@Override
 	public void setAlpha(int alpha) {
-		mPaint.setAlpha(alpha);			
+		mPaint.setAlpha(alpha);
 	}
 
 	@Override
@@ -161,26 +165,26 @@ public class ArrowDrawable extends Drawable implements Animatable{
 
 	@Override
 	protected boolean onStateChange(int[] state) {
-		int color = mColorStateList.getColorForState(state, mCurColor);		
-				
+		int color = mColorStateList.getColorForState(state, mCurColor);
+
 		if(mCurColor != color){
-			mCurColor = color;	
+			mCurColor = color;
 			return true;
 		}
-			
+
 		return false;
 	}
 
-	private void resetAnimation(){	
+	private void resetAnimation() {
 		mStartTime = SystemClock.uptimeMillis();
 		mAnimProgress = 0f;
 	}
-	
+
 	@Override
 	public void start() {
-		resetAnimation();			
+		resetAnimation();
 		scheduleSelf(mUpdater, SystemClock.uptimeMillis() + ViewUtil.FRAME_DURATION);
-	    invalidateSelf();  
+		invalidateSelf();
 	}
 
 	@Override
@@ -200,15 +204,6 @@ public class ArrowDrawable extends Drawable implements Animatable{
 		mRunning = true;
 	    super.scheduleSelf(what, when);
 	}
-	
-	private final Runnable mUpdater = new Runnable() {
-
-	    @Override
-	    public void run() {
-	    	update();
-	    }
-		    
-	};
 		
 	private void update(){
 		long curTime = SystemClock.uptimeMillis();

@@ -1,4 +1,4 @@
-package com.handy.widget.app;
+package com.handy.widget.material.app;
 
 import android.content.Context;
 import android.content.DialogInterface;
@@ -7,54 +7,10 @@ import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.view.View;
 
-/**
- * Created by Rey on 1/12/2015.
- */
 public class DialogFragment extends android.support.v4.app.DialogFragment{
 
-    /**
-     * Interface definition for passing style data.
-     */
-    public interface Builder{
-        /**
-         * Get a Dialog instance used for this fragment.
-         * @param context A Context instance.
-         * @return The Dialog will be used for this fragment.
-         */
-        public Dialog build(Context context);
-
-        /**
-         * Handle click event on Positive Action.
-         */
-        public void onPositiveActionClicked(DialogFragment fragment);
-
-        /**
-         * Handle click event on Negative Action.
-         */
-        public void onNegativeActionClicked(DialogFragment fragment);
-
-        /**
-         * Handle click event on Neutral Action.
-         */
-        public void onNeutralActionClicked(DialogFragment fragment);
-
-        /**
-         * Handle OnCancel event of dialog.
-         * @param dialog
-         */
-        public void onCancel(DialogInterface dialog);
-
-        /**
-         * Handle OnDismiss event of dialog.
-         * @param dialog
-         */
-        public void onDismiss(DialogInterface dialog);
-    }
-
     protected static final String ARG_BUILDER = "arg_builder";
-
     protected Builder mBuilder;
-
     private View.OnClickListener mActionListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
@@ -121,5 +77,47 @@ public class DialogFragment extends android.support.v4.app.DialogFragment{
     public void onDismiss(DialogInterface dialog) {
         super.onDismiss(dialog);
         mBuilder.onDismiss(dialog);
+    }
+
+    /**
+     * Interface definition for passing style data.
+     */
+    public interface Builder {
+        /**
+         * Get a Dialog instance used for this fragment.
+         *
+         * @param context A Context instance.
+         * @return The Dialog will be used for this fragment.
+         */
+        Dialog build(Context context);
+
+        /**
+         * Handle click event on Positive Action.
+         */
+        void onPositiveActionClicked(DialogFragment fragment);
+
+        /**
+         * Handle click event on Negative Action.
+         */
+        void onNegativeActionClicked(DialogFragment fragment);
+
+        /**
+         * Handle click event on Neutral Action.
+         */
+        void onNeutralActionClicked(DialogFragment fragment);
+
+        /**
+         * Handle OnCancel event of dialog.
+         *
+         * @param dialog
+         */
+        void onCancel(DialogInterface dialog);
+
+        /**
+         * Handle OnDismiss event of dialog.
+         *
+         * @param dialog
+         */
+        void onDismiss(DialogInterface dialog);
     }
 }

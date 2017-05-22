@@ -1,4 +1,4 @@
-package com.handy.widget.drawable;
+package com.handy.widget.material.drawable;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -17,33 +17,28 @@ import android.view.animation.DecelerateInterpolator;
 import android.view.animation.Interpolator;
 
 import com.handy.widget.R;
-import com.handy.widget.util.ColorUtil;
-import com.handy.widget.util.ThemeUtil;
-import com.handy.widget.util.ViewUtil;
-import com.handy.widget.widget.ProgressView;
+import com.handy.widget.material.util.ColorUtil;
+import com.handy.widget.material.util.ThemeUtil;
+import com.handy.widget.material.util.ViewUtil;
+import com.handy.widget.material.widget.ProgressView;
 
 public class CircularProgressDrawable extends Drawable implements Animatable {
-	
-	private long mLastUpdateTime;
-	private long mLastProgressStateTime;
-	private long mLastRunStateTime;
-			
-	private int mProgressState;
 	
 	private static final int PROGRESS_STATE_HIDE = -1;
 	private static final int PROGRESS_STATE_STRETCH = 0;
 	private static final int PROGRESS_STATE_KEEP_STRETCH = 1;
 	private static final int PROGRESS_STATE_SHRINK = 2;
 	private static final int PROGRESS_STATE_KEEP_SHRINK = 3;
-	
-	private int mRunState = RUN_STATE_STOPPED;
-	
 	private static final int RUN_STATE_STOPPED = 0;
 	private static final int RUN_STATE_STARTING = 1;
 	private static final int RUN_STATE_STARTED = 2;
 	private static final int RUN_STATE_RUNNING = 3;
 	private static final int RUN_STATE_STOPPING = 4;
-	
+	private long mLastUpdateTime;
+	private long mLastProgressStateTime;
+	private long mLastRunStateTime;
+	private int mProgressState;
+	private int mRunState = RUN_STATE_STOPPED;
 	private Paint mPaint;
 	private RectF mRect;
 	private float mStartAngle;
@@ -68,8 +63,16 @@ public class CircularProgressDrawable extends Drawable implements Animatable {
 	private int mInAnimationDuration;
 	private int mOutAnimationDuration;
 	private int mProgressMode;
-	private Interpolator mTransformInterpolator; 
-		
+	private Interpolator mTransformInterpolator;
+	private final Runnable mUpdater = new Runnable() {
+
+		@Override
+		public void run() {
+			update();
+		}
+
+	};
+
 	private CircularProgressDrawable(int padding, float initialAngle, float progressPercent, float secondaryProgressPercent, float maxSweepAngle, float minSweepAngle, int strokeSize, int[] strokeColors, int strokeSecondaryColor, boolean reverse, int rotateDuration, int transformDuration, int keepDuration, Interpolator transformInterpolator, int progressMode, int inAnimDuration, float inStepPercent, int[] inStepColors, int outAnimDuration){
 		mPadding = padding;
 		mInitialAngle = initialAngle;
@@ -90,12 +93,12 @@ public class CircularProgressDrawable extends Drawable implements Animatable {
 		mInStepPercent = inStepPercent;
 		mInColors = inStepColors;
 		mOutAnimationDuration = outAnimDuration;
-		
+
 		mPaint = new Paint();
 		mPaint.setAntiAlias(true);
 		mPaint.setStrokeCap(Paint.Cap.ROUND);
-		mPaint.setStrokeJoin(Paint.Join.ROUND);		
-		
+		mPaint.setStrokeJoin(Paint.Join.ROUND);
+
 		mRect = new RectF();
 	}
 
@@ -177,7 +180,7 @@ public class CircularProgressDrawable extends Drawable implements Animatable {
     }
 
 	@Override
-	public void draw(Canvas canvas) {			
+	public void draw(Canvas canvas) {
 		switch (mProgressMode) {
 			case ProgressView.MODE_DETERMINATE:
 				drawDeterminate(canvas);
@@ -185,21 +188,21 @@ public class CircularProgressDrawable extends Drawable implements Animatable {
 			case ProgressView.MODE_INDETERMINATE:
 				drawIndeterminate(canvas);
 				break;
-		}		
+		}
 	}
-	
+
 	private void drawDeterminate(Canvas canvas){
-		Rect bounds = getBounds();		
+		Rect bounds = getBounds();
 		float radius = 0f;
 		float size = 0f;
-		
+
 		if(mRunState == RUN_STATE_STARTING){
-			size = (float)mStrokeSize * Math.min(mInAnimationDuration, (SystemClock.uptimeMillis() - mLastRunStateTime)) / mInAnimationDuration;				
-			if(size > 0)			
-				radius = (Math.min(bounds.width(), bounds.height()) - mPadding * 2 - mStrokeSize * 2 + size) / 2f;	
+			size = (float) mStrokeSize * Math.min(mInAnimationDuration, (SystemClock.uptimeMillis() - mLastRunStateTime)) / mInAnimationDuration;
+			if (size > 0)
+				radius = (Math.min(bounds.width(), bounds.height()) - mPadding * 2 - mStrokeSize * 2 + size) / 2f;
 		}
 		else if(mRunState == RUN_STATE_STOPPING){
-			size = (float)mStrokeSize * Math.max(0, (mOutAnimationDuration - SystemClock.uptimeMillis() + mLastRunStateTime)) / mOutAnimationDuration;		
+			size = (float) mStrokeSize * Math.max(0, (mOutAnimationDuration - SystemClock.uptimeMillis() + mLastRunStateTime)) / mOutAnimationDuration;
 			if(size > 0)
 				radius = (Math.min(bounds.width(), bounds.height()) - mPadding * 2 - mStrokeSize * 2 + size) / 2f;
 		}
@@ -207,14 +210,14 @@ public class CircularProgressDrawable extends Drawable implements Animatable {
 			size = mStrokeSize;
 			radius = (Math.min(bounds.width(), bounds.height()) - mPadding * 2 - mStrokeSize) / 2f;
 		}
-		
+
 		if(radius > 0){
 			float x = (bounds.left + bounds.right) / 2f;
 			float y = (bounds.top + bounds.bottom) / 2f;
-			
+
 			mPaint.setStrokeWidth(size);
 			mPaint.setStyle(Paint.Style.STROKE);
-			
+
 			if(mProgressPercent == 1f){
 				mPaint.setColor(mStrokeColors[0]);
 				canvas.drawCircle(x, y, radius, mPaint);
@@ -225,48 +228,48 @@ public class CircularProgressDrawable extends Drawable implements Animatable {
 			}
 			else{
 				float sweepAngle = (mReverse ? -360 : 360) * mProgressPercent;
-				
-				mRect.set(x - radius, y - radius, x + radius, y + radius);				
-				mPaint.setColor(mStrokeSecondaryColor);			
+
+				mRect.set(x - radius, y - radius, x + radius, y + radius);
+				mPaint.setColor(mStrokeSecondaryColor);
 				canvas.drawArc(mRect, mStartAngle + sweepAngle, (mReverse ? -360 : 360) - sweepAngle, false, mPaint);
-							
+
 				mPaint.setColor(mStrokeColors[0]);
 				canvas.drawArc(mRect, mStartAngle, sweepAngle, false, mPaint);
 			}
-		}		
+		}
 	}
-		
+
 	private int getIndeterminateStrokeColor(){
 		if(mProgressState != PROGRESS_STATE_KEEP_SHRINK || mStrokeColors.length == 1)
 			return mStrokeColors[mStrokeColorIndex];
-		
+
 		float value = Math.max(0f, Math.min(1f, (float)(SystemClock.uptimeMillis() - mLastProgressStateTime) / mKeepDuration));
 		int prev_index = mStrokeColorIndex == 0 ? mStrokeColors.length - 1 : mStrokeColorIndex - 1;
-		
+
 		return ColorUtil.getMiddleColor(mStrokeColors[prev_index], mStrokeColors[mStrokeColorIndex], value);
 	}
-	
+
 	private void drawIndeterminate(Canvas canvas){
 		if(mRunState == RUN_STATE_STARTING){
-			Rect bounds = getBounds();				
+			Rect bounds = getBounds();
 			float x = (bounds.left + bounds.right) / 2f;
 			float y = (bounds.top + bounds.bottom) / 2f;
 			float maxRadius = (Math.min(bounds.width(), bounds.height()) - mPadding * 2) / 2f;
-			
+
 			float stepTime = 1f / (mInStepPercent * (mInColors.length + 2) + 1);
 			float time = (float)(SystemClock.uptimeMillis() - mLastRunStateTime) / mInAnimationDuration;
 			float steps =  time / stepTime;
-							
+
 			float outerRadius = 0f;
-			float innerRadius = 0f; 
-			
+			float innerRadius = 0f;
+
 			for(int i = (int)Math.floor(steps); i >= 0; i--){
 				innerRadius = outerRadius;
 				outerRadius = Math.min(1f, (steps - i) * mInStepPercent) * maxRadius;
-									
+
 				if(i >= mInColors.length)
 					continue;
-				
+
 				if(innerRadius == 0){
 					mPaint.setColor(mInColors[i]);
 					mPaint.setStyle(Paint.Style.FILL);
@@ -274,49 +277,49 @@ public class CircularProgressDrawable extends Drawable implements Animatable {
 				}
 				else if(outerRadius > innerRadius){
 					float radius = (innerRadius + outerRadius) / 2;
-					mRect.set(x - radius, y - radius, x + radius, y + radius);	
-					
+					mRect.set(x - radius, y - radius, x + radius, y + radius);
+
 					mPaint.setStrokeWidth(outerRadius - innerRadius);
 					mPaint.setStyle(Paint.Style.STROKE);
 					mPaint.setColor(mInColors[i]);
-					
+
 					canvas.drawCircle(x, y, radius, mPaint);
 				}
 				else
 					break;
 			}
-			
+
 			if(mProgressState == PROGRESS_STATE_HIDE){
 				if(steps >= 1 / mInStepPercent || time >= 1) {
 					resetAnimation();
 					mProgressState = PROGRESS_STATE_STRETCH;
 				}
-			}					
+			}
 			else{
 				float radius = maxRadius - mStrokeSize / 2f;
-				
-				mRect.set(x - radius, y - radius, x + radius, y + radius);				
+
+				mRect.set(x - radius, y - radius, x + radius, y + radius);
 				mPaint.setStrokeWidth(mStrokeSize);
 				mPaint.setStyle(Paint.Style.STROKE);
 				mPaint.setColor(getIndeterminateStrokeColor());
-				
+
 				canvas.drawArc(mRect, mStartAngle, mSweepAngle, false, mPaint);
 			}
 		}
 		else if(mRunState == RUN_STATE_STOPPING){
-			float size = (float)mStrokeSize * Math.max(0, (mOutAnimationDuration - SystemClock.uptimeMillis() + mLastRunStateTime)) / mOutAnimationDuration;								
-			
+			float size = (float) mStrokeSize * Math.max(0, (mOutAnimationDuration - SystemClock.uptimeMillis() + mLastRunStateTime)) / mOutAnimationDuration;
+
 			if(size > 0){
 				Rect bounds = getBounds();
 				float radius = (Math.min(bounds.width(), bounds.height()) - mPadding * 2 - mStrokeSize * 2 + size) / 2f;
 				float x = (bounds.left + bounds.right) / 2f;
 				float y = (bounds.top + bounds.bottom) / 2f;
-				
-				mRect.set(x - radius, y - radius, x + radius, y + radius);					
+
+				mRect.set(x - radius, y - radius, x + radius, y + radius);
 				mPaint.setStrokeWidth(size);
 				mPaint.setStyle(Paint.Style.STROKE);
 				mPaint.setColor(getIndeterminateStrokeColor());
-				
+
 				canvas.drawArc(mRect, mStartAngle, mSweepAngle, false, mPaint);
 			}
 		}
@@ -325,14 +328,14 @@ public class CircularProgressDrawable extends Drawable implements Animatable {
 			float radius = (Math.min(bounds.width(), bounds.height()) - mPadding * 2 - mStrokeSize) / 2f;
 			float x = (bounds.left + bounds.right) / 2f;
 			float y = (bounds.top + bounds.bottom) / 2f;
-			
-			mRect.set(x - radius, y - radius, x + radius, y + radius);				
+
+			mRect.set(x - radius, y - radius, x + radius, y + radius);
 			mPaint.setStrokeWidth(mStrokeSize);
 			mPaint.setStyle(Paint.Style.STROKE);
 			mPaint.setColor(getIndeterminateStrokeColor());
-			
+
 			canvas.drawArc(mRect, mStartAngle, mSweepAngle, false, mPaint);
-		}		
+		}
 	}
 
 	@Override
@@ -349,7 +352,7 @@ public class CircularProgressDrawable extends Drawable implements Animatable {
 	public int getOpacity() {
 		return PixelFormat.TRANSLUCENT;
 	}
-	
+
 	public int getProgressMode(){
 		return mProgressMode;
 	}
@@ -365,10 +368,6 @@ public class CircularProgressDrawable extends Drawable implements Animatable {
 		return mProgressPercent;
 	}
 	
-	public float getSecondaryProgress(){
-		return mSecondaryProgressPercent;
-	}
-	
 	public void setProgress(float percent){
 		percent = Math.min(1f, Math.max(0f, percent));
 		if(mProgressPercent != percent){
@@ -379,6 +378,12 @@ public class CircularProgressDrawable extends Drawable implements Animatable {
 				start();
 		}
 	}
+
+	public float getSecondaryProgress() {
+		return mSecondaryProgressPercent;
+	}
+
+	//Animation: based on http://cyrilmottier.com/2012/11/27/actionbar-on-the-move/
 	
 	public void setSecondaryProgress(float percent){
 		percent = Math.min(1f, Math.max(0f, percent));
@@ -390,29 +395,27 @@ public class CircularProgressDrawable extends Drawable implements Animatable {
 				start();
 		}
 	}
-	
-	//Animation: based on http://cyrilmottier.com/2012/11/27/actionbar-on-the-move/
-	
-	private void resetAnimation(){		
+
+	private void resetAnimation() {
 		mLastUpdateTime = SystemClock.uptimeMillis();
 		mLastProgressStateTime = mLastUpdateTime;
 		mStartAngle = mInitialAngle;
 		mStrokeColorIndex = 0;
 		mSweepAngle = mReverse ? -mMinSweepAngle : mMinSweepAngle;
 	}
-	
+
 	@Override
 	public void start() {
-		start(mInAnimationDuration > 0);	    
+		start(mInAnimationDuration > 0);
 	}
 
 	@Override
 	public void stop() {
 		stop(mOutAnimationDuration > 0);
 	}
-		
+
 	private void start(boolean withAnimation){
-		if(isRunning()) 
+		if (isRunning())
 			return;
 
 		resetAnimation();
@@ -424,48 +427,38 @@ public class CircularProgressDrawable extends Drawable implements Animatable {
 		}
 
 		scheduleSelf(mUpdater, SystemClock.uptimeMillis() + ViewUtil.FRAME_DURATION);
-	    invalidateSelf();  
+		invalidateSelf();
 	}
 	
 	private void stop(boolean withAnimation){
-		if(!isRunning()) 
+		if (!isRunning())
 			return;
-		
-		if(withAnimation){				
+
+		if (withAnimation) {
 			mLastRunStateTime = SystemClock.uptimeMillis();
 			if(mRunState == RUN_STATE_STARTED){
 				scheduleSelf(mUpdater, SystemClock.uptimeMillis() + ViewUtil.FRAME_DURATION);
-			    invalidateSelf();  
+				invalidateSelf();
 			}
-			mRunState = RUN_STATE_STOPPING;	
-		}
-		else{			
+			mRunState = RUN_STATE_STOPPING;
+		} else {
 			mRunState = RUN_STATE_STOPPED;
 			unscheduleSelf(mUpdater);
 			invalidateSelf();
-		}		
+		}
 	}
-	
+
 	@Override
 	public boolean isRunning() {
 		return mRunState != RUN_STATE_STOPPED;
 	}
-		
+
 	@Override
 	public void scheduleSelf(Runnable what, long when) {
 		if(mRunState == RUN_STATE_STOPPED)
 			mRunState = mInAnimationDuration > 0 ? RUN_STATE_STARTING : RUN_STATE_RUNNING;
 	    super.scheduleSelf(what, when);
 	}
-	
-	private final Runnable mUpdater = new Runnable() {
-
-	    @Override
-	    public void run() {
-	    	update();
-	    }
-		    
-	};
 		
 	private void update(){
 		switch (mProgressMode) {

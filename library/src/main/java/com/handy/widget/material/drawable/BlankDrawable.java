@@ -1,15 +1,10 @@
-package com.handy.widget.drawable;
+package com.handy.widget.material.drawable;
 
 import android.graphics.Canvas;
 import android.graphics.ColorFilter;
 import android.graphics.PixelFormat;
 import android.graphics.drawable.Drawable;
 
-/**
- * A drawable that draw nothing.
- * @author Rey
- *
- */
 public class BlankDrawable extends Drawable {
 
 	private static BlankDrawable mInstance;

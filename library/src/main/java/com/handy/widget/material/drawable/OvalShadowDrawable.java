@@ -1,4 +1,4 @@
-package com.handy.widget.drawable;
+package com.handy.widget.material.drawable;
 
 import android.content.res.ColorStateList;
 import android.graphics.Canvas;
@@ -13,44 +13,41 @@ import android.graphics.drawable.Animatable;
 import android.graphics.drawable.Drawable;
 import android.os.SystemClock;
 
-import com.handy.widget.util.ColorUtil;
-import com.handy.widget.util.ViewUtil;
+import com.handy.widget.material.util.ColorUtil;
+import com.handy.widget.material.util.ViewUtil;
 
-/**
- * Created by Rey on 5/19/2015.
- */
 public class OvalShadowDrawable extends Drawable implements Animatable {
 
+    private static final int COLOR_SHADOW_START = 0x4C000000;
+    private static final int COLOR_SHADOW_END = 0x00000000;
     private boolean mRunning = false;
     private long mStartTime;
     private float mAnimProgress;
     private int mAnimDuration;
+    private final Runnable mUpdater = new Runnable() {
 
+        @Override
+        public void run() {
+            update();
+        }
+
+    };
     private boolean mEnable = true;
     private boolean mInEditMode = false;
     private boolean mAnimEnable = true;
-
     private Paint mShadowPaint;
     private Paint mGlowPaint;
     private Paint mPaint;
-
     private int mRadius;
     private float mShadowSize;
     private float mShadowOffset;
-
     private Path mShadowPath;
     private Path mGlowPath;
-
     private RectF mTempRect = new RectF();
-
     private ColorStateList mColorStateList;
     private int mPrevColor;
     private int mCurColor;
-
     private boolean mNeedBuildShadow = true;
-
-    private static final int COLOR_SHADOW_START = 0x4C000000;
-    private static final int COLOR_SHADOW_END = 0x00000000;
 
     public OvalShadowDrawable(int radius, ColorStateList colorStateList, float shadowSize, float shadowOffset, int animDuration){
         mAnimDuration = animDuration;
@@ -102,13 +99,13 @@ public class OvalShadowDrawable extends Drawable implements Animatable {
         onStateChange(getState());
     }
 
+    public ColorStateList getColor() {
+        return mColorStateList;
+    }
+
     public void setColor(int color){
         mColorStateList = ColorStateList.valueOf(color);
         onStateChange(getState());
-    }
-
-    public ColorStateList getColor(){
-        return mColorStateList;
     }
 
     public void setInEditMode(boolean b){
@@ -334,15 +331,6 @@ public class OvalShadowDrawable extends Drawable implements Animatable {
         mRunning = true;
         super.scheduleSelf(what, when);
     }
-
-    private final Runnable mUpdater = new Runnable() {
-
-        @Override
-        public void run() {
-            update();
-        }
-
-    };
 
     private void update(){
         long curTime = SystemClock.uptimeMillis();

@@ -1,4 +1,4 @@
-package com.handy.widget.drawable;
+package com.handy.widget.material.drawable;
 
 import android.content.res.ColorStateList;
 import android.graphics.Canvas;
@@ -10,9 +10,6 @@ import android.graphics.Region;
 import android.graphics.drawable.Drawable;
 import android.support.v4.graphics.drawable.DrawableCompat;
 
-/**
- * Created by Rey on 8/19/2015.
- */
 public class PaddingDrawable extends Drawable implements Drawable.Callback {
 
     private Drawable mDrawable;
@@ -62,14 +59,14 @@ public class PaddingDrawable extends Drawable implements Drawable.Callback {
     }
 
     @Override
-    public void setChangingConfigurations(int configs) {
-        if(mDrawable != null)
-            mDrawable.setChangingConfigurations(configs);
+    public int getChangingConfigurations() {
+        return mDrawable != null ? mDrawable.getChangingConfigurations() : 0;
     }
 
     @Override
-    public int getChangingConfigurations() {
-        return mDrawable != null ? mDrawable.getChangingConfigurations() : 0;
+    public void setChangingConfigurations(int configs) {
+        if(mDrawable != null)
+            mDrawable.setChangingConfigurations(configs);
     }
 
     @Override
@@ -200,14 +197,14 @@ public class PaddingDrawable extends Drawable implements Drawable.Callback {
     }
 
     @Override
-    public void setAutoMirrored(boolean mirrored) {
-        if(mDrawable != null)
-            DrawableCompat.setAutoMirrored(mDrawable, mirrored);
+    public boolean isAutoMirrored() {
+        return mDrawable != null && DrawableCompat.isAutoMirrored(mDrawable);
     }
 
     @Override
-    public boolean isAutoMirrored() {
-        return mDrawable != null && DrawableCompat.isAutoMirrored(mDrawable);
+    public void setAutoMirrored(boolean mirrored) {
+        if (mDrawable != null)
+            DrawableCompat.setAutoMirrored(mDrawable, mirrored);
     }
 
     @Override

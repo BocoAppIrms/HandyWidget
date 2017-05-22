@@ -1,4 +1,4 @@
-package com.handy.widget.app;
+package com.handy.widget.material.app;
 
 import android.app.Application;
 import android.content.Context;
@@ -16,23 +16,17 @@ import com.handy.widget.R;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 
-/**
- * Created by Rey on 5/25/2015.
- */
 public class ThemeManager {
 
+    public static final int THEME_UNDEFINED = Integer.MIN_VALUE;
+    private static final String PREF = "theme.pref";
+    private static final String KEY_THEME = "theme";
     private volatile static ThemeManager mInstance;
-
     private Context mContext;
     private SparseArray<int[]> mStyles =  new SparseArray<>();
     private int mCurrentTheme;
     private int mThemeCount;
     private EventDispatcher mDispatcher;
-
-    private static final String PREF = "theme.pref";
-    private static final String KEY_THEME = "theme";
-
-    public static final int THEME_UNDEFINED = Integer.MIN_VALUE;
 
     /**
      * Get the styleId from attributes.
@@ -213,6 +207,12 @@ public class ThemeManager {
         void dispatchThemeChanged(int theme);
     }
 
+    public interface OnThemeChangedListener {
+
+        void onThemeChanged(@Nullable OnThemeChangedEvent event);
+
+    }
+
     public static class SimpleDispatcher implements EventDispatcher{
 
         ArrayList<WeakReference<OnThemeChangedListener>> mListeners = new ArrayList<>();
@@ -253,12 +253,6 @@ public class ThemeManager {
                     ref.get().onThemeChanged(event);
             }
         }
-    }
-
-    public interface OnThemeChangedListener{
-
-        void onThemeChanged(@Nullable OnThemeChangedEvent event);
-
     }
 
     public static class OnThemeChangedEvent{

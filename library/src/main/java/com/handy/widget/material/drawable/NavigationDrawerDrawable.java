@@ -1,4 +1,4 @@
-package com.handy.widget.drawable;
+package com.handy.widget.material.drawable;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -12,11 +12,10 @@ import com.handy.widget.R;
 
 public class NavigationDrawerDrawable extends Drawable implements Drawable.Callback{
 
-	private ToolbarRippleDrawable mRippleDrawable;
-	private LineMorphingDrawable mLineDrawable;
-		
 	public static final int STATE_DRAWER = 0;
 	public static final int STATE_ARROW = 1;
+	private ToolbarRippleDrawable mRippleDrawable;
+	private LineMorphingDrawable mLineDrawable;
 	
 	public NavigationDrawerDrawable(ToolbarRippleDrawable rippleDrawable, LineMorphingDrawable lineDrawable){
 		mRippleDrawable = rippleDrawable;

@@ -1,4 +1,4 @@
-package com.handy.widget.app;
+package com.handy.widget.material.app;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -14,51 +14,31 @@ import android.widget.BaseAdapter;
 import android.widget.ScrollView;
 
 import com.handy.widget.R;
-import com.handy.widget.drawable.BlankDrawable;
-import com.handy.widget.widget.CheckBox;
-import com.handy.widget.widget.CompoundButton;
-import com.handy.widget.widget.ListView;
-import com.handy.widget.widget.RadioButton;
-import com.handy.widget.widget.TextView;
+import com.handy.widget.material.drawable.BlankDrawable;
+import com.handy.widget.material.widget.CheckBox;
+import com.handy.widget.material.widget.CompoundButton;
+import com.handy.widget.material.widget.ListView;
+import com.handy.widget.material.widget.RadioButton;
+import com.handy.widget.material.widget.TextView;
 
-/**
- * Created by Rey on 12/16/2014.
- */
 public class SimpleDialog extends Dialog {
-
-    private TextView mMessage;
-    private InternalScrollView mScrollView;
-    private InternalListView mListView;
-    private InternalAdapter mAdapter;
-
-    private int mMessageTextAppearanceId;
-    private int mMessageTextColor;
-
-    private int mRadioButtonStyle;
-    private int mCheckBoxStyle;
-    private int mItemHeight;
-    private int mItemTextAppearance;
-
-    private int mMode;
 
     protected static final int MODE_NONE = 0;
     protected static final int MODE_MESSAGE = 1;
     protected static final int MODE_ITEMS = 2;
     protected static final int MODE_MULTI_ITEMS = 3;
     protected static final int MODE_CUSTOM = 4;
-
-    /**
-     * Interface definition for a callback to be invoked when the checked state of an item changed.
-     */
-    public interface OnSelectionChangedListener{
-        /**
-         * Called when the checked state of an item changed.
-         * @param index The index of item.
-         * @param selected The checked state.
-         */
-        public void onSelectionChanged(int index, boolean selected);
-    }
-
+    private TextView mMessage;
+    private InternalScrollView mScrollView;
+    private InternalListView mListView;
+    private InternalAdapter mAdapter;
+    private int mMessageTextAppearanceId;
+    private int mMessageTextColor;
+    private int mRadioButtonStyle;
+    private int mCheckBoxStyle;
+    private int mItemHeight;
+    private int mItemTextAppearance;
+    private int mMode;
     private OnSelectionChangedListener mOnSelectionChangedListener;
 
     public SimpleDialog(Context context) {
@@ -367,6 +347,195 @@ public class SimpleDialog extends Dialog {
         return mAdapter.getLastSelectedValue();
     }
 
+    /**
+     * Interface definition for a callback to be invoked when the checked state of an item changed.
+     */
+    public interface OnSelectionChangedListener {
+        /**
+         * Called when the checked state of an item changed.
+         *
+         * @param index    The index of item.
+         * @param selected The checked state.
+         */
+        void onSelectionChanged(int index, boolean selected);
+    }
+
+    public static class Builder extends Dialog.Builder implements OnSelectionChangedListener {
+
+        public static final Creator<Builder> CREATOR = new Creator<Builder>() {
+            public Builder createFromParcel(Parcel in) {
+                return new Builder(in);
+            }
+
+            public Builder[] newArray(int size) {
+                return new Builder[size];
+            }
+        };
+        protected int mMode;
+        protected CharSequence mMessage;
+        protected CharSequence[] mItems;
+        protected int[] mSelectedIndexes;
+
+        public Builder() {
+            super(R.style.Material_App_Dialog_Simple_Light);
+        }
+
+        public Builder(int styleId) {
+            super(styleId);
+        }
+
+        protected Builder(Parcel in) {
+            super(in);
+        }
+
+        public Builder message(CharSequence message) {
+            mMode = MODE_MESSAGE;
+            mMessage = message;
+            return this;
+        }
+
+        public Builder items(CharSequence[] items, int selectedIndex) {
+            mMode = MODE_ITEMS;
+            mItems = items;
+            mSelectedIndexes = new int[]{selectedIndex};
+            return this;
+        }
+
+        public Builder multiChoiceItems(CharSequence[] items, int... selectedIndexes) {
+            mMode = MODE_MULTI_ITEMS;
+            mItems = items;
+            mSelectedIndexes = selectedIndexes;
+            return this;
+        }
+
+        public int getSelectedIndex() {
+            if (mMode == MODE_ITEMS || mMode == MODE_MULTI_ITEMS)
+                return mSelectedIndexes[0];
+
+            return -1;
+        }
+
+        public CharSequence getSelectedValue() {
+            int index = getSelectedIndex();
+            return index >= 0 ? mItems[index] : null;
+        }
+
+        public int[] getSelectedIndexes() {
+            if (mMode == MODE_ITEMS || mMode == MODE_MULTI_ITEMS)
+                return mSelectedIndexes;
+
+            return null;
+        }
+
+        public CharSequence[] getSelectedValues() {
+            int[] indexes = getSelectedIndexes();
+            if (indexes == null || indexes.length == 0)
+                return null;
+
+            CharSequence[] result = new CharSequence[indexes.length];
+            for (int i = 0; i < indexes.length; i++)
+                result[i] = mItems[indexes[i]];
+
+            return result;
+        }
+
+        @Override
+        protected Dialog onBuild(Context context, int styleId) {
+            SimpleDialog dialog = new SimpleDialog(context, styleId);
+
+            switch (mMode) {
+                case MODE_MESSAGE:
+                    dialog.message(mMessage);
+                    break;
+                case MODE_ITEMS:
+                    dialog.items(mItems, mSelectedIndexes == null ? 0 : mSelectedIndexes[0]);
+                    dialog.onSelectionChangedListener(this);
+                    break;
+                case MODE_MULTI_ITEMS:
+                    dialog.multiChoiceItems(mItems, mSelectedIndexes);
+                    dialog.onSelectionChangedListener(this);
+                    break;
+            }
+
+            return dialog;
+        }
+
+        @Override
+        public void onSelectionChanged(int index, boolean selected) {
+            switch (mMode) {
+                case MODE_ITEMS:
+                    if (selected) {
+                        if (mSelectedIndexes == null)
+                            mSelectedIndexes = new int[]{index};
+                        else
+                            mSelectedIndexes[0] = index;
+                    }
+                    break;
+                case MODE_MULTI_ITEMS:
+                    mSelectedIndexes = ((SimpleDialog) mDialog).getSelectedIndexes();
+                    break;
+            }
+        }
+
+        @Override
+        protected void onReadFromParcel(Parcel in) {
+            mMode = in.readInt();
+            switch (mMode) {
+                case MODE_MESSAGE:
+                    mMessage = in.readParcelable(null);
+                    break;
+                case MODE_ITEMS: {
+                    Parcelable[] values = in.readParcelableArray(null);
+                    if (values != null && values.length > 0) {
+                        mItems = new CharSequence[values.length];
+                        for (int i = 0; i < mItems.length; i++)
+                            mItems[i] = (CharSequence) values[i];
+                    } else
+                        mItems = null;
+                    mSelectedIndexes = new int[]{in.readInt()};
+                    break;
+                }
+                case MODE_MULTI_ITEMS: {
+                    Parcelable[] values = in.readParcelableArray(null);
+                    if (values != null && values.length > 0) {
+                        mItems = new CharSequence[values.length];
+                        for (int i = 0; i < mItems.length; i++)
+                            mItems[i] = (CharSequence) values[i];
+                    } else
+                        mItems = null;
+                    int length = in.readInt();
+                    if (length > 0) {
+                        mSelectedIndexes = new int[length];
+                        in.readIntArray(mSelectedIndexes);
+                    }
+                    break;
+                }
+            }
+        }
+
+        @Override
+        protected void onWriteToParcel(Parcel dest, int flags) {
+            dest.writeInt(mMode);
+            switch (mMode) {
+                case MODE_MESSAGE:
+                    dest.writeValue(mMessage);
+                    break;
+                case MODE_ITEMS:
+                    dest.writeArray(mItems);
+                    dest.writeInt(mSelectedIndexes == null ? 0 : mSelectedIndexes[0]);
+                    break;
+                case MODE_MULTI_ITEMS:
+                    dest.writeArray(mItems);
+                    int length = mSelectedIndexes == null ? 0 : mSelectedIndexes.length;
+                    dest.writeInt(length);
+                    if (length > 0)
+                        dest.writeIntArray(mSelectedIndexes);
+                    break;
+            }
+        }
+
+    }
+
     private class InternalScrollView extends ScrollView{
 
         private boolean mIsRtl = false;
@@ -591,182 +760,5 @@ public class SimpleDialog extends Dialog {
                 mLastSelectedIndex = position;
             }
         }
-    }
-
-    public static class Builder extends Dialog.Builder implements OnSelectionChangedListener {
-
-        protected int mMode;
-        protected CharSequence mMessage;
-        protected CharSequence[] mItems;
-        protected int[] mSelectedIndexes;
-
-        public Builder(){
-            super(R.style.Material_App_Dialog_Simple_Light);
-        }
-
-        public Builder(int styleId){
-            super(styleId);
-        }
-
-        public Builder message(CharSequence message){
-            mMode = MODE_MESSAGE;
-            mMessage = message;
-            return this;
-        }
-
-        public Builder items(CharSequence[] items, int selectedIndex){
-            mMode = MODE_ITEMS;
-            mItems = items;
-            mSelectedIndexes = new int[]{selectedIndex};
-            return this;
-        }
-
-        public Builder multiChoiceItems(CharSequence[] items, int... selectedIndexes){
-            mMode = MODE_MULTI_ITEMS;
-            mItems = items;
-            mSelectedIndexes = selectedIndexes;
-            return this;
-        }
-
-        public int getSelectedIndex(){
-            if(mMode == MODE_ITEMS || mMode == MODE_MULTI_ITEMS)
-                return mSelectedIndexes[0];
-
-            return -1;
-        }
-
-        public CharSequence getSelectedValue(){
-            int index = getSelectedIndex();
-            return index >= 0 ? mItems[index] : null;
-        }
-
-        public int[] getSelectedIndexes(){
-            if(mMode == MODE_ITEMS || mMode == MODE_MULTI_ITEMS)
-                return mSelectedIndexes;
-
-            return null;
-        }
-
-        public CharSequence[] getSelectedValues(){
-            int[] indexes = getSelectedIndexes();
-            if(indexes == null || indexes.length == 0)
-                return null;
-
-            CharSequence[] result = new CharSequence[indexes.length];
-            for(int i = 0; i < indexes.length; i++)
-                result[i] = mItems[indexes[i]];
-
-            return result;
-        }
-
-        @Override
-        protected Dialog onBuild(Context context, int styleId) {
-            SimpleDialog dialog = new SimpleDialog(context, styleId);
-
-            switch (mMode){
-                case MODE_MESSAGE:
-                    dialog.message(mMessage);
-                    break;
-                case MODE_ITEMS:
-                    dialog.items(mItems, mSelectedIndexes == null ? 0 : mSelectedIndexes[0]);
-                    dialog.onSelectionChangedListener(this);
-                    break;
-                case MODE_MULTI_ITEMS:
-                    dialog.multiChoiceItems(mItems, mSelectedIndexes);
-                    dialog.onSelectionChangedListener(this);
-                    break;
-            }
-
-            return dialog;
-        }
-
-        @Override
-        public void onSelectionChanged(int index, boolean selected) {
-            switch (mMode){
-                case MODE_ITEMS:
-                    if(selected) {
-                        if (mSelectedIndexes == null)
-                            mSelectedIndexes = new int[]{index};
-                        else
-                            mSelectedIndexes[0] = index;
-                    }
-                    break;
-                case MODE_MULTI_ITEMS:
-                    mSelectedIndexes = ((SimpleDialog)mDialog).getSelectedIndexes();
-                    break;
-            }
-        }
-
-        protected Builder(Parcel in) {
-            super(in);
-        }
-
-        @Override
-        protected void onReadFromParcel(Parcel in) {
-            mMode = in.readInt();
-            switch (mMode){
-                case MODE_MESSAGE:
-                    mMessage = (CharSequence)in.readParcelable(null);
-                    break;
-                case MODE_ITEMS: {
-                    Parcelable[] values = in.readParcelableArray(null);
-                    if (values != null && values.length > 0) {
-                        mItems = new CharSequence[values.length];
-                        for (int i = 0; i < mItems.length; i++)
-                            mItems[i] = (CharSequence) values[i];
-                    } else
-                        mItems = null;
-                    mSelectedIndexes = new int[]{in.readInt()};
-                    break;
-                }
-                case MODE_MULTI_ITEMS: {
-                    Parcelable[] values = in.readParcelableArray(null);
-                    if (values != null && values.length > 0) {
-                        mItems = new CharSequence[values.length];
-                        for (int i = 0; i < mItems.length; i++)
-                            mItems[i] = (CharSequence) values[i];
-                    } else
-                        mItems = null;
-                    int length = in.readInt();
-                    if(length > 0) {
-                        mSelectedIndexes = new int[length];
-                        in.readIntArray(mSelectedIndexes);
-                    }
-                    break;
-                }
-            }
-        }
-
-        @Override
-        protected void onWriteToParcel(Parcel dest, int flags) {
-            dest.writeInt(mMode);
-            switch (mMode){
-                case MODE_MESSAGE:
-                    dest.writeValue(mMessage);
-                    break;
-                case MODE_ITEMS:
-                    dest.writeArray(mItems);
-                    dest.writeInt(mSelectedIndexes == null ? 0 : mSelectedIndexes[0]);
-                    break;
-                case MODE_MULTI_ITEMS:
-                    dest.writeArray(mItems);
-                    int length = mSelectedIndexes == null ? 0 : mSelectedIndexes.length;
-                    dest.writeInt(length);
-                    if(length > 0)
-                        dest.writeIntArray(mSelectedIndexes);
-                    break;
-                }
-            }
-
-        public static final Parcelable.Creator<Builder> CREATOR = new Parcelable.Creator<Builder>() {
-            public Builder createFromParcel(Parcel in) {
-                return new Builder(in);
-            }
-
-            public Builder[] newArray(int size) {
-                return new Builder[size];
-            }
-        };
-
     }
 }

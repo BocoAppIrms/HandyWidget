@@ -1,4 +1,4 @@
-package com.handy.widget.drawable;
+package com.handy.widget.material.drawable;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapShader;
@@ -17,9 +17,6 @@ import android.text.Layout;
 import android.text.TextPaint;
 import android.text.TextUtils;
 
-/**
- * Created by Rey on 1/21/2015.
- */
 public class ContactChipDrawable extends Drawable{
 
     private Paint mPaint;

@@ -179,21 +179,21 @@
     </style>
 
     <style name="Material.Drawable.RadioButton">
-        <item name="rbd_width">32dp</item>
-        <item name="rbd_height">32dp</item>
-        <item name="rbd_strokeSize">2dp</item>
-        <item name="rbd_radius">10dp</item>
-        <item name="rbd_innerRadius">5dp</item>
-        <item name="rbd_animDuration">@android:integer/config_mediumAnimTime</item>
+        <item name="hdw_rbd_width">32dp</item>
+        <item name="hdw_rbd_height">32dp</item>
+        <item name="hdw_rbd_strokeSize">2dp</item>
+        <item name="hdw_rbd_radius">10dp</item>
+        <item name="hdw_rbd_innerRadius">5dp</item>
+        <item name="hdw_rbd_animDuration">@android:integer/config_mediumAnimTime</item>
     </style>
 
     <style name="Material.Drawable.CheckBox">
-        <item name="cbd_width">32dp</item>
-        <item name="cbd_height">32dp</item>
-        <item name="cbd_boxSize">20dp</item>
-        <item name="cbd_cornerRadius">2dp</item>
-        <item name="cbd_strokeSize">2dp</item>
-        <item name="cbd_animDuration">@android:integer/config_mediumAnimTime</item>
+        <item name="hdw_cbd_width">32dp</item>
+        <item name="hdw_cbd_height">32dp</item>
+        <item name="hdw_cbd_boxSize">20dp</item>
+        <item name="hdw_cbd_cornerRadius">2dp</item>
+        <item name="hdw_cbd_strokeSize">2dp</item>
+        <item name="hdw_cbd_animDuration">@android:integer/config_mediumAnimTime</item>
     </style>
 
     <style name="Material.Widget.Switch">

@@ -268,15 +268,15 @@
         <attr name="hdw_rbd_animDuration" format="reference|integer"/><!--rbd_animDuration - 切换检查状态时的动画持续时间。-->
     </declare-styleable>
 
-    <declare-styleable name="CheckBoxDrawable">
-        <attr name="cbd_width" format="reference|dimension"/><!--cbd_width - 宽度。-->
-        <attr name="cbd_height" format="reference|dimension"/><!--cbd_height - 高度。-->
-        <attr name="cbd_boxSize" format="reference|dimension"/><!--cbd_boxSize - 方框的大小。-->
-        <attr name="cbd_cornerRadius" format="reference|dimension"/><!--cbd_cornerRadius - 框的拐角半径。-->
-        <attr name="cbd_strokeSize" format="reference|dimension"/><!--cbd_strokeSize - 笔画的大小。-->
-        <attr name="cbd_strokeColor" format="reference|color"/><!--cbd_strokeColor - 笔画的颜色。 接受颜色值或ColorStateList资源。-->
-        <attr name="cbd_tickColor" format="reference|color"/><!--cbd_tickColor - 刻度线的颜色。-->
-        <attr name="cbd_animDuration" format="reference|integer"/><!--cbd_animDuration - 切换检查状态时的动画持续时间。-->
+    <declare-styleable name="HDWCheckBoxDrawable">
+        <attr name="hdw_cbd_width" format="reference|dimension"/><!--cbd_width - 宽度。-->
+        <attr name="hdw_cbd_height" format="reference|dimension"/><!--cbd_height - 高度。-->
+        <attr name="hdw_cbd_boxSize" format="reference|dimension"/><!--cbd_boxSize - 方框的大小。-->
+        <attr name="hdw_cbd_cornerRadius" format="reference|dimension"/><!--cbd_cornerRadius - 框的拐角半径。-->
+        <attr name="hdw_cbd_strokeSize" format="reference|dimension"/><!--cbd_strokeSize - 笔画的大小。-->
+        <attr name="hdw_cbd_strokeColor" format="reference|color"/><!--cbd_strokeColor - 笔画的颜色。 接受颜色值或ColorStateList资源。-->
+        <attr name="hdw_cbd_tickColor" format="reference|color"/><!--cbd_tickColor - 刻度线的颜色。-->
+        <attr name="hdw_cbd_animDuration" format="reference|integer"/><!--cbd_animDuration - 切换检查状态时的动画持续时间。-->
     </declare-styleable>
 
     <declare-styleable name="Switch">

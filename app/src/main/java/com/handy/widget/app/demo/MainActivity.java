@@ -298,83 +298,83 @@ public class MainActivity extends AppCompatActivity implements ToolbarManager.On
             return mFragments.length;
         }
     }
-}
 
-class DrawerAdapter extends BaseAdapter implements View.OnClickListener, ThemeManager.OnThemeChangedListener {
+    class DrawerAdapter extends BaseAdapter implements View.OnClickListener, ThemeManager.OnThemeChangedListener {
 
-    private Tab mSelectedTab;
-    private int mTextColorLight;
-    private int mTextColorDark;
-    private int mBackgroundColorLight;
-    private int mBackgroundColorDark;
+        private Tab mSelectedTab;
+        private int mTextColorLight;
+        private int mTextColorDark;
+        private int mBackgroundColorLight;
+        private int mBackgroundColorDark;
 
-    public DrawerAdapter(Context context) {
-        mTextColorLight = context.getResources().getColor(R.color.abc_primary_text_material_light);
-        mTextColorDark = context.getResources().getColor(R.color.abc_primary_text_material_dark);
-        mBackgroundColorLight = ThemeUtil.colorPrimary(context, 0);
-        mBackgroundColorDark = ThemeUtil.colorAccent(context, 0);
+        public DrawerAdapter(Context context) {
+            mTextColorLight = context.getResources().getColor(R.color.abc_primary_text_material_light);
+            mTextColorDark = context.getResources().getColor(R.color.abc_primary_text_material_dark);
+            mBackgroundColorLight = ThemeUtil.colorPrimary(context, 0);
+            mBackgroundColorDark = ThemeUtil.colorAccent(context, 0);
 
-        ThemeManager.getInstance().registerOnThemeChangedListener(this);
-    }
+            ThemeManager.getInstance().registerOnThemeChangedListener(this);
+        }
 
-    @Override
-    public void onThemeChanged(ThemeManager.OnThemeChangedEvent event) {
-        notifyDataSetInvalidated();
-    }
-
-    public void setSelected(Tab tab) {
-        if (tab != mSelectedTab) {
-            mSelectedTab = tab;
+        @Override
+        public void onThemeChanged(ThemeManager.OnThemeChangedEvent event) {
             notifyDataSetInvalidated();
         }
-    }
 
-    public Tab getSelectedTab() {
-        return mSelectedTab;
-    }
-
-    @Override
-    public int getCount() {
-        return mItems.length;
-    }
-
-    @Override
-    public Object getItem(int position) {
-        return mItems[position];
-    }
-
-    @Override
-    public long getItemId(int position) {
-        return 0;
-    }
-
-    @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
-        View v = convertView;
-        if (v == null) {
-            v = LayoutInflater.from(MainActivity.this).inflate(R.layout.row_drawer, null);
-            v.setOnClickListener(this);
+        public void setSelected(Tab tab) {
+            if (tab != mSelectedTab) {
+                mSelectedTab = tab;
+                notifyDataSetInvalidated();
+            }
         }
 
-        v.setTag(position);
-        Tab tab = (Tab) getItem(position);
-        ((TextView) v).setText(tab.toString());
-
-        if (tab == mSelectedTab) {
-            v.setBackgroundColor(ThemeManager.getInstance().getCurrentTheme() == 0 ? mBackgroundColorLight : mBackgroundColorDark);
-            ((TextView) v).setTextColor(0xFFFFFFFF);
-        } else {
-            v.setBackgroundResource(0);
-            ((TextView) v).setTextColor(ThemeManager.getInstance().getCurrentTheme() == 0 ? mTextColorLight : mTextColorDark);
+        public Tab getSelectedTab() {
+            return mSelectedTab;
         }
 
-        return v;
-    }
+        @Override
+        public int getCount() {
+            return mItems.length;
+        }
 
-    @Override
-    public void onClick(View v) {
-        int position = (Integer) v.getTag();
-        vp.setCurrentItem(position);
-        dl_navigator.closeDrawer(fl_drawer);
+        @Override
+        public Object getItem(int position) {
+            return mItems[position];
+        }
+
+        @Override
+        public long getItemId(int position) {
+            return 0;
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            View v = convertView;
+            if (v == null) {
+                v = LayoutInflater.from(MainActivity.this).inflate(R.layout.row_drawer, null);
+                v.setOnClickListener(this);
+            }
+
+            v.setTag(position);
+            Tab tab = (Tab) getItem(position);
+            ((TextView) v).setText(tab.toString());
+
+            if (tab == mSelectedTab) {
+                v.setBackgroundColor(ThemeManager.getInstance().getCurrentTheme() == 0 ? mBackgroundColorLight : mBackgroundColorDark);
+                ((TextView) v).setTextColor(0xFFFFFFFF);
+            } else {
+                v.setBackgroundResource(0);
+                ((TextView) v).setTextColor(ThemeManager.getInstance().getCurrentTheme() == 0 ? mTextColorLight : mTextColorDark);
+            }
+
+            return v;
+        }
+
+        @Override
+        public void onClick(View v) {
+            int position = (Integer) v.getTag();
+            vp.setCurrentItem(position);
+            dl_navigator.closeDrawer(fl_drawer);
+        }
     }
 }

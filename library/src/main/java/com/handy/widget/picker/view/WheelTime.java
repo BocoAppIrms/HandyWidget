@@ -45,7 +45,7 @@ public class WheelTime {
     private int endDay = DEFAULT_END_DAY; //表示31天的
     private int currentYear;
     // 根据屏幕密度来指定选择器字体的大小(不同屏幕可能不同)
-    private int textSize = 18;
+    private int textSize = 15;
     private WheelView.DividerType dividerType;
 
     public WheelTime(View view) {

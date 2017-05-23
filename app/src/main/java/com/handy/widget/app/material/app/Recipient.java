@@ -1,4 +1,4 @@
-package com.handy.widget.app.app;
+package com.handy.widget.app.material.app;
 
 import android.os.Parcel;
 import android.os.Parcelable;

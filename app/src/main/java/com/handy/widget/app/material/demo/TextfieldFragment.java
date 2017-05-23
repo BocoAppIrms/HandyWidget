@@ -1,4 +1,4 @@
-package com.handy.widget.app.demo;
+package com.handy.widget.app.material.demo;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -8,7 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.handy.widget.app.R;
-import com.handy.widget.app.app.ContactEditText;
+import com.handy.widget.app.material.app.ContactEditText;
 import com.handy.widget.material.widget.EditText;
 
 public class TextfieldFragment extends Fragment {

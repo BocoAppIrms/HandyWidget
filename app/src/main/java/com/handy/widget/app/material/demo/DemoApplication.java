@@ -1,4 +1,4 @@
-package com.handy.widget.app.demo;
+package com.handy.widget.app.material.demo;
 
 import android.app.Application;
 import android.content.Context;

@@ -1,4 +1,4 @@
-package com.handy.widget.app.demo;
+package com.handy.widget.app.material.demo;
 
 import android.annotation.TargetApi;
 import android.graphics.drawable.Drawable;

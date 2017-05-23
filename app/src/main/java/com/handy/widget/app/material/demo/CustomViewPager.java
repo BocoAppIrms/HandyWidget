@@ -1,4 +1,4 @@
-package com.handy.widget.app.demo;
+package com.handy.widget.app.material.demo;
 
 import android.content.Context;
 import android.support.v4.view.ViewPager;

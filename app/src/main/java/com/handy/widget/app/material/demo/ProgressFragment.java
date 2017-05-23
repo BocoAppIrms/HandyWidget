@@ -1,4 +1,4 @@
-package com.handy.widget.app.demo;
+package com.handy.widget.app.material.demo;
 
 import android.os.Bundle;
 import android.os.Handler;

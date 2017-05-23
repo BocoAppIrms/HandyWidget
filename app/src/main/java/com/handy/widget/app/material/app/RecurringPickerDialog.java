@@ -1,4 +1,4 @@
-package com.handy.widget.app.app;
+package com.handy.widget.app.material.app;
 
 import android.annotation.TargetApi;
 import android.content.Context;

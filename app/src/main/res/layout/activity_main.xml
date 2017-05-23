@@ -30,7 +30,7 @@
                 android:paddingLeft="60dp"
                 app:hdw_v_styleId="@array/tab_indicator"/>
 
-            <com.handy.widget.app.demo.CustomViewPager
+            <com.handy.widget.app.material.demo.CustomViewPager
                 android:id="@+id/main_vp"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"/>

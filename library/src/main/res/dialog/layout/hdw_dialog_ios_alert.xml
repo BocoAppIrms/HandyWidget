@@ -52,7 +52,7 @@
             <EditText
                 android:id="@+id/et_1"
                 android:layout_width="match_parent"
-                android:layout_height="35dp"
+                android:layout_height="wrap_content"
                 android:layout_marginBottom="15dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
@@ -60,8 +60,7 @@
                 android:background="@drawable/hdw_dialog_edittext_nomal"
                 android:cursorVisible="true"
                 android:maxLines="1"
-                android:paddingLeft="5dp"
-                android:paddingRight="5dp"
+                android:padding="8dp"
                 android:textColor="@color/hdw_dialog_text_input_44"
                 android:textColorHint="@color/hdw_dialog_text_gray_light"
                 android:textCursorDrawable="@drawable/hdw_dialog_et_cursor"
@@ -70,24 +69,19 @@
             <EditText
                 android:id="@+id/et_2"
                 android:layout_width="match_parent"
-                android:layout_height="35dp"
+                android:layout_height="wrap_content"
                 android:layout_marginBottom="15dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
                 android:background="@drawable/hdw_dialog_edittext_nomal"
                 android:cursorVisible="true"
                 android:maxLines="1"
-                android:paddingLeft="5dp"
-                android:paddingRight="5dp"
+                android:padding="8dp"
                 android:textColor="@color/hdw_dialog_text_input_44"
                 android:textColorHint="@color/hdw_dialog_text_gray_light"
                 android:textCursorDrawable="@drawable/hdw_dialog_et_cursor"
                 android:textSize="@dimen/hdw_dialog_input_txt_size"/>
-
-
         </LinearLayout>
-
-
     </ScrollView>
 
     <View
@@ -100,7 +94,6 @@
         android:id="@+id/ll_container_horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:minHeight="48dp"
         android:orientation="horizontal">
 
         <Button
@@ -111,7 +104,8 @@
             android:layout_weight="1"
             android:background="@drawable/hdw_dialog_selector_btn_press_left_bottom"
             android:gravity="center"
-            android:padding="5dp"
+            android:minHeight="0dp"
+            android:padding="12dp"
             android:text="1"
             android:textColor="@color/hdw_dialog_ios_btntext_blue"
             android:textSize="@dimen/hdw_dialog_btn_txt_size"/>
@@ -130,8 +124,8 @@
             android:layout_weight="1"
             android:background="@drawable/hdw_dialog_selector_btn_press_no_corner"
             android:gravity="center"
-            android:minHeight="48dp"
-            android:padding="5dp"
+            android:minHeight="0dp"
+            android:padding="12dp"
             android:text="2"
             android:textColor="@color/hdw_dialog_ios_btntext_blue"
             android:textSize="@dimen/hdw_dialog_btn_txt_size"/>
@@ -150,20 +144,17 @@
             android:layout_weight="1"
             android:background="@drawable/hdw_dialog_selector_btn_press_right_bottom"
             android:gravity="center"
-            android:minHeight="48dp"
-            android:padding="5dp"
+            android:minHeight="0dp"
+            android:padding="12dp"
             android:text="3"
             android:textColor="@color/hdw_dialog_ios_btntext_blue"
             android:textSize="@dimen/hdw_dialog_btn_txt_size"/>
-
-
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/ll_container_vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:minHeight="48dp"
         android:orientation="vertical"
         android:visibility="gone">
 
@@ -174,9 +165,8 @@
             android:layout_gravity="center"
             android:background="@drawable/hdw_dialog_selector_btn_press_no_corner"
             android:gravity="center"
-            android:minHeight="48dp"
-            android:padding="5dp"
-
+            android:minHeight="0dp"
+            android:padding="12dp"
             android:text="1"
             android:textColor="@color/hdw_dialog_ios_btntext_blue"
             android:textSize="@dimen/hdw_dialog_btn_txt_size"/>
@@ -194,9 +184,8 @@
             android:layout_gravity="center"
             android:background="@drawable/hdw_dialog_selector_btn_press_no_corner"
             android:gravity="center"
-            android:minHeight="48dp"
-
-            android:padding="5dp"
+            android:minHeight="0dp"
+            android:padding="12dp"
             android:text="2"
             android:textColor="@color/hdw_dialog_ios_btntext_blue"
             android:textSize="@dimen/hdw_dialog_btn_txt_size"/>
@@ -214,15 +203,10 @@
             android:layout_gravity="center"
             android:background="@drawable/hdw_dialog_selector_btn_press_all_bottom"
             android:gravity="center"
-            android:minHeight="48dp"
-            android:padding="5dp"
-
+            android:minHeight="0dp"
+            android:padding="12dp"
             android:text="3"
             android:textColor="@color/hdw_dialog_ios_btntext_blue"
             android:textSize="@dimen/hdw_dialog_btn_txt_size"/>
-
-
     </LinearLayout>
-
-
 </LinearLayout>

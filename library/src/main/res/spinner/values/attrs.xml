@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <declare-styleable name="HDWMaterialSpinner" tools:ignore="ResourceName">
+        <attr name="hdw_spinner_arrow_tint" format="color"/>
+        <attr name="hdw_spinner_hide_arrow" format="boolean"/>
+        <attr name="hdw_spinner_background_color" format="color"/>
+        <attr name="hdw_spinner_text_color" format="color"/>
+        <attr name="hdw_spinner_drop_maxheight" format="dimension"/>
+        <attr name="hdw_spinner_drop_height" format="dimension">
+            <enum name="fill_parent" value="-1"/>
+            <enum name="match_parent" value="-1"/>
+            <enum name="wrap_content" value="-2"/>
+        </attr>
+    </declare-styleable>
+</resources>

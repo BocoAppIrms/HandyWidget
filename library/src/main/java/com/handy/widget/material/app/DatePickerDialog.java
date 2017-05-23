@@ -503,24 +503,24 @@ public class DatePickerDialog extends Dialog {
             mHeaderSecondaryColor = mHeaderPrimaryColor;
 
             Context context = getContext();
-            TypedArray a = context.obtainStyledAttributes(resId, R.styleable.DatePickerDialog);
+            TypedArray a = context.obtainStyledAttributes(resId, R.styleable.HDWDatePickerDialog);
 
             for(int i = 0, count = a.getIndexCount(); i < count; i++){
                 int attr = a.getIndex(i);
 
-                if(attr == R.styleable.DatePickerDialog_dp_headerPrimaryHeight)
+                if (attr == R.styleable.HDWDatePickerDialog_hdw_dp_headerPrimaryHeight)
                     mHeaderPrimaryHeight = a.getDimensionPixelSize(attr, 0);
-                else if(attr == R.styleable.DatePickerDialog_dp_headerSecondaryHeight)
+                else if (attr == R.styleable.HDWDatePickerDialog_hdw_dp_headerSecondaryHeight)
                     mHeaderSecondaryHeight = a.getDimensionPixelSize(attr, 0);
-                else if(attr == R.styleable.DatePickerDialog_dp_headerPrimaryColor)
+                else if (attr == R.styleable.HDWDatePickerDialog_hdw_dp_headerPrimaryColor)
                     mHeaderPrimaryColor = a.getColor(attr, 0);
-                else if(attr == R.styleable.DatePickerDialog_dp_headerSecondaryColor)
+                else if (attr == R.styleable.HDWDatePickerDialog_hdw_dp_headerSecondaryColor)
                     mHeaderSecondaryColor = a.getColor(attr, 0);
-                else if(attr == R.styleable.DatePickerDialog_dp_headerPrimaryTextSize)
+                else if (attr == R.styleable.HDWDatePickerDialog_hdw_dp_headerPrimaryTextSize)
                     mHeaderPrimaryTextSize = a.getDimensionPixelSize(attr, 0);
-                else if(attr == R.styleable.DatePickerDialog_dp_headerSecondaryTextSize)
+                else if (attr == R.styleable.HDWDatePickerDialog_hdw_dp_headerSecondaryTextSize)
                     mHeaderSecondaryTextSize = a.getDimensionPixelSize(attr, 0);
-                else if(attr == R.styleable.DatePickerDialog_dp_textHeaderColor)
+                else if (attr == R.styleable.HDWDatePickerDialog_hdw_dp_textHeaderColor)
                     mTextHeaderColor = a.getColor(attr, 0);
             }
 

@@ -63,7 +63,7 @@ public class SimpleDialog extends Dialog {
         if(resId == 0)
             return this;
 
-        TypedArray a = getContext().obtainStyledAttributes(resId, R.styleable.SimpleDialog);
+        TypedArray a = getContext().obtainStyledAttributes(resId, R.styleable.HDWSimpleDialog);
         int textAppearance = 0;
         int textColor = 0;
         boolean textColorDefined = false;
@@ -71,19 +71,18 @@ public class SimpleDialog extends Dialog {
         for(int i = 0, count = a.getIndexCount(); i < count; i++){
             int attr = a.getIndex(i);
 
-            if(attr == R.styleable.SimpleDialog_di_messageTextAppearance)
+            if (attr == R.styleable.HDWSimpleDialog_hdw_di_messageTextAppearance)
                 textAppearance = a.getResourceId(attr, 0);
-            else if(attr == R.styleable.SimpleDialog_di_messageTextColor) {
+            else if (attr == R.styleable.HDWSimpleDialog_hdw_di_messageTextColor) {
                 textColor = a.getColor(attr, 0);
                 textColorDefined = true;
-            }
-            else if(attr == R.styleable.SimpleDialog_di_radioButtonStyle)
+            } else if (attr == R.styleable.HDWSimpleDialog_hdw_di_radioButtonStyle)
                 radioButtonStyle(a.getResourceId(attr, 0));
-            else if(attr == R.styleable.SimpleDialog_di_checkBoxStyle)
+            else if (attr == R.styleable.HDWSimpleDialog_hdw_di_checkBoxStyle)
                 checkBoxStyle(a.getResourceId(attr, 0));
-            else if(attr == R.styleable.SimpleDialog_di_itemHeight)
+            else if (attr == R.styleable.HDWSimpleDialog_hdw_di_itemHeight)
                 itemHeight(a.getDimensionPixelSize(attr, 0));
-            else if(attr == R.styleable.SimpleDialog_di_itemTextAppearance)
+            else if (attr == R.styleable.HDWSimpleDialog_hdw_di_itemTextAppearance)
                 itemTextAppearance(a.getResourceId(attr, 0));
         }
 

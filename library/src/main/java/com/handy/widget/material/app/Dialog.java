@@ -173,7 +173,7 @@ public class Dialog extends android.app.Dialog{
 
     public Dialog applyStyle(int resId){
         Context context = getContext();
-        TypedArray a = context.obtainStyledAttributes(resId, R.styleable.Dialog);
+        TypedArray a = context.obtainStyledAttributes(resId, R.styleable.HDWDialog);
 
         int layout_width = mLayoutWidth;
         int layout_height = mLayoutHeight;
@@ -201,79 +201,76 @@ public class Dialog extends android.app.Dialog{
         for(int i = 0, count = a.getIndexCount(); i < count; i++){
             int attr = a.getIndex(i);
 
-            if(attr == R.styleable.Dialog_android_layout_width) {
+            if (attr == R.styleable.HDWDialog_android_layout_width) {
                 layout_width = a.getLayoutDimension(attr, ViewGroup.LayoutParams.WRAP_CONTENT);
                 layoutParamsDefined = true;
-            }
-            else if(attr == R.styleable.Dialog_android_layout_height) {
+            } else if (attr == R.styleable.HDWDialog_android_layout_height) {
                 layout_height = a.getLayoutDimension(attr, ViewGroup.LayoutParams.WRAP_CONTENT);
                 layoutParamsDefined = true;
-            }
-            else if(attr == R.styleable.Dialog_di_maxWidth)
+            } else if (attr == R.styleable.HDWDialog_hdw_di_maxWidth)
                 maxWidth(a.getDimensionPixelOffset(attr, 0));
-            else if(attr == R.styleable.Dialog_di_maxHeight)
+            else if (attr == R.styleable.HDWDialog_hdw_di_maxHeight)
                 maxHeight(a.getDimensionPixelOffset(attr, 0));
-            else if(attr == R.styleable.Dialog_di_dimAmount)
+            else if (attr == R.styleable.HDWDialog_hdw_di_dimAmount)
                 dimAmount(a.getFloat(attr, 0));
-            else if(attr == R.styleable.Dialog_di_backgroundColor)
+            else if (attr == R.styleable.HDWDialog_hdw_di_backgroundColor)
                 backgroundColor(a.getColor(attr, 0));
-            else if(attr == R.styleable.Dialog_di_maxElevation)
+            else if (attr == R.styleable.HDWDialog_hdw_di_maxElevation)
                 maxElevation(a.getDimensionPixelOffset(attr, 0));
-            else if(attr == R.styleable.Dialog_di_elevation)
+            else if (attr == R.styleable.HDWDialog_hdw_di_elevation)
                 elevation(a.getDimensionPixelOffset(attr, 0));
-            else if(attr == R.styleable.Dialog_di_cornerRadius)
+            else if (attr == R.styleable.HDWDialog_hdw_di_cornerRadius)
                 cornerRadius(a.getDimensionPixelOffset(attr, 0));
-            else if(attr == R.styleable.Dialog_di_layoutDirection)
+            else if (attr == R.styleable.HDWDialog_hdw_di_layoutDirection)
                 layoutDirection(a.getInteger(attr, 0));
-            else if(attr == R.styleable.Dialog_di_titleTextAppearance)
+            else if (attr == R.styleable.HDWDialog_hdw_di_titleTextAppearance)
                 titleTextAppearance = a.getResourceId(attr, 0);
-            else if(attr == R.styleable.Dialog_di_titleTextColor) {
+            else if (attr == R.styleable.HDWDialog_hdw_di_titleTextColor) {
                 titleTextColor = a.getColor(attr, 0);
                 titleTextColorDefined = true;
-            }
-            else if(attr == R.styleable.Dialog_di_actionBackground)
+            } else if (attr == R.styleable.HDWDialog_hdw_di_actionBackground)
                 actionBackground = a.getResourceId(attr, 0);
-            else if(attr == R.styleable.Dialog_di_actionRipple)
+            else if (attr == R.styleable.HDWDialog_hdw_di_actionRipple)
                 actionRipple = a.getResourceId(attr, 0);
-            else if(attr == R.styleable.Dialog_di_actionTextAppearance)
+            else if (attr == R.styleable.HDWDialog_hdw_di_actionTextAppearance)
                 actionTextAppearance = a.getResourceId(attr, 0);
-            else if(attr == R.styleable.Dialog_di_actionTextColor)
+            else if (attr == R.styleable.HDWDialog_hdw_di_actionTextColor)
                 actionTextColors = a.getColorStateList(attr);
-            else if(attr == R.styleable.Dialog_di_positiveActionBackground)
+            else if (attr == R.styleable.HDWDialog_hdw_di_positiveActionBackground)
                 positiveActionBackground = a.getResourceId(attr, 0);
-            else if(attr == R.styleable.Dialog_di_positiveActionRipple)
+            else if (attr == R.styleable.HDWDialog_hdw_di_positiveActionRipple)
                 positiveActionRipple = a.getResourceId(attr, 0);
-            else if(attr == R.styleable.Dialog_di_positiveActionTextAppearance)
+            else if (attr == R.styleable.HDWDialog_hdw_di_positiveActionTextAppearance)
                 positiveActionTextAppearance = a.getResourceId(attr, 0);
-            else if(attr == R.styleable.Dialog_di_positiveActionTextColor)
+            else if (attr == R.styleable.HDWDialog_hdw_di_positiveActionTextColor)
                 positiveActionTextColors = a.getColorStateList(attr);
-            else if(attr == R.styleable.Dialog_di_negativeActionBackground)
+            else if (attr == R.styleable.HDWDialog_hdw_di_negativeActionBackground)
                 negativeActionBackground = a.getResourceId(attr, 0);
-            else if(attr == R.styleable.Dialog_di_negativeActionRipple)
+            else if (attr == R.styleable.HDWDialog_hdw_di_negativeActionRipple)
                 negativeActionRipple = a.getResourceId(attr, 0);
-            else if(attr == R.styleable.Dialog_di_negativeActionTextAppearance)
+            else if (attr == R.styleable.HDWDialog_hdw_di_negativeActionTextAppearance)
                 negativeActionTextAppearance = a.getResourceId(attr, 0);
-            else if(attr == R.styleable.Dialog_di_negativeActionTextColor)
+            else if (attr == R.styleable.HDWDialog_hdw_di_negativeActionTextColor)
                 negativeActionTextColors = a.getColorStateList(attr);
-            else if(attr == R.styleable.Dialog_di_neutralActionBackground)
+            else if (attr == R.styleable.HDWDialog_hdw_di_neutralActionBackground)
                 neutralActionBackground = a.getResourceId(attr, 0);
-            else if(attr == R.styleable.Dialog_di_neutralActionRipple)
+            else if (attr == R.styleable.HDWDialog_hdw_di_neutralActionRipple)
                 neutralActionRipple = a.getResourceId(attr, 0);
-            else if(attr == R.styleable.Dialog_di_neutralActionTextAppearance)
+            else if (attr == R.styleable.HDWDialog_hdw_di_neutralActionTextAppearance)
                 neutralActionTextAppearance = a.getResourceId(attr, 0);
-            else if(attr == R.styleable.Dialog_di_neutralActionTextColor)
+            else if (attr == R.styleable.HDWDialog_hdw_di_neutralActionTextColor)
                 neutralActionTextColors = a.getColorStateList(attr);
-            else if(attr == R.styleable.Dialog_di_inAnimation)
+            else if (attr == R.styleable.HDWDialog_hdw_di_inAnimation)
                 inAnimation(a.getResourceId(attr, 0));
-            else if(attr == R.styleable.Dialog_di_outAnimation)
+            else if (attr == R.styleable.HDWDialog_hdw_di_outAnimation)
                 outAnimation(a.getResourceId(attr, 0));
-            else if(attr == R.styleable.Dialog_di_dividerColor)
+            else if (attr == R.styleable.HDWDialog_hdw_di_dividerColor)
                 dividerColor(a.getColor(attr, 0));
-            else if(attr == R.styleable.Dialog_di_dividerHeight)
+            else if (attr == R.styleable.HDWDialog_hdw_di_dividerHeight)
                 dividerHeight(a.getDimensionPixelOffset(attr, 0));
-            else if(attr == R.styleable.Dialog_di_cancelable)
+            else if (attr == R.styleable.HDWDialog_hdw_di_cancelable)
                 cancelable(a.getBoolean(attr, true));
-            else if(attr == R.styleable.Dialog_di_canceledOnTouchOutside)
+            else if (attr == R.styleable.HDWDialog_hdw_di_canceledOnTouchOutside)
                 canceledOnTouchOutside(a.getBoolean(attr, true));
         }
 

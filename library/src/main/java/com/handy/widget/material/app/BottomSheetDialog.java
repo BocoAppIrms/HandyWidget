@@ -125,28 +125,27 @@ public class BottomSheetDialog extends android.app.Dialog{
 
     public BottomSheetDialog applyStyle(int styleId) {
         Context context = getContext();
-        TypedArray a = context.obtainStyledAttributes(styleId, R.styleable.BottomSheetDialog);
+        TypedArray a = context.obtainStyledAttributes(styleId, R.styleable.HDWBottomSheetDialog);
 
         for(int i = 0, count = a.getIndexCount(); i < count; i++){
             int attr = a.getIndex(i);
-            if(attr == R.styleable.BottomSheetDialog_android_layout_height)
+            if (attr == R.styleable.HDWBottomSheetDialog_android_layout_height)
                 heightParam(a.getLayoutDimension(attr, ViewGroup.LayoutParams.WRAP_CONTENT));
-            else if(attr == R.styleable.BottomSheetDialog_bsd_cancelable)
+            else if (attr == R.styleable.HDWBottomSheetDialog_hdw_bsd_cancelable)
                 cancelable(a.getBoolean(attr, true));
-            else if(attr == R.styleable.BottomSheetDialog_bsd_canceledOnTouchOutside)
+            else if (attr == R.styleable.HDWBottomSheetDialog_hdw_bsd_canceledOnTouchOutside)
                 canceledOnTouchOutside(a.getBoolean(attr, true));
-            else if(attr == R.styleable.BottomSheetDialog_bsd_dimAmount)
+            else if (attr == R.styleable.HDWBottomSheetDialog_hdw_bsd_dimAmount)
                 dimAmount(a.getFloat(attr, 0f));
-            else if(attr == R.styleable.BottomSheetDialog_bsd_inDuration)
+            else if (attr == R.styleable.HDWBottomSheetDialog_hdw_bsd_inDuration)
                 inDuration(a.getInteger(attr, 0));
-            else if(attr == R.styleable.BottomSheetDialog_bsd_inInterpolator) {
+            else if (attr == R.styleable.HDWBottomSheetDialog_hdw_bsd_inInterpolator) {
                 int resId = a.getResourceId(attr, 0);
                 if(resId != 0)
                     inInterpolator(AnimationUtils.loadInterpolator(context, resId));
-            }
-            else if(attr == R.styleable.BottomSheetDialog_bsd_outDuration)
+            } else if (attr == R.styleable.HDWBottomSheetDialog_hdw_bsd_outDuration)
                 outDuration(a.getInteger(attr, 0));
-            else if(attr == R.styleable.BottomSheetDialog_bsd_outInterpolator) {
+            else if (attr == R.styleable.HDWBottomSheetDialog_hdw_bsd_outInterpolator) {
                 int resId = a.getResourceId(attr, 0);
                 if(resId != 0)
                     outInterpolator(AnimationUtils.loadInterpolator(context, resId));

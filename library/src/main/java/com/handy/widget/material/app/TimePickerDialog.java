@@ -299,7 +299,7 @@ public class TimePickerDialog extends Dialog {
             mTimePicker.applyStyle(resId);
 
             Context context = getContext();
-            TypedArray a = context.obtainStyledAttributes(resId, R.styleable.TimePickerDialog);
+            TypedArray a = context.obtainStyledAttributes(resId, R.styleable.HDWTimePickerDialog);
 
             String am = null;
             String pm = null;
@@ -307,17 +307,17 @@ public class TimePickerDialog extends Dialog {
             for(int i = 0, count = a.getIndexCount(); i < count; i++){
                 int attr = a.getIndex(i);
 
-                if(attr == R.styleable.TimePickerDialog_tp_headerHeight)
+                if (attr == R.styleable.HDWTimePickerDialog_hdw_tp_headerHeight)
                     mHeaderHeight = a.getDimensionPixelSize(attr, 0);
-                else if(attr == R.styleable.TimePickerDialog_tp_textTimeColor)
+                else if (attr == R.styleable.HDWTimePickerDialog_hdw_tp_textTimeColor)
                     mTextTimeColor = a.getColor(attr, 0);
-                else if(attr == R.styleable.TimePickerDialog_tp_textTimeSize)
+                else if (attr == R.styleable.HDWTimePickerDialog_hdw_tp_textTimeSize)
                     mTextTimeSize = a.getDimensionPixelSize(attr, 0);
-                else if(attr == R.styleable.TimePickerDialog_tp_leadingZero)
+                else if (attr == R.styleable.HDWTimePickerDialog_hdw_tp_leadingZero)
                     mIsLeadingZero = a.getBoolean(attr, false);
-                else if(attr == R.styleable.TimePickerDialog_tp_am)
+                else if (attr == R.styleable.HDWTimePickerDialog_hdw_tp_am)
                     am = a.getString(attr);
-                else if(attr == R.styleable.TimePickerDialog_tp_pm)
+                else if (attr == R.styleable.HDWTimePickerDialog_hdw_tp_pm)
                     pm = a.getString(attr);
             }
 

@@ -37,8 +37,8 @@ public class ThemeManager {
      * @return The styleId.
      */
     public static int getStyleId(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes){
-        TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.ThemableView, defStyleAttr, defStyleRes);
-        int styleId = a.getResourceId(R.styleable.ThemableView_v_styleId, 0);
+        TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.HDWThemableView, defStyleAttr, defStyleRes);
+        int styleId = a.getResourceId(R.styleable.HDWThemableView_hdw_v_styleId, 0);
         a.recycle();
 
         return styleId;

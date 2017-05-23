@@ -76,7 +76,7 @@ public class ViewUtil {
      * @param defStyleRes
      */
     public static void applyStyle(View v, AttributeSet attrs, int defStyleAttr, int defStyleRes){
-        TypedArray a = v.getContext().obtainStyledAttributes(attrs, R.styleable.View, defStyleAttr, defStyleRes);
+        TypedArray a = v.getContext().obtainStyledAttributes(attrs, R.styleable.HDWView, defStyleAttr, defStyleRes);
 
         int leftPadding = -1;
         int topPadding = -1;
@@ -93,15 +93,13 @@ public class ViewUtil {
 
         for(int i = 0, count = a.getIndexCount(); i < count; i++){
             int attr = a.getIndex(i);
-            if(attr == R.styleable.View_android_background) {
+            if (attr == R.styleable.HDWView_android_background) {
                 Drawable bg = a.getDrawable(attr);
                 ViewUtil.setBackground(v, bg);
-            }
-            else if(attr == R.styleable.View_android_backgroundTint){
+            } else if (attr == R.styleable.HDWView_android_backgroundTint) {
                 if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
                     v.setBackgroundTintList(a.getColorStateList(attr));
-            }
-            else if(attr == R.styleable.View_android_backgroundTintMode){
+            } else if (attr == R.styleable.HDWView_android_backgroundTintMode) {
                 if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
                     int value = a.getInt(attr, 3);
                     switch (value){
@@ -125,63 +123,53 @@ public class ViewUtil {
                             break;
                     }
                 }
-            }
-            else if(attr == R.styleable.View_android_elevation){
+            } else if (attr == R.styleable.HDWView_android_elevation) {
                 if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
                     v.setElevation(a.getDimensionPixelOffset(attr, 0));
-            }
-            else if(attr == R.styleable.View_android_padding) {
+            } else if (attr == R.styleable.HDWView_android_padding) {
                 padding = a.getDimensionPixelSize(attr, -1);
                 leftPaddingDefined = true;
                 rightPaddingDefined = true;
-            }
-            else if(attr == R.styleable.View_android_paddingLeft) {
+            } else if (attr == R.styleable.HDWView_android_paddingLeft) {
                 leftPadding = a.getDimensionPixelSize(attr, -1);
                 leftPaddingDefined = true;
-            }
-            else if(attr == R.styleable.View_android_paddingTop)
+            } else if (attr == R.styleable.HDWView_android_paddingTop)
                 topPadding = a.getDimensionPixelSize(attr, -1);
-            else if(attr == R.styleable.View_android_paddingRight) {
+            else if (attr == R.styleable.HDWView_android_paddingRight) {
                 rightPadding = a.getDimensionPixelSize(attr, -1);
                 rightPaddingDefined = true;
-            }
-            else if(attr == R.styleable.View_android_paddingBottom)
+            } else if (attr == R.styleable.HDWView_android_paddingBottom)
                 bottomPadding = a.getDimensionPixelSize(attr, -1);
-            else if(attr == R.styleable.View_android_paddingStart) {
+            else if (attr == R.styleable.HDWView_android_paddingStart) {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
                     startPadding = a.getDimensionPixelSize(attr, Integer.MIN_VALUE);
                     startPaddingDefined = (startPadding != Integer.MIN_VALUE);
                 }
-            }
-            else if(attr == R.styleable.View_android_paddingEnd) {
+            } else if (attr == R.styleable.HDWView_android_paddingEnd) {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
                     endPadding = a.getDimensionPixelSize(attr, Integer.MIN_VALUE);
                     endPaddingDefined = (endPadding != Integer.MIN_VALUE);
                 }
-            }
-            else if(attr == R.styleable.View_android_fadeScrollbars)
+            } else if (attr == R.styleable.HDWView_android_fadeScrollbars)
                 v.setScrollbarFadingEnabled(a.getBoolean(attr, true));
-            else if(attr == R.styleable.View_android_fadingEdgeLength)
+            else if (attr == R.styleable.HDWView_android_fadingEdgeLength)
                 v.setFadingEdgeLength(a.getDimensionPixelOffset(attr, 0));
-            else if(attr == R.styleable.View_android_minHeight)
+            else if (attr == R.styleable.HDWView_android_minHeight)
                 v.setMinimumHeight(a.getDimensionPixelSize(attr, 0));
-            else if(attr == R.styleable.View_android_minWidth)
+            else if (attr == R.styleable.HDWView_android_minWidth)
                 v.setMinimumWidth(a.getDimensionPixelSize(attr, 0));
-            else if(attr == R.styleable.View_android_requiresFadingEdge)
+            else if (attr == R.styleable.HDWView_android_requiresFadingEdge)
                 v.setVerticalFadingEdgeEnabled(a.getBoolean(attr, true));
-            else if(attr == R.styleable.View_android_scrollbarDefaultDelayBeforeFade) {
+            else if (attr == R.styleable.HDWView_android_scrollbarDefaultDelayBeforeFade) {
                 if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN)
                     v.setScrollBarDefaultDelayBeforeFade(a.getInteger(attr, 0));
-            }
-            else if(attr == R.styleable.View_android_scrollbarFadeDuration) {
+            } else if (attr == R.styleable.HDWView_android_scrollbarFadeDuration) {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN)
                     v.setScrollBarFadeDuration(a.getInteger(attr, 0));
-            }
-            else if(attr == R.styleable.View_android_scrollbarSize) {
+            } else if (attr == R.styleable.HDWView_android_scrollbarSize) {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN)
                     v.setScrollBarSize(a.getDimensionPixelSize(attr, 0));
-            }
-            else if(attr == R.styleable.View_android_scrollbarStyle) {
+            } else if (attr == R.styleable.HDWView_android_scrollbarStyle) {
                 int value = a.getInteger(attr, 0);
                 switch (value){
                     case 0x0:
@@ -197,10 +185,9 @@ public class ViewUtil {
                         v.setScrollBarStyle(View.SCROLLBARS_OUTSIDE_INSET);
                         break;
                 }
-            }
-            else if(attr == R.styleable.View_android_soundEffectsEnabled)
+            } else if (attr == R.styleable.HDWView_android_soundEffectsEnabled)
                 v.setSoundEffectsEnabled(a.getBoolean(attr, true));
-            else if(attr == R.styleable.View_android_textAlignment){
+            else if (attr == R.styleable.HDWView_android_textAlignment) {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
                     int value = a.getInteger(attr, 0);
                     switch (value){
@@ -227,8 +214,7 @@ public class ViewUtil {
                             break;
                     }
                 }
-            }
-            else if(attr == R.styleable.View_android_textDirection){
+            } else if (attr == R.styleable.HDWView_android_textDirection) {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
                     int value = a.getInteger(attr, 0);
                     switch (value){
@@ -252,8 +238,7 @@ public class ViewUtil {
                             break;
                     }
                 }
-            }
-            else if(attr == R.styleable.View_android_visibility){
+            } else if (attr == R.styleable.HDWView_android_visibility) {
                 int value = a.getInteger(attr, 0);
                 switch (value){
                     case 0:
@@ -266,8 +251,7 @@ public class ViewUtil {
                         v.setVisibility(View.GONE);
                         break;
                 }
-            }
-            else if(attr == R.styleable.View_android_layoutDirection){
+            } else if (attr == R.styleable.HDWView_android_layoutDirection) {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
                     int value = a.getInteger(attr, 0);
                     switch (value){
@@ -285,8 +269,7 @@ public class ViewUtil {
                             break;
                     }
                 }
-            }
-            else if(attr == R.styleable.View_android_src){
+            } else if (attr == R.styleable.HDWView_android_src) {
                 if(v instanceof ImageView){
                     int resId = a.getResourceId(attr, 0);
                     ((ImageView)v).setImageResource(resId);
@@ -328,7 +311,7 @@ public class ViewUtil {
     }
 
     public static void applyFont(TextView v, AttributeSet attrs, int defStyleAttr, int defStyleRes){
-        TypedArray a = v.getContext().obtainStyledAttributes(attrs, new int[]{R.attr.tv_fontFamily}, defStyleAttr, defStyleRes);
+        TypedArray a = v.getContext().obtainStyledAttributes(attrs, new int[]{R.attr.hdw_tv_fontFamily}, defStyleAttr, defStyleRes);
         String fontFamily = a.getString(0);
 
         if(fontFamily != null){
@@ -349,64 +332,64 @@ public class ViewUtil {
         int shadowColor = 0;
         float dx = 0, dy = 0, r = 0;
 
-        TypedArray appearance = v.getContext().obtainStyledAttributes(resId, R.styleable.TextAppearance);
+        TypedArray appearance = v.getContext().obtainStyledAttributes(resId, R.styleable.HDWTextAppearance);
         if (appearance != null) {
             int n = appearance.getIndexCount();
             for (int i = 0; i < n; i++) {
                 int attr = appearance.getIndex(i);
 
-                if (attr == R.styleable.TextAppearance_android_textColorHighlight) {
+                if (attr == R.styleable.HDWTextAppearance_android_textColorHighlight) {
                     v.setHighlightColor(appearance.getColor(attr, 0));
 
-                } else if (attr == R.styleable.TextAppearance_android_textColor) {
+                } else if (attr == R.styleable.HDWTextAppearance_android_textColor) {
                     v.setTextColor(appearance.getColorStateList(attr));
 
-                } else if (attr == R.styleable.TextAppearance_android_textColorHint) {
+                } else if (attr == R.styleable.HDWTextAppearance_android_textColorHint) {
                     v.setHintTextColor(appearance.getColorStateList(attr));
 
-                } else if (attr == R.styleable.TextAppearance_android_textColorLink) {
+                } else if (attr == R.styleable.HDWTextAppearance_android_textColorLink) {
                     v.setLinkTextColor(appearance.getColorStateList(attr));
 
-                } else if (attr == R.styleable.TextAppearance_android_textSize) {
+                } else if (attr == R.styleable.HDWTextAppearance_android_textSize) {
                     v.setTextSize(TypedValue.COMPLEX_UNIT_PX, appearance.getDimensionPixelSize(attr, 0));
 
-                } else if (attr == R.styleable.TextAppearance_android_typeface) {
+                } else if (attr == R.styleable.HDWTextAppearance_android_typeface) {
                     typefaceIndex = appearance.getInt(attr, -1);
 
-                } else if (attr == R.styleable.TextAppearance_android_fontFamily) {
+                } else if (attr == R.styleable.HDWTextAppearance_android_fontFamily) {
                     fontFamily = appearance.getString(attr);
 
-                } else if (attr == R.styleable.TextAppearance_tv_fontFamily) {
+                } else if (attr == R.styleable.HDWTextAppearance_hdw_tv_fontFamily) {
                     fontFamily = appearance.getString(attr);
 
-                } else if (attr == R.styleable.TextAppearance_android_textStyle) {
+                } else if (attr == R.styleable.HDWTextAppearance_android_textStyle) {
                     styleIndex = appearance.getInt(attr, -1);
 
-                } else if (attr == R.styleable.TextAppearance_android_textAllCaps) {
+                } else if (attr == R.styleable.HDWTextAppearance_android_textAllCaps) {
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH)
                         v.setAllCaps(appearance.getBoolean(attr, false));
 
-                } else if (attr == R.styleable.TextAppearance_android_shadowColor) {
+                } else if (attr == R.styleable.HDWTextAppearance_android_shadowColor) {
                     shadowColor = appearance.getInt(attr, 0);
 
-                } else if (attr == R.styleable.TextAppearance_android_shadowDx) {
+                } else if (attr == R.styleable.HDWTextAppearance_android_shadowDx) {
                     dx = appearance.getFloat(attr, 0);
 
-                } else if (attr == R.styleable.TextAppearance_android_shadowDy) {
+                } else if (attr == R.styleable.HDWTextAppearance_android_shadowDy) {
                     dy = appearance.getFloat(attr, 0);
 
-                } else if (attr == R.styleable.TextAppearance_android_shadowRadius) {
+                } else if (attr == R.styleable.HDWTextAppearance_android_shadowRadius) {
                     r = appearance.getFloat(attr, 0);
 
-                } else if (attr == R.styleable.TextAppearance_android_elegantTextHeight) {
+                } else if (attr == R.styleable.HDWTextAppearance_android_elegantTextHeight) {
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
                         v.setElegantTextHeight(appearance.getBoolean(attr, false));
 
-                } else if (attr == R.styleable.TextAppearance_android_letterSpacing) {
+                } else if (attr == R.styleable.HDWTextAppearance_android_letterSpacing) {
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
                         v.setLetterSpacing(appearance.getFloat(attr, 0));
 
-                } else if (attr == R.styleable.TextAppearance_android_fontFeatureSettings) {
+                } else if (attr == R.styleable.HDWTextAppearance_android_fontFeatureSettings) {
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
                         v.setFontFeatureSettings(appearance.getString(attr));
 
@@ -466,71 +449,71 @@ public class ViewUtil {
          * to be able to parse the appearance first and then let specific tags
          * for this View override it.
          */
-        TypedArray a = v.getContext().obtainStyledAttributes(attrs, R.styleable.TextViewAppearance, defStyleAttr, defStyleRes);
+        TypedArray a = v.getContext().obtainStyledAttributes(attrs, R.styleable.HDWTextViewAppearance, defStyleAttr, defStyleRes);
         TypedArray appearance = null;
-        int ap = a.getResourceId(R.styleable.TextViewAppearance_android_textAppearance, 0);
+        int ap = a.getResourceId(R.styleable.HDWTextViewAppearance_android_textAppearance, 0);
         a.recycle();
 
         if (ap != 0)
-            appearance = v.getContext().obtainStyledAttributes(ap, R.styleable.TextAppearance);
+            appearance = v.getContext().obtainStyledAttributes(ap, R.styleable.HDWTextAppearance);
 
         if (appearance != null) {
             int n = appearance.getIndexCount();
             for (int i = 0; i < n; i++) {
                 int attr = appearance.getIndex(i);
 
-                if (attr == R.styleable.TextAppearance_android_textColorHighlight) {
+                if (attr == R.styleable.HDWTextAppearance_android_textColorHighlight) {
                     v.setHighlightColor(appearance.getColor(attr, 0));
 
-                } else if (attr == R.styleable.TextAppearance_android_textColor) {
+                } else if (attr == R.styleable.HDWTextAppearance_android_textColor) {
                     v.setTextColor(appearance.getColorStateList(attr));
 
-                } else if (attr == R.styleable.TextAppearance_android_textColorHint) {
+                } else if (attr == R.styleable.HDWTextAppearance_android_textColorHint) {
                     v.setHintTextColor(appearance.getColorStateList(attr));
 
-                } else if (attr == R.styleable.TextAppearance_android_textColorLink) {
+                } else if (attr == R.styleable.HDWTextAppearance_android_textColorLink) {
                     v.setLinkTextColor(appearance.getColorStateList(attr));
 
-                } else if (attr == R.styleable.TextAppearance_android_textSize) {
+                } else if (attr == R.styleable.HDWTextAppearance_android_textSize) {
                     v.setTextSize(TypedValue.COMPLEX_UNIT_PX, appearance.getDimensionPixelSize(attr, 0));
 
-                } else if (attr == R.styleable.TextAppearance_android_typeface) {
+                } else if (attr == R.styleable.HDWTextAppearance_android_typeface) {
                     typefaceIndex = appearance.getInt(attr, -1);
 
-                } else if (attr == R.styleable.TextAppearance_android_fontFamily) {
+                } else if (attr == R.styleable.HDWTextAppearance_android_fontFamily) {
                     fontFamily = appearance.getString(attr);
 
-                } else if (attr == R.styleable.TextAppearance_tv_fontFamily) {
+                } else if (attr == R.styleable.HDWTextAppearance_hdw_tv_fontFamily) {
                     fontFamily = appearance.getString(attr);
 
-                } else if (attr == R.styleable.TextAppearance_android_textStyle) {
+                } else if (attr == R.styleable.HDWTextAppearance_android_textStyle) {
                     styleIndex = appearance.getInt(attr, -1);
 
-                } else if (attr == R.styleable.TextAppearance_android_textAllCaps) {
+                } else if (attr == R.styleable.HDWTextAppearance_android_textAllCaps) {
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH)
                         v.setAllCaps(appearance.getBoolean(attr, false));
 
-                } else if (attr == R.styleable.TextAppearance_android_shadowColor) {
+                } else if (attr == R.styleable.HDWTextAppearance_android_shadowColor) {
                     shadowColor = appearance.getInt(attr, 0);
 
-                } else if (attr == R.styleable.TextAppearance_android_shadowDx) {
+                } else if (attr == R.styleable.HDWTextAppearance_android_shadowDx) {
                     dx = appearance.getFloat(attr, 0);
 
-                } else if (attr == R.styleable.TextAppearance_android_shadowDy) {
+                } else if (attr == R.styleable.HDWTextAppearance_android_shadowDy) {
                     dy = appearance.getFloat(attr, 0);
 
-                } else if (attr == R.styleable.TextAppearance_android_shadowRadius) {
+                } else if (attr == R.styleable.HDWTextAppearance_android_shadowRadius) {
                     r = appearance.getFloat(attr, 0);
 
-                } else if (attr == R.styleable.TextAppearance_android_elegantTextHeight) {
+                } else if (attr == R.styleable.HDWTextAppearance_android_elegantTextHeight) {
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
                         v.setElegantTextHeight(appearance.getBoolean(attr, false));
 
-                } else if (attr == R.styleable.TextAppearance_android_letterSpacing) {
+                } else if (attr == R.styleable.HDWTextAppearance_android_letterSpacing) {
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
                         v.setLetterSpacing(appearance.getFloat(attr, 0));
 
-                } else if (attr == R.styleable.TextAppearance_android_fontFeatureSettings) {
+                } else if (attr == R.styleable.HDWTextAppearance_android_fontFeatureSettings) {
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
                         v.setFontFeatureSettings(appearance.getString(attr));
 
@@ -540,142 +523,142 @@ public class ViewUtil {
             appearance.recycle();
         }
 
-        a = v.getContext().obtainStyledAttributes(attrs, R.styleable.TextView, defStyleAttr, defStyleRes);
+        a = v.getContext().obtainStyledAttributes(attrs, R.styleable.HDWTextView, defStyleAttr, defStyleRes);
 
         int n = a.getIndexCount();
         for (int i = 0; i < n; i++) {
             int attr = a.getIndex(i);
 
-            if (attr == R.styleable.TextView_android_drawableLeft) {
+            if (attr == R.styleable.HDWTextView_android_drawableLeft) {
                 drawableLeft = a.getDrawable(attr);
                 drawableDefined = true;
 
-            } else if (attr == R.styleable.TextView_android_drawableTop) {
+            } else if (attr == R.styleable.HDWTextView_android_drawableTop) {
                 drawableTop = a.getDrawable(attr);
                 drawableDefined = true;
 
-            } else if (attr == R.styleable.TextView_android_drawableRight) {
+            } else if (attr == R.styleable.HDWTextView_android_drawableRight) {
                 drawableRight = a.getDrawable(attr);
                 drawableDefined = true;
 
-            } else if (attr == R.styleable.TextView_android_drawableBottom) {
+            } else if (attr == R.styleable.HDWTextView_android_drawableBottom) {
                 drawableBottom = a.getDrawable(attr);
                 drawableDefined = true;
 
-            } else if (attr == R.styleable.TextView_android_drawableStart) {
+            } else if (attr == R.styleable.HDWTextView_android_drawableStart) {
                 drawableStart = a.getDrawable(attr);
                 drawableRelativeDefined = true;
 
-            } else if (attr == R.styleable.TextView_android_drawableEnd) {
+            } else if (attr == R.styleable.HDWTextView_android_drawableEnd) {
                 drawableEnd = a.getDrawable(attr);
                 drawableRelativeDefined = true;
 
-            } else if (attr == R.styleable.TextView_android_drawablePadding) {
+            } else if (attr == R.styleable.HDWTextView_android_drawablePadding) {
                 v.setCompoundDrawablePadding(a.getDimensionPixelSize(attr, 0));
 
-            } else if (attr == R.styleable.TextView_android_maxLines) {
+            } else if (attr == R.styleable.HDWTextView_android_maxLines) {
                 v.setMaxLines(a.getInt(attr, -1));
 
-            } else if (attr == R.styleable.TextView_android_maxHeight) {
+            } else if (attr == R.styleable.HDWTextView_android_maxHeight) {
                 v.setMaxHeight(a.getDimensionPixelSize(attr, -1));
 
-            } else if (attr == R.styleable.TextView_android_lines) {
+            } else if (attr == R.styleable.HDWTextView_android_lines) {
                 v.setLines(a.getInt(attr, -1));
 
-            } else if (attr == R.styleable.TextView_android_height) {
+            } else if (attr == R.styleable.HDWTextView_android_height) {
                 v.setHeight(a.getDimensionPixelSize(attr, -1));
 
-            } else if (attr == R.styleable.TextView_android_minLines) {
+            } else if (attr == R.styleable.HDWTextView_android_minLines) {
                 v.setMinLines(a.getInt(attr, -1));
 
-            } else if (attr == R.styleable.TextView_android_minHeight) {
+            } else if (attr == R.styleable.HDWTextView_android_minHeight) {
                 v.setMinHeight(a.getDimensionPixelSize(attr, -1));
 
-            } else if (attr == R.styleable.TextView_android_maxEms) {
+            } else if (attr == R.styleable.HDWTextView_android_maxEms) {
                 v.setMaxEms(a.getInt(attr, -1));
 
-            } else if (attr == R.styleable.TextView_android_maxWidth) {
+            } else if (attr == R.styleable.HDWTextView_android_maxWidth) {
                 v.setMaxWidth(a.getDimensionPixelSize(attr, -1));
 
-            } else if (attr == R.styleable.TextView_android_ems) {
+            } else if (attr == R.styleable.HDWTextView_android_ems) {
                 v.setEms(a.getInt(attr, -1));
 
-            } else if (attr == R.styleable.TextView_android_width) {
+            } else if (attr == R.styleable.HDWTextView_android_width) {
                 v.setWidth(a.getDimensionPixelSize(attr, -1));
 
-            } else if (attr == R.styleable.TextView_android_minEms) {
+            } else if (attr == R.styleable.HDWTextView_android_minEms) {
                 v.setMinEms(a.getInt(attr, -1));
 
-            } else if (attr == R.styleable.TextView_android_minWidth) {
+            } else if (attr == R.styleable.HDWTextView_android_minWidth) {
                 v.setMinWidth(a.getDimensionPixelSize(attr, -1));
 
-            } else if (attr == R.styleable.TextView_android_gravity) {
+            } else if (attr == R.styleable.HDWTextView_android_gravity) {
                 v.setGravity(a.getInt(attr, -1));
 
-            } else if (attr == R.styleable.TextView_android_scrollHorizontally) {
+            } else if (attr == R.styleable.HDWTextView_android_scrollHorizontally) {
                 v.setHorizontallyScrolling(a.getBoolean(attr, false));
 
-            } else if (attr == R.styleable.TextView_android_includeFontPadding) {
+            } else if (attr == R.styleable.HDWTextView_android_includeFontPadding) {
                 v.setIncludeFontPadding(a.getBoolean(attr, true));
 
-            } else if (attr == R.styleable.TextView_android_cursorVisible) {
+            } else if (attr == R.styleable.HDWTextView_android_cursorVisible) {
                 v.setCursorVisible(a.getBoolean(attr, true));
 
-            } else if (attr == R.styleable.TextView_android_textScaleX) {
+            } else if (attr == R.styleable.HDWTextView_android_textScaleX) {
                 v.setTextScaleX(a.getFloat(attr, 1.0f));
 
-            } else if (attr == R.styleable.TextView_android_shadowColor) {
+            } else if (attr == R.styleable.HDWTextView_android_shadowColor) {
                 shadowColor = a.getInt(attr, 0);
 
-            } else if (attr == R.styleable.TextView_android_shadowDx) {
+            } else if (attr == R.styleable.HDWTextView_android_shadowDx) {
                 dx = a.getFloat(attr, 0);
 
-            } else if (attr == R.styleable.TextView_android_shadowDy) {
+            } else if (attr == R.styleable.HDWTextView_android_shadowDy) {
                 dy = a.getFloat(attr, 0);
 
-            } else if (attr == R.styleable.TextView_android_shadowRadius) {
+            } else if (attr == R.styleable.HDWTextView_android_shadowRadius) {
                 r = a.getFloat(attr, 0);
 
-            } else if (attr == R.styleable.TextView_android_textColorHighlight) {
+            } else if (attr == R.styleable.HDWTextView_android_textColorHighlight) {
                 v.setHighlightColor(a.getColor(attr, 0));
 
-            } else if (attr == R.styleable.TextView_android_textColor) {
+            } else if (attr == R.styleable.HDWTextView_android_textColor) {
                 v.setTextColor(a.getColorStateList(attr));
 
-            } else if (attr == R.styleable.TextView_android_textColorHint) {
+            } else if (attr == R.styleable.HDWTextView_android_textColorHint) {
                 v.setHintTextColor(a.getColorStateList(attr));
 
-            } else if (attr == R.styleable.TextView_android_textColorLink) {
+            } else if (attr == R.styleable.HDWTextView_android_textColorLink) {
                 v.setLinkTextColor(a.getColorStateList(attr));
 
-            } else if (attr == R.styleable.TextView_android_textSize) {
+            } else if (attr == R.styleable.HDWTextView_android_textSize) {
                 v.setTextSize(TypedValue.COMPLEX_UNIT_PX, a.getDimensionPixelSize(attr, 0));
 
-            } else if (attr == R.styleable.TextView_android_typeface) {
+            } else if (attr == R.styleable.HDWTextView_android_typeface) {
                 typefaceIndex = a.getInt(attr, -1);
 
-            } else if (attr == R.styleable.TextView_android_textStyle) {
+            } else if (attr == R.styleable.HDWTextView_android_textStyle) {
                 styleIndex = a.getInt(attr, -1);
 
-            } else if (attr == R.styleable.TextView_android_fontFamily) {
+            } else if (attr == R.styleable.HDWTextView_android_fontFamily) {
                 fontFamily = a.getString(attr);
 
-            } else if (attr == R.styleable.TextView_tv_fontFamily) {
+            } else if (attr == R.styleable.HDWTextView_hdw_tv_fontFamily) {
                 fontFamily = a.getString(attr);
 
-            } else if (attr == R.styleable.TextView_android_textAllCaps) {
+            } else if (attr == R.styleable.HDWTextView_android_textAllCaps) {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH)
                     v.setAllCaps(a.getBoolean(attr, false));
 
-            } else if (attr == R.styleable.TextView_android_elegantTextHeight) {
+            } else if (attr == R.styleable.HDWTextView_android_elegantTextHeight) {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
                     v.setElegantTextHeight(a.getBoolean(attr, false));
 
-            } else if (attr == R.styleable.TextView_android_letterSpacing) {
+            } else if (attr == R.styleable.HDWTextView_android_letterSpacing) {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
                     v.setLetterSpacing(a.getFloat(attr, 0));
 
-            } else if (attr == R.styleable.TextView_android_fontFeatureSettings) {
+            } else if (attr == R.styleable.HDWTextView_android_fontFeatureSettings) {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
                     v.setFontFeatureSettings(a.getString(attr));
 
@@ -745,27 +728,27 @@ public class ViewUtil {
      * @param defStyleRes
      */
     private static void applyStyle(AutoCompleteTextView v,  AttributeSet attrs, int defStyleAttr, int defStyleRes){
-        TypedArray a = v.getContext().obtainStyledAttributes(attrs, R.styleable.AutoCompleteTextView, defStyleAttr, defStyleRes);
+        TypedArray a = v.getContext().obtainStyledAttributes(attrs, R.styleable.HDWAutoCompleteTextView, defStyleAttr, defStyleRes);
 
         int n = a.getIndexCount();
         for (int i = 0; i < n; i++) {
             int attr = a.getIndex(i);
 
-            if(attr == R.styleable.AutoCompleteTextView_android_completionHint)
+            if (attr == R.styleable.HDWAutoCompleteTextView_android_completionHint)
                 v.setCompletionHint(a.getString(attr));
-            else if(attr == R.styleable.AutoCompleteTextView_android_completionThreshold)
+            else if (attr == R.styleable.HDWAutoCompleteTextView_android_completionThreshold)
                 v.setThreshold(a.getInteger(attr, 0));
-            else if(attr == R.styleable.AutoCompleteTextView_android_dropDownAnchor)
+            else if (attr == R.styleable.HDWAutoCompleteTextView_android_dropDownAnchor)
                 v.setDropDownAnchor(a.getResourceId(attr, 0));
-            else if(attr == R.styleable.AutoCompleteTextView_android_dropDownHeight)
+            else if (attr == R.styleable.HDWAutoCompleteTextView_android_dropDownHeight)
                 v.setDropDownHeight(a.getLayoutDimension(attr, ViewGroup.LayoutParams.WRAP_CONTENT));
-            else if(attr == R.styleable.AutoCompleteTextView_android_dropDownWidth)
+            else if (attr == R.styleable.HDWAutoCompleteTextView_android_dropDownWidth)
                 v.setDropDownWidth(a.getLayoutDimension(attr, ViewGroup.LayoutParams.WRAP_CONTENT));
-            else if(attr == R.styleable.AutoCompleteTextView_android_dropDownHorizontalOffset)
+            else if (attr == R.styleable.HDWAutoCompleteTextView_android_dropDownHorizontalOffset)
                 v.setDropDownHorizontalOffset(a.getDimensionPixelSize(attr, 0));
-            else if(attr == R.styleable.AutoCompleteTextView_android_dropDownVerticalOffset)
+            else if (attr == R.styleable.HDWAutoCompleteTextView_android_dropDownVerticalOffset)
                 v.setDropDownVerticalOffset(a.getDimensionPixelSize(attr, 0));
-            else if(attr == R.styleable.AutoCompleteTextView_android_popupBackground)
+            else if (attr == R.styleable.HDWAutoCompleteTextView_android_popupBackground)
                 v.setDropDownBackgroundDrawable(a.getDrawable(attr));
         }
         a.recycle();

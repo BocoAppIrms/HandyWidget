@@ -61,7 +61,7 @@ public class TimePickerView extends BasePickerView implements View.OnClickListen
     private int dividerColor; //分割线的颜色
     private int backgroundId; //显示时的外部背景色颜色,默认是灰色
     // 条目间距倍数 默认1.6
-    private float lineSpacingMultiplier = 1.6F;
+    private float lineSpacingMultiplier = 1.8F;
     private boolean isDialog;//是否是对话框模式
     private String label_year, label_month, label_day, label_hours, label_mins, label_seconds;
     private WheelView.DividerType dividerType;//分隔线类型
@@ -297,7 +297,7 @@ public class TimePickerView extends BasePickerView implements View.OnClickListen
         private int Color_Background_Title;//标题背景颜色
         private int Size_Submit_Cancel = 15;//确定取消按钮大小
         private int Size_Title = 15;//标题字体大小
-        private int Size_Content = 15;//内容字体大小
+        private int Size_Content = 17;//内容字体大小
         private Calendar date;//当前选中时间
         private Calendar startDate;//开始时间
         private Calendar endDate;//终止时间
@@ -312,7 +312,7 @@ public class TimePickerView extends BasePickerView implements View.OnClickListen
         private int backgroundId; //显示时的外部背景色颜色,默认是灰色
         private WheelView.DividerType dividerType;//分隔线类型
         // 条目间距倍数 默认1.6
-        private float lineSpacingMultiplier = 1.6F;
+        private float lineSpacingMultiplier = 1.8F;
 
         private boolean isDialog;//是否是对话框模式
 

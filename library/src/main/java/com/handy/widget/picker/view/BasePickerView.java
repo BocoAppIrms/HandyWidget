@@ -29,10 +29,10 @@ public class BasePickerView {
     );
     public ViewGroup decorView;//显示pickerview的根View,默认是activity的根view
     protected ViewGroup contentContainer;
-    protected int pickerview_timebtn_nor = 0xFF057dff;
+    protected int pickerview_timebtn_nor = 0xFF0091ea;
     protected int pickerview_timebtn_pre = 0xFFc2daf5;
-    protected int pickerview_bg_topbar = 0xFFf5f5f5;
-    protected int pickerview_topbar_title = 0xFF000000;
+    protected int pickerview_bg_topbar = 0xFFeeeeee;
+    protected int pickerview_topbar_title = 0xFF212121;
     protected int bgColor_default = 0xFFFFFFFF;
     protected View clickView;//是通过哪个View弹出的
     private Context context;

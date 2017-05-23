@@ -4,11 +4,11 @@
     <dimen name="hdw_dialog_round_corner">5dp</dimen>
     <dimen name="hdw_dialog_line_1px">1px</dimen>
 
-    <dimen name="hdw_dialog_btn_txt_size">14sp</dimen>
-    <dimen name="hdw_dialog_title_txt_size">17sp</dimen>
-    <dimen name="hdw_dialog_msg_txt_size">14sp</dimen>
-    <dimen name="hdw_dialog_item_txt_size">14sp</dimen>
-    <dimen name="hdw_dialog_input_txt_size">14sp</dimen>
+    <dimen name="hdw_dialog_btn_txt_size">13sp</dimen>
+    <dimen name="hdw_dialog_title_txt_size">15sp</dimen>
+    <dimen name="hdw_dialog_msg_txt_size">13sp</dimen>
+    <dimen name="hdw_dialog_item_txt_size">13sp</dimen>
+    <dimen name="hdw_dialog_input_txt_size">13sp</dimen>
 
 
 </resources>

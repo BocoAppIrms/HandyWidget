@@ -46,11 +46,11 @@ public class DefaultConfig {
         <dimen name="title_txt_size">17sp</dimen>
         <dimen name="msg_txt_size">14sp</dimen>
         <dimen name="item_txt_size">14sp</dimen>*/
-    public static int btnTxtSize = 14;// in sp
-    public static int titleTxtSize = 17;
-    public static int msgTxtSize = 14;
-    public static int itemTxtSize = 14;
-    public static int inputTxtSize = 14;
+    public static int btnTxtSize = 13;// in sp
+    public static int titleTxtSize = 15;
+    public static int msgTxtSize = 13;
+    public static int itemTxtSize = 13;
+    public static int inputTxtSize = 13;
     public static CharSequence btnTxt1 = "确定";
     public static CharSequence btnTxt2 = "取消";
     public static CharSequence bottomTxt = "取消";

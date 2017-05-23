@@ -109,7 +109,7 @@ public class LinearProgressDrawable extends Drawable implements Animatable {
 	}
 
 	public void applyStyle(Context context, int resId){
-        TypedArray a = context.obtainStyledAttributes(resId, R.styleable.LinearProgressDrawable);
+		TypedArray a = context.obtainStyledAttributes(resId, R.styleable.HDWLinearProgressDrawable);
 
         int strokeColor = 0;
         boolean strokeColorDefined = false;
@@ -118,12 +118,12 @@ public class LinearProgressDrawable extends Drawable implements Animatable {
         for(int i = 0, count = a.getIndexCount(); i < count; i++){
             int attr = a.getIndex(i);
 
-            if(attr == R.styleable.LinearProgressDrawable_pv_progress)
-                setProgress(a.getFloat(attr, 0));
-            else if(attr == R.styleable.LinearProgressDrawable_pv_secondaryProgress)
-                setSecondaryProgress(a.getFloat(attr, 0));
-            else if(attr == R.styleable.LinearProgressDrawable_lpd_maxLineWidth){
-                TypedValue value = a.peekValue(attr);
+			if (attr == R.styleable.HDWLinearProgressDrawable_hdw_pv_progress)
+				setProgress(a.getFloat(attr, 0));
+			else if (attr == R.styleable.HDWLinearProgressDrawable_hdw_pv_secondaryProgress)
+				setSecondaryProgress(a.getFloat(attr, 0));
+			else if (attr == R.styleable.HDWLinearProgressDrawable_hdw_lpd_maxLineWidth) {
+				TypedValue value = a.peekValue(attr);
                 if(value.type == TypedValue.TYPE_FRACTION) {
                     mMaxLineWidthPercent = a.getFraction(attr, 1, 1, 0.75f);
                     mMaxLineWidth = 0;
@@ -132,9 +132,8 @@ public class LinearProgressDrawable extends Drawable implements Animatable {
                     mMaxLineWidth = a.getDimensionPixelSize(attr, 0);
                     mMaxLineWidthPercent = 0f;
                 }
-            }
-            else if(attr == R.styleable.LinearProgressDrawable_lpd_minLineWidth){
-                TypedValue value = a.peekValue(attr);
+            } else if (attr == R.styleable.HDWLinearProgressDrawable_hdw_lpd_minLineWidth) {
+				TypedValue value = a.peekValue(attr);
                 if(value.type == TypedValue.TYPE_FRACTION) {
                     mMinLineWidthPercent = a.getFraction(attr, 1, 1, 0.25f);
                     mMinLineWidth = 0;
@@ -143,40 +142,37 @@ public class LinearProgressDrawable extends Drawable implements Animatable {
                     mMinLineWidth = a.getDimensionPixelSize(attr, 0);
                     mMinLineWidthPercent = 0f;
                 }
-            }
-            else if(attr == R.styleable.LinearProgressDrawable_lpd_strokeSize)
-                mStrokeSize = a.getDimensionPixelSize(attr, 0);
-            else if(attr == R.styleable.LinearProgressDrawable_lpd_verticalAlign)
-                mVerticalAlign = a.getInteger(attr, 0);
-            else if(attr == R.styleable.LinearProgressDrawable_lpd_strokeColor) {
-                strokeColor = a.getColor(attr, 0);
+            } else if (attr == R.styleable.HDWLinearProgressDrawable_hdw_lpd_strokeSize)
+				mStrokeSize = a.getDimensionPixelSize(attr, 0);
+			else if (attr == R.styleable.HDWLinearProgressDrawable_hdw_lpd_verticalAlign)
+				mVerticalAlign = a.getInteger(attr, 0);
+			else if (attr == R.styleable.HDWLinearProgressDrawable_hdw_lpd_strokeColor) {
+				strokeColor = a.getColor(attr, 0);
                 strokeColorDefined = true;
-            }
-            else if(attr == R.styleable.LinearProgressDrawable_lpd_strokeColors){
-                TypedArray ta = context.getResources().obtainTypedArray(a.getResourceId(attr, 0));
+            } else if (attr == R.styleable.HDWLinearProgressDrawable_hdw_lpd_strokeColors) {
+				TypedArray ta = context.getResources().obtainTypedArray(a.getResourceId(attr, 0));
                 strokeColors = new int[ta.length()];
                 for(int j = 0; j < ta.length(); j++)
                     strokeColors[j] = ta.getColor(j, 0);
                 ta.recycle();
-            }
-            else if(attr == R.styleable.LinearProgressDrawable_lpd_strokeSecondaryColor)
-                mStrokeSecondaryColor = a.getColor(attr, 0);
-            else if(attr == R.styleable.LinearProgressDrawable_lpd_reverse)
-                mReverse = a.getBoolean(attr, false);
-            else if(attr == R.styleable.LinearProgressDrawable_lpd_travelDuration)
-                mTravelDuration = a.getInteger(attr, 0);
-            else if(attr == R.styleable.LinearProgressDrawable_lpd_transformDuration)
-                mTransformDuration = a.getInteger(attr, 0);
-            else if(attr == R.styleable.LinearProgressDrawable_lpd_keepDuration)
-                mKeepDuration = a.getInteger(attr, 0);
-            else if(attr == R.styleable.LinearProgressDrawable_lpd_transformInterpolator)
-                mTransformInterpolator = AnimationUtils.loadInterpolator(context, a.getResourceId(attr, 0));
-            else if(attr == R.styleable.LinearProgressDrawable_pv_progressMode)
-                mProgressMode = a.getInteger(attr, 0);
-            else if(attr == R.styleable.LinearProgressDrawable_lpd_inAnimDuration)
-                mInAnimationDuration = a.getInteger(attr, 0);
-            else if(attr == R.styleable.LinearProgressDrawable_lpd_outAnimDuration)
-                mOutAnimationDuration = a.getInteger(attr, 0);
+            } else if (attr == R.styleable.HDWLinearProgressDrawable_hdw_lpd_strokeSecondaryColor)
+				mStrokeSecondaryColor = a.getColor(attr, 0);
+			else if (attr == R.styleable.HDWLinearProgressDrawable_hdw_lpd_reverse)
+				mReverse = a.getBoolean(attr, false);
+			else if (attr == R.styleable.HDWLinearProgressDrawable_hdw_lpd_travelDuration)
+				mTravelDuration = a.getInteger(attr, 0);
+			else if (attr == R.styleable.HDWLinearProgressDrawable_hdw_lpd_transformDuration)
+				mTransformDuration = a.getInteger(attr, 0);
+			else if (attr == R.styleable.HDWLinearProgressDrawable_hdw_lpd_keepDuration)
+				mKeepDuration = a.getInteger(attr, 0);
+			else if (attr == R.styleable.HDWLinearProgressDrawable_hdw_lpd_transformInterpolator)
+				mTransformInterpolator = AnimationUtils.loadInterpolator(context, a.getResourceId(attr, 0));
+			else if (attr == R.styleable.HDWLinearProgressDrawable_hdw_pv_progressMode)
+				mProgressMode = a.getInteger(attr, 0);
+			else if (attr == R.styleable.HDWLinearProgressDrawable_hdw_lpd_inAnimDuration)
+				mInAnimationDuration = a.getInteger(attr, 0);
+			else if (attr == R.styleable.HDWLinearProgressDrawable_hdw_lpd_outAnimDuration)
+				mOutAnimationDuration = a.getInteger(attr, 0);
         }
 
         a.recycle();
@@ -927,32 +923,32 @@ public class LinearProgressDrawable extends Drawable implements Animatable {
         }
 
 		public Builder(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes){
-			TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.LinearProgressDrawable, defStyleAttr, defStyleRes);
+			TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.HDWLinearProgressDrawable, defStyleAttr, defStyleRes);
 			int resId;
-			
-			progressPercent(a.getFloat(R.styleable.LinearProgressDrawable_pv_progress, 0));	
-			secondaryProgressPercent(a.getFloat(R.styleable.LinearProgressDrawable_pv_secondaryProgress, 0));
-			
-			TypedValue value = a.peekValue(R.styleable.LinearProgressDrawable_lpd_maxLineWidth);
+
+			progressPercent(a.getFloat(R.styleable.HDWLinearProgressDrawable_hdw_pv_progress, 0));
+			secondaryProgressPercent(a.getFloat(R.styleable.HDWLinearProgressDrawable_hdw_pv_secondaryProgress, 0));
+
+			TypedValue value = a.peekValue(R.styleable.HDWLinearProgressDrawable_hdw_lpd_maxLineWidth);
 			if(value == null)
 				maxLineWidth(0.75f);
 			else if(value.type == TypedValue.TYPE_FRACTION)
-				maxLineWidth(a.getFraction(R.styleable.LinearProgressDrawable_lpd_maxLineWidth, 1, 1, 0.75f));
-			else 
-				maxLineWidth(a.getDimensionPixelSize(R.styleable.LinearProgressDrawable_lpd_maxLineWidth, 0));
-			
-			value = a.peekValue(R.styleable.LinearProgressDrawable_lpd_minLineWidth);
+				maxLineWidth(a.getFraction(R.styleable.HDWLinearProgressDrawable_hdw_lpd_maxLineWidth, 1, 1, 0.75f));
+			else
+				maxLineWidth(a.getDimensionPixelSize(R.styleable.HDWLinearProgressDrawable_hdw_lpd_maxLineWidth, 0));
+
+			value = a.peekValue(R.styleable.HDWLinearProgressDrawable_hdw_lpd_minLineWidth);
 			if(value == null)
 				minLineWidth(0.25f);
 			else if(value.type == TypedValue.TYPE_FRACTION)
-				minLineWidth(a.getFraction(R.styleable.LinearProgressDrawable_lpd_minLineWidth, 1, 1, 0.25f));
-			else 
-				minLineWidth(a.getDimensionPixelSize(R.styleable.LinearProgressDrawable_lpd_minLineWidth, 0));
-			
-			strokeSize(a.getDimensionPixelSize(R.styleable.LinearProgressDrawable_lpd_strokeSize, ThemeUtil.dpToPx(context, 4)));
-			verticalAlign(a.getInteger(R.styleable.LinearProgressDrawable_lpd_verticalAlign, LinearProgressDrawable.ALIGN_BOTTOM));
-			strokeColors(a.getColor(R.styleable.LinearProgressDrawable_lpd_strokeColor, ThemeUtil.colorPrimary(context, 0xFF000000)));
-			if((resId = a.getResourceId(R.styleable.LinearProgressDrawable_lpd_strokeColors, 0)) != 0){
+				minLineWidth(a.getFraction(R.styleable.HDWLinearProgressDrawable_hdw_lpd_minLineWidth, 1, 1, 0.25f));
+			else
+				minLineWidth(a.getDimensionPixelSize(R.styleable.HDWLinearProgressDrawable_hdw_lpd_minLineWidth, 0));
+
+			strokeSize(a.getDimensionPixelSize(R.styleable.HDWLinearProgressDrawable_hdw_lpd_strokeSize, ThemeUtil.dpToPx(context, 4)));
+			verticalAlign(a.getInteger(R.styleable.HDWLinearProgressDrawable_hdw_lpd_verticalAlign, LinearProgressDrawable.ALIGN_BOTTOM));
+			strokeColors(a.getColor(R.styleable.HDWLinearProgressDrawable_hdw_lpd_strokeColor, ThemeUtil.colorPrimary(context, 0xFF000000)));
+			if ((resId = a.getResourceId(R.styleable.HDWLinearProgressDrawable_hdw_lpd_strokeColors, 0)) != 0) {
 				TypedArray ta = context.getResources().obtainTypedArray(resId);				        	
 				int[] colors = new int[ta.length()];
 				for(int j = 0; j < ta.length(); j++)
@@ -960,16 +956,16 @@ public class LinearProgressDrawable extends Drawable implements Animatable {
 				ta.recycle();
 				strokeColors(colors);
 			}
-			strokeSecondaryColor(a.getColor(R.styleable.LinearProgressDrawable_lpd_strokeSecondaryColor, 0));
-			reverse(a.getBoolean(R.styleable.LinearProgressDrawable_lpd_reverse, false));
-			travelDuration(a.getInteger(R.styleable.LinearProgressDrawable_lpd_travelDuration, context.getResources().getInteger(android.R.integer.config_longAnimTime)));
-			transformDuration(a.getInteger(R.styleable.LinearProgressDrawable_lpd_transformDuration, context.getResources().getInteger(android.R.integer.config_mediumAnimTime)));
-			keepDuration(a.getInteger(R.styleable.LinearProgressDrawable_lpd_keepDuration, context.getResources().getInteger(android.R.integer.config_shortAnimTime)));
-			if((resId = a.getResourceId(R.styleable.LinearProgressDrawable_lpd_transformInterpolator, 0)) != 0)
+			strokeSecondaryColor(a.getColor(R.styleable.HDWLinearProgressDrawable_hdw_lpd_strokeSecondaryColor, 0));
+			reverse(a.getBoolean(R.styleable.HDWLinearProgressDrawable_hdw_lpd_reverse, false));
+			travelDuration(a.getInteger(R.styleable.HDWLinearProgressDrawable_hdw_lpd_travelDuration, context.getResources().getInteger(android.R.integer.config_longAnimTime)));
+			transformDuration(a.getInteger(R.styleable.HDWLinearProgressDrawable_hdw_lpd_transformDuration, context.getResources().getInteger(android.R.integer.config_mediumAnimTime)));
+			keepDuration(a.getInteger(R.styleable.HDWLinearProgressDrawable_hdw_lpd_keepDuration, context.getResources().getInteger(android.R.integer.config_shortAnimTime)));
+			if ((resId = a.getResourceId(R.styleable.HDWLinearProgressDrawable_hdw_lpd_transformInterpolator, 0)) != 0)
 				transformInterpolator(AnimationUtils.loadInterpolator(context, resId));
-			progressMode(a.getInteger(R.styleable.LinearProgressDrawable_pv_progressMode, ProgressView.MODE_INDETERMINATE));
-			inAnimDuration(a.getInteger(R.styleable.LinearProgressDrawable_lpd_inAnimDuration, context.getResources().getInteger(android.R.integer.config_mediumAnimTime)));
-			outAnimDuration(a.getInteger(R.styleable.LinearProgressDrawable_lpd_outAnimDuration, context.getResources().getInteger(android.R.integer.config_mediumAnimTime)));
+			progressMode(a.getInteger(R.styleable.HDWLinearProgressDrawable_hdw_pv_progressMode, ProgressView.MODE_INDETERMINATE));
+			inAnimDuration(a.getInteger(R.styleable.HDWLinearProgressDrawable_hdw_lpd_inAnimDuration, context.getResources().getInteger(android.R.integer.config_mediumAnimTime)));
+			outAnimDuration(a.getInteger(R.styleable.HDWLinearProgressDrawable_hdw_lpd_outAnimDuration, context.getResources().getInteger(android.R.integer.config_mediumAnimTime)));
 			
 			a.recycle();				
 		}

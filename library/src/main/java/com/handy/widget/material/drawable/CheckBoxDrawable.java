@@ -357,16 +357,16 @@ public class CheckBoxDrawable extends Drawable implements Animatable {
         }
 
         public Builder(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
-            TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.CheckBoxDrawable, defStyleAttr, defStyleRes);
+            TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.HDWCheckBoxDrawable, defStyleAttr, defStyleRes);
 
-            width(a.getDimensionPixelSize(R.styleable.CheckBoxDrawable_cbd_width, ThemeUtil.dpToPx(context, 32)));
-            height(a.getDimensionPixelSize(R.styleable.CheckBoxDrawable_cbd_height, ThemeUtil.dpToPx(context, 32)));
-            boxSize(a.getDimensionPixelSize(R.styleable.CheckBoxDrawable_cbd_boxSize, ThemeUtil.dpToPx(context, 18)));
-            cornerRadius(a.getDimensionPixelSize(R.styleable.CheckBoxDrawable_cbd_cornerRadius, ThemeUtil.dpToPx(context, 2)));
-            strokeSize(a.getDimensionPixelSize(R.styleable.CheckBoxDrawable_cbd_strokeSize, ThemeUtil.dpToPx(context, 2)));
-            strokeColor(a.getColorStateList(R.styleable.CheckBoxDrawable_cbd_strokeColor));
-            tickColor(a.getColor(R.styleable.CheckBoxDrawable_cbd_tickColor, 0xFFFFFFFF));
-            animDuration(a.getInt(R.styleable.CheckBoxDrawable_cbd_animDuration, context.getResources().getInteger(android.R.integer.config_mediumAnimTime)));
+            width(a.getDimensionPixelSize(R.styleable.HDWCheckBoxDrawable_hdw_cbd_width, ThemeUtil.dpToPx(context, 32)));
+            height(a.getDimensionPixelSize(R.styleable.HDWCheckBoxDrawable_hdw_cbd_height, ThemeUtil.dpToPx(context, 32)));
+            boxSize(a.getDimensionPixelSize(R.styleable.HDWCheckBoxDrawable_hdw_cbd_boxSize, ThemeUtil.dpToPx(context, 18)));
+            cornerRadius(a.getDimensionPixelSize(R.styleable.HDWCheckBoxDrawable_hdw_cbd_cornerRadius, ThemeUtil.dpToPx(context, 2)));
+            strokeSize(a.getDimensionPixelSize(R.styleable.HDWCheckBoxDrawable_hdw_cbd_strokeSize, ThemeUtil.dpToPx(context, 2)));
+            strokeColor(a.getColorStateList(R.styleable.HDWCheckBoxDrawable_hdw_cbd_strokeColor));
+            tickColor(a.getColor(R.styleable.HDWCheckBoxDrawable_hdw_cbd_tickColor, 0xFFFFFFFF));
+            animDuration(a.getInt(R.styleable.HDWCheckBoxDrawable_hdw_cbd_animDuration, context.getResources().getInteger(android.R.integer.config_mediumAnimTime)));
 
             a.recycle();
 

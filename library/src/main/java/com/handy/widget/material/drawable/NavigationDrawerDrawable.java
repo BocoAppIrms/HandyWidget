@@ -119,11 +119,11 @@ public class NavigationDrawerDrawable extends Drawable implements Drawable.Callb
         }
 
 		public Builder(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes){
-			TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.NavigationDrawerDrawable, defStyleAttr, defStyleRes);
+			TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.HDWNavigationDrawerDrawable, defStyleAttr, defStyleRes);
 						
 			if(a != null){
-				int rippleId = a.getResourceId(R.styleable.NavigationDrawerDrawable_nd_ripple, 0);
-				int lineId = a.getResourceId(R.styleable.NavigationDrawerDrawable_nd_icon, 0);
+				int rippleId = a.getResourceId(R.styleable.HDWNavigationDrawerDrawable_hdw_nd_ripple, 0);
+				int lineId = a.getResourceId(R.styleable.HDWNavigationDrawerDrawable_hdw_nd_icon, 0);
 					
 				if(rippleId > 0)
 					ripple(new ToolbarRippleDrawable.Builder(context, rippleId).build());

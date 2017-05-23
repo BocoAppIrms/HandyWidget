@@ -415,40 +415,40 @@ public class LineMorphingDrawable extends Drawable implements Animatable{
         }
 
 		public Builder(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes){
-			TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.LineMorphingDrawable, defStyleAttr, defStyleRes);
+			TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.HDWLineMorphingDrawable, defStyleAttr, defStyleRes);
 			int resId;
-			
-			if((resId = a.getResourceId(R.styleable.LineMorphingDrawable_lmd_state, 0)) != 0)
-				states(readStates(context, resId));			
-			curState(a.getInteger(R.styleable.LineMorphingDrawable_lmd_curState, 0));			
-			padding(a.getDimensionPixelSize(R.styleable.LineMorphingDrawable_lmd_padding, 0));
-			paddingLeft(a.getDimensionPixelSize(R.styleable.LineMorphingDrawable_lmd_paddingLeft, mPaddingLeft));
-			paddingTop(a.getDimensionPixelSize(R.styleable.LineMorphingDrawable_lmd_paddingTop, mPaddingTop));
-			paddingRight(a.getDimensionPixelSize(R.styleable.LineMorphingDrawable_lmd_paddingRight, mPaddingRight));
-			paddingBottom(a.getDimensionPixelSize(R.styleable.LineMorphingDrawable_lmd_paddingBottom, mPaddingBottom));
-			animDuration(a.getInteger(R.styleable.LineMorphingDrawable_lmd_animDuration, context.getResources().getInteger(android.R.integer.config_mediumAnimTime)));
-			if((resId = a.getResourceId(R.styleable.LineMorphingDrawable_lmd_interpolator, 0)) != 0)
+
+			if ((resId = a.getResourceId(R.styleable.HDWLineMorphingDrawable_hdw_lmd_state, 0)) != 0)
+				states(readStates(context, resId));
+			curState(a.getInteger(R.styleable.HDWLineMorphingDrawable_hdw_lmd_curState, 0));
+			padding(a.getDimensionPixelSize(R.styleable.HDWLineMorphingDrawable_hdw_lmd_padding, 0));
+			paddingLeft(a.getDimensionPixelSize(R.styleable.HDWLineMorphingDrawable_hdw_lmd_paddingLeft, mPaddingLeft));
+			paddingTop(a.getDimensionPixelSize(R.styleable.HDWLineMorphingDrawable_hdw_lmd_paddingTop, mPaddingTop));
+			paddingRight(a.getDimensionPixelSize(R.styleable.HDWLineMorphingDrawable_hdw_lmd_paddingRight, mPaddingRight));
+			paddingBottom(a.getDimensionPixelSize(R.styleable.HDWLineMorphingDrawable_hdw_lmd_paddingBottom, mPaddingBottom));
+			animDuration(a.getInteger(R.styleable.HDWLineMorphingDrawable_hdw_lmd_animDuration, context.getResources().getInteger(android.R.integer.config_mediumAnimTime)));
+			if ((resId = a.getResourceId(R.styleable.HDWLineMorphingDrawable_hdw_lmd_interpolator, 0)) != 0)
 				interpolator(AnimationUtils.loadInterpolator(context, resId));
-			strokeSize(a.getDimensionPixelSize(R.styleable.LineMorphingDrawable_lmd_strokeSize, ThemeUtil.dpToPx(context, 3)));
-			strokeColor(a.getColor(R.styleable.LineMorphingDrawable_lmd_strokeColor, 0xFFFFFFFF));
-			int cap = a.getInteger(R.styleable.LineMorphingDrawable_lmd_strokeCap, 0);
+			strokeSize(a.getDimensionPixelSize(R.styleable.HDWLineMorphingDrawable_hdw_lmd_strokeSize, ThemeUtil.dpToPx(context, 3)));
+			strokeColor(a.getColor(R.styleable.HDWLineMorphingDrawable_hdw_lmd_strokeColor, 0xFFFFFFFF));
+			int cap = a.getInteger(R.styleable.HDWLineMorphingDrawable_hdw_lmd_strokeCap, 0);
 			if(cap == 0)
 				strokeCap(Paint.Cap.BUTT);
 			else if(cap == 1)
 				strokeCap(Paint.Cap.ROUND);
 			else
 				strokeCap(Paint.Cap.SQUARE);
-			int join = a.getInteger(R.styleable.LineMorphingDrawable_lmd_strokeJoin, 0);
+			int join = a.getInteger(R.styleable.HDWLineMorphingDrawable_hdw_lmd_strokeJoin, 0);
 			if(join == 0)
 				strokeJoin(Paint.Join.MITER);
 			else if(join == 1)
 				strokeJoin(Paint.Join.ROUND);
 			else
 				strokeJoin(Paint.Join.BEVEL);
-			clockwise(a.getBoolean(R.styleable.LineMorphingDrawable_lmd_clockwise, true));
+			clockwise(a.getBoolean(R.styleable.HDWLineMorphingDrawable_hdw_lmd_clockwise, true));
 
-            int direction = a.getInteger(R.styleable.LineMorphingDrawable_lmd_layoutDirection, View.LAYOUT_DIRECTION_LTR);
-            if(direction == View.LAYOUT_DIRECTION_LOCALE)
+			int direction = a.getInteger(R.styleable.HDWLineMorphingDrawable_hdw_lmd_layoutDirection, View.LAYOUT_DIRECTION_LTR);
+			if(direction == View.LAYOUT_DIRECTION_LOCALE)
                 rtl(TextUtilsCompat.getLayoutDirectionFromLocale(Locale.getDefault()) == ViewCompat.LAYOUT_DIRECTION_RTL);
             else
                 rtl(direction == View.LAYOUT_DIRECTION_RTL);

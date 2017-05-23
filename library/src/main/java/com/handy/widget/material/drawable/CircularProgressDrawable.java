@@ -103,7 +103,7 @@ public class CircularProgressDrawable extends Drawable implements Animatable {
 	}
 
     public void applyStyle(Context context, int resId){
-        TypedArray a = context.obtainStyledAttributes(resId, R.styleable.CircularProgressDrawable);
+		TypedArray a = context.obtainStyledAttributes(resId, R.styleable.HDWCircularProgressDrawable);
 
         int strokeColor = 0;
         boolean strokeColorDefined = false;
@@ -112,58 +112,55 @@ public class CircularProgressDrawable extends Drawable implements Animatable {
         for(int i = 0, count = a.getIndexCount(); i < count; i++){
             int attr = a.getIndex(i);
 
-            if(attr == R.styleable.CircularProgressDrawable_cpd_padding)
-                mPadding = a.getDimensionPixelSize(attr, 0);
-            else if(attr == R.styleable.CircularProgressDrawable_cpd_initialAngle)
-                mInitialAngle = a.getInteger(attr, 0);
-            else if(attr == R.styleable.CircularProgressDrawable_pv_progress)
-                setProgress(a.getFloat(attr, 0));
-            else if(attr == R.styleable.CircularProgressDrawable_pv_secondaryProgress)
-                setSecondaryProgress(a.getFloat(attr, 0));
-            else if(attr == R.styleable.CircularProgressDrawable_cpd_maxSweepAngle)
-                mMaxSweepAngle = a.getInteger(attr, 0);
-            else if(attr == R.styleable.CircularProgressDrawable_cpd_minSweepAngle)
-                mMinSweepAngle = a.getInteger(attr, 0);
-            else if(attr == R.styleable.CircularProgressDrawable_cpd_strokeSize)
-                mStrokeSize = a.getDimensionPixelSize(attr, 0);
-            else if(attr == R.styleable.CircularProgressDrawable_cpd_strokeColor) {
-                strokeColor = a.getColor(attr, 0);
+			if (attr == R.styleable.HDWCircularProgressDrawable_hdw_cpd_padding)
+				mPadding = a.getDimensionPixelSize(attr, 0);
+			else if (attr == R.styleable.HDWCircularProgressDrawable_hdw_cpd_initialAngle)
+				mInitialAngle = a.getInteger(attr, 0);
+			else if (attr == R.styleable.HDWCircularProgressDrawable_hdw_pv_progress)
+				setProgress(a.getFloat(attr, 0));
+			else if (attr == R.styleable.HDWCircularProgressDrawable_hdw_pv_secondaryProgress)
+				setSecondaryProgress(a.getFloat(attr, 0));
+			else if (attr == R.styleable.HDWCircularProgressDrawable_hdw_cpd_maxSweepAngle)
+				mMaxSweepAngle = a.getInteger(attr, 0);
+			else if (attr == R.styleable.HDWCircularProgressDrawable_hdw_cpd_minSweepAngle)
+				mMinSweepAngle = a.getInteger(attr, 0);
+			else if (attr == R.styleable.HDWCircularProgressDrawable_hdw_cpd_strokeSize)
+				mStrokeSize = a.getDimensionPixelSize(attr, 0);
+			else if (attr == R.styleable.HDWCircularProgressDrawable_hdw_cpd_strokeColor) {
+				strokeColor = a.getColor(attr, 0);
                 strokeColorDefined = true;
-            }
-            else if(attr == R.styleable.CircularProgressDrawable_cpd_strokeColors){
-                TypedArray ta = context.getResources().obtainTypedArray(a.getResourceId(attr, 0));
+            } else if (attr == R.styleable.HDWCircularProgressDrawable_hdw_cpd_strokeColors) {
+				TypedArray ta = context.getResources().obtainTypedArray(a.getResourceId(attr, 0));
                 strokeColors = new int[ta.length()];
                 for(int j = 0; j < ta.length(); j++)
                     strokeColors[j] = ta.getColor(j, 0);
                 ta.recycle();
-            }
-            else if(attr == R.styleable.CircularProgressDrawable_cpd_strokeSecondaryColor)
-                mStrokeSecondaryColor = a.getColor(attr, 0);
-            else if(attr == R.styleable.CircularProgressDrawable_cpd_reverse)
-                mReverse = a.getBoolean(attr, false);
-            else if(attr == R.styleable.CircularProgressDrawable_cpd_rotateDuration)
-                mRotateDuration = a.getInteger(attr, 0);
-            else if(attr == R.styleable.CircularProgressDrawable_cpd_transformDuration)
-                mTransformDuration = a.getInteger(attr, 0);
-            else if(attr == R.styleable.CircularProgressDrawable_cpd_keepDuration)
-                mKeepDuration = a.getInteger(attr, 0);
-            else if(attr == R.styleable.CircularProgressDrawable_cpd_transformInterpolator)
-                mTransformInterpolator = AnimationUtils.loadInterpolator(context, a.getResourceId(attr, 0));
-            else if(attr == R.styleable.CircularProgressDrawable_pv_progressMode)
-                mProgressMode = a.getInteger(attr, 0);
-            else if(attr == R.styleable.CircularProgressDrawable_cpd_inAnimDuration)
-                mInAnimationDuration = a.getInteger(attr, 0);
-            else if(attr == R.styleable.CircularProgressDrawable_cpd_inStepColors){
-                TypedArray ta = context.getResources().obtainTypedArray(a.getResourceId(attr, 0));
+            } else if (attr == R.styleable.HDWCircularProgressDrawable_hdw_cpd_strokeSecondaryColor)
+				mStrokeSecondaryColor = a.getColor(attr, 0);
+			else if (attr == R.styleable.HDWCircularProgressDrawable_hdw_cpd_reverse)
+				mReverse = a.getBoolean(attr, false);
+			else if (attr == R.styleable.HDWCircularProgressDrawable_hdw_cpd_rotateDuration)
+				mRotateDuration = a.getInteger(attr, 0);
+			else if (attr == R.styleable.HDWCircularProgressDrawable_hdw_cpd_transformDuration)
+				mTransformDuration = a.getInteger(attr, 0);
+			else if (attr == R.styleable.HDWCircularProgressDrawable_hdw_cpd_keepDuration)
+				mKeepDuration = a.getInteger(attr, 0);
+			else if (attr == R.styleable.HDWCircularProgressDrawable_hdw_cpd_transformInterpolator)
+				mTransformInterpolator = AnimationUtils.loadInterpolator(context, a.getResourceId(attr, 0));
+			else if (attr == R.styleable.HDWCircularProgressDrawable_hdw_pv_progressMode)
+				mProgressMode = a.getInteger(attr, 0);
+			else if (attr == R.styleable.HDWCircularProgressDrawable_hdw_cpd_inAnimDuration)
+				mInAnimationDuration = a.getInteger(attr, 0);
+			else if (attr == R.styleable.HDWCircularProgressDrawable_hdw_cpd_inStepColors) {
+				TypedArray ta = context.getResources().obtainTypedArray(a.getResourceId(attr, 0));
                 mInColors = new int[ta.length()];
                 for(int j = 0; j < ta.length(); j++)
                     mInColors[j] = ta.getColor(j, 0);
                 ta.recycle();
-            }
-            else if(attr == R.styleable.CircularProgressDrawable_cpd_inStepPercent)
-                mInStepPercent = a.getFloat(attr, 0);
-            else if(attr == R.styleable.CircularProgressDrawable_cpd_outAnimDuration)
-                mOutAnimationDuration = a.getInteger(attr, 0);
+            } else if (attr == R.styleable.HDWCircularProgressDrawable_hdw_cpd_inStepPercent)
+				mInStepPercent = a.getFloat(attr, 0);
+			else if (attr == R.styleable.HDWCircularProgressDrawable_hdw_cpd_outAnimDuration)
+				mOutAnimationDuration = a.getInteger(attr, 0);
         }
 
         a.recycle();
@@ -622,18 +619,18 @@ public class CircularProgressDrawable extends Drawable implements Animatable {
         }
 
 		public Builder(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes){
-			TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.CircularProgressDrawable, defStyleAttr, defStyleRes);
+			TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.HDWCircularProgressDrawable, defStyleAttr, defStyleRes);
 			int resId;
-			
-			padding(a.getDimensionPixelSize(R.styleable.CircularProgressDrawable_cpd_padding, 0));
-			initialAngle(a.getInteger(R.styleable.CircularProgressDrawable_cpd_initialAngle, 0));
-			progressPercent(a.getFloat(R.styleable.CircularProgressDrawable_pv_progress, 0));
-			secondaryProgressPercent(a.getFloat(R.styleable.CircularProgressDrawable_pv_secondaryProgress, 0));
-			maxSweepAngle(a.getInteger(R.styleable.CircularProgressDrawable_cpd_maxSweepAngle, 270));
-			minSweepAngle(a.getInteger(R.styleable.CircularProgressDrawable_cpd_minSweepAngle, 1));
-			strokeSize(a.getDimensionPixelSize(R.styleable.CircularProgressDrawable_cpd_strokeSize, ThemeUtil.dpToPx(context, 4)));
-			strokeColors(a.getColor(R.styleable.CircularProgressDrawable_cpd_strokeColor, ThemeUtil.colorPrimary(context, 0xFF000000)));
-			if((resId = a.getResourceId(R.styleable.CircularProgressDrawable_cpd_strokeColors, 0)) != 0){
+
+			padding(a.getDimensionPixelSize(R.styleable.HDWCircularProgressDrawable_hdw_cpd_padding, 0));
+			initialAngle(a.getInteger(R.styleable.HDWCircularProgressDrawable_hdw_cpd_initialAngle, 0));
+			progressPercent(a.getFloat(R.styleable.HDWCircularProgressDrawable_hdw_pv_progress, 0));
+			secondaryProgressPercent(a.getFloat(R.styleable.HDWCircularProgressDrawable_hdw_pv_secondaryProgress, 0));
+			maxSweepAngle(a.getInteger(R.styleable.HDWCircularProgressDrawable_hdw_cpd_maxSweepAngle, 270));
+			minSweepAngle(a.getInteger(R.styleable.HDWCircularProgressDrawable_hdw_cpd_minSweepAngle, 1));
+			strokeSize(a.getDimensionPixelSize(R.styleable.HDWCircularProgressDrawable_hdw_cpd_strokeSize, ThemeUtil.dpToPx(context, 4)));
+			strokeColors(a.getColor(R.styleable.HDWCircularProgressDrawable_hdw_cpd_strokeColor, ThemeUtil.colorPrimary(context, 0xFF000000)));
+			if ((resId = a.getResourceId(R.styleable.HDWCircularProgressDrawable_hdw_cpd_strokeColors, 0)) != 0) {
 				TypedArray ta = context.getResources().obtainTypedArray(resId);				        	
 				int[] colors = new int[ta.length()];
 				for(int j = 0; j < ta.length(); j++)
@@ -641,16 +638,16 @@ public class CircularProgressDrawable extends Drawable implements Animatable {
 				ta.recycle();
 				strokeColors(colors);
 			}
-			strokeSecondaryColor(a.getColor(R.styleable.CircularProgressDrawable_cpd_strokeSecondaryColor, 0));
-			reverse(a.getBoolean(R.styleable.CircularProgressDrawable_cpd_reverse, false));
-			rotateDuration(a.getInteger(R.styleable.CircularProgressDrawable_cpd_rotateDuration, context.getResources().getInteger(android.R.integer.config_longAnimTime)));
-			transformDuration(a.getInteger(R.styleable.CircularProgressDrawable_cpd_transformDuration, context.getResources().getInteger(android.R.integer.config_mediumAnimTime)));
-			keepDuration(a.getInteger(R.styleable.CircularProgressDrawable_cpd_keepDuration, context.getResources().getInteger(android.R.integer.config_shortAnimTime)));
-			if((resId = a.getResourceId(R.styleable.CircularProgressDrawable_cpd_transformInterpolator, 0)) != 0)
+			strokeSecondaryColor(a.getColor(R.styleable.HDWCircularProgressDrawable_hdw_cpd_strokeSecondaryColor, 0));
+			reverse(a.getBoolean(R.styleable.HDWCircularProgressDrawable_hdw_cpd_reverse, false));
+			rotateDuration(a.getInteger(R.styleable.HDWCircularProgressDrawable_hdw_cpd_rotateDuration, context.getResources().getInteger(android.R.integer.config_longAnimTime)));
+			transformDuration(a.getInteger(R.styleable.HDWCircularProgressDrawable_hdw_cpd_transformDuration, context.getResources().getInteger(android.R.integer.config_mediumAnimTime)));
+			keepDuration(a.getInteger(R.styleable.HDWCircularProgressDrawable_hdw_cpd_keepDuration, context.getResources().getInteger(android.R.integer.config_shortAnimTime)));
+			if ((resId = a.getResourceId(R.styleable.HDWCircularProgressDrawable_hdw_cpd_transformInterpolator, 0)) != 0)
 				transformInterpolator(AnimationUtils.loadInterpolator(context, resId));
-			progressMode(a.getInteger(R.styleable.CircularProgressDrawable_pv_progressMode, ProgressView.MODE_INDETERMINATE));
-			inAnimDuration(a.getInteger(R.styleable.CircularProgressDrawable_cpd_inAnimDuration, context.getResources().getInteger(android.R.integer.config_mediumAnimTime)));
-			if((resId = a.getResourceId(R.styleable.CircularProgressDrawable_cpd_inStepColors, 0)) != 0){
+			progressMode(a.getInteger(R.styleable.HDWCircularProgressDrawable_hdw_pv_progressMode, ProgressView.MODE_INDETERMINATE));
+			inAnimDuration(a.getInteger(R.styleable.HDWCircularProgressDrawable_hdw_cpd_inAnimDuration, context.getResources().getInteger(android.R.integer.config_mediumAnimTime)));
+			if ((resId = a.getResourceId(R.styleable.HDWCircularProgressDrawable_hdw_cpd_inStepColors, 0)) != 0) {
 				TypedArray ta = context.getResources().obtainTypedArray(resId);				        	
 				int[] colors = new int[ta.length()];
 				for(int j = 0; j < ta.length(); j++)
@@ -658,8 +655,8 @@ public class CircularProgressDrawable extends Drawable implements Animatable {
 				ta.recycle();
 				inStepColors(colors);
 			}
-			inStepPercent(a.getFloat(R.styleable.CircularProgressDrawable_cpd_inStepPercent, 0.5f));
-			outAnimDuration(a.getInteger(R.styleable.CircularProgressDrawable_cpd_outAnimDuration, context.getResources().getInteger(android.R.integer.config_mediumAnimTime)));
+			inStepPercent(a.getFloat(R.styleable.HDWCircularProgressDrawable_hdw_cpd_inStepPercent, 0.5f));
+			outAnimDuration(a.getInteger(R.styleable.HDWCircularProgressDrawable_hdw_cpd_outAnimDuration, context.getResources().getInteger(android.R.integer.config_mediumAnimTime)));
 			a.recycle();
 		}
 		

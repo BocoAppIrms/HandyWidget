@@ -530,36 +530,36 @@ public class RippleDrawable extends Drawable implements Animatable,	OnTouchListe
         }
 
 		public Builder(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes){
-			TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.RippleDrawable, defStyleAttr, defStyleRes);
-            int type, resId;
+			TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.HDWRippleDrawable, defStyleAttr, defStyleRes);
+			int type, resId;
 
-			backgroundColor(a.getColor(R.styleable.RippleDrawable_rd_backgroundColor, 0));
-			backgroundAnimDuration(a.getInteger(R.styleable.RippleDrawable_rd_backgroundAnimDuration, context.getResources().getInteger(android.R.integer.config_mediumAnimTime)));
-			rippleType(a.getInteger(R.styleable.RippleDrawable_rd_rippleType, RippleDrawable.TYPE_TOUCH));
-            delayClickType(a.getInteger(R.styleable.RippleDrawable_rd_delayClick, RippleDrawable.DELAY_CLICK_NONE));
-			delayRippleTime(a.getInteger(R.styleable.RippleDrawable_rd_delayRipple, 0));
-            type = ThemeUtil.getType(a, R.styleable.RippleDrawable_rd_maxRippleRadius);
-            if(type >= TypedValue.TYPE_FIRST_INT && type <= TypedValue.TYPE_LAST_INT)
-                maxRippleRadius(a.getInteger(R.styleable.RippleDrawable_rd_maxRippleRadius, -1));
-            else
-			    maxRippleRadius(a.getDimensionPixelSize(R.styleable.RippleDrawable_rd_maxRippleRadius, ThemeUtil.dpToPx(context, 48)));
-			rippleColor(a.getColor(R.styleable.RippleDrawable_rd_rippleColor, ThemeUtil.colorControlHighlight(context, 0)));
-			rippleAnimDuration(a.getInteger(R.styleable.RippleDrawable_rd_rippleAnimDuration, context.getResources().getInteger(android.R.integer.config_mediumAnimTime)));
-			if((resId = a.getResourceId(R.styleable.RippleDrawable_rd_inInterpolator, 0)) != 0)
+			backgroundColor(a.getColor(R.styleable.HDWRippleDrawable_hdw_rd_backgroundColor, 0));
+			backgroundAnimDuration(a.getInteger(R.styleable.HDWRippleDrawable_hdw_rd_backgroundAnimDuration, context.getResources().getInteger(android.R.integer.config_mediumAnimTime)));
+			rippleType(a.getInteger(R.styleable.HDWRippleDrawable_hdw_rd_rippleType, RippleDrawable.TYPE_TOUCH));
+			delayClickType(a.getInteger(R.styleable.HDWRippleDrawable_hdw_rd_delayClick, RippleDrawable.DELAY_CLICK_NONE));
+			delayRippleTime(a.getInteger(R.styleable.HDWRippleDrawable_hdw_rd_delayRipple, 0));
+			type = ThemeUtil.getType(a, R.styleable.HDWRippleDrawable_hdw_rd_maxRippleRadius);
+			if(type >= TypedValue.TYPE_FIRST_INT && type <= TypedValue.TYPE_LAST_INT)
+				maxRippleRadius(a.getInteger(R.styleable.HDWRippleDrawable_hdw_rd_maxRippleRadius, -1));
+			else
+				maxRippleRadius(a.getDimensionPixelSize(R.styleable.HDWRippleDrawable_hdw_rd_maxRippleRadius, ThemeUtil.dpToPx(context, 48)));
+			rippleColor(a.getColor(R.styleable.HDWRippleDrawable_hdw_rd_rippleColor, ThemeUtil.colorControlHighlight(context, 0)));
+			rippleAnimDuration(a.getInteger(R.styleable.HDWRippleDrawable_hdw_rd_rippleAnimDuration, context.getResources().getInteger(android.R.integer.config_mediumAnimTime)));
+			if ((resId = a.getResourceId(R.styleable.HDWRippleDrawable_hdw_rd_inInterpolator, 0)) != 0)
 				inInterpolator(AnimationUtils.loadInterpolator(context, resId));
-			if((resId = a.getResourceId(R.styleable.RippleDrawable_rd_outInterpolator, 0)) != 0)
+			if ((resId = a.getResourceId(R.styleable.HDWRippleDrawable_hdw_rd_outInterpolator, 0)) != 0)
 				outInterpolator(AnimationUtils.loadInterpolator(context, resId));
-			maskType(a.getInteger(R.styleable.RippleDrawable_rd_maskType, Mask.TYPE_RECTANGLE));
-			cornerRadius(a.getDimensionPixelSize(R.styleable.RippleDrawable_rd_cornerRadius, 0));
-			topLeftCornerRadius(a.getDimensionPixelSize(R.styleable.RippleDrawable_rd_topLeftCornerRadius, mMaskTopLeftCornerRadius));
-			topRightCornerRadius(a.getDimensionPixelSize(R.styleable.RippleDrawable_rd_topRightCornerRadius, mMaskTopRightCornerRadius));
-			bottomRightCornerRadius(a.getDimensionPixelSize(R.styleable.RippleDrawable_rd_bottomRightCornerRadius, mMaskBottomRightCornerRadius));
-			bottomLeftCornerRadius(a.getDimensionPixelSize(R.styleable.RippleDrawable_rd_bottomLeftCornerRadius, mMaskBottomLeftCornerRadius));
-			padding(a.getDimensionPixelSize(R.styleable.RippleDrawable_rd_padding, 0));
-			left(a.getDimensionPixelSize(R.styleable.RippleDrawable_rd_leftPadding, mMaskLeft));
-			right(a.getDimensionPixelSize(R.styleable.RippleDrawable_rd_rightPadding, mMaskRight));
-			top(a.getDimensionPixelSize(R.styleable.RippleDrawable_rd_topPadding, mMaskTop));
-			bottom(a.getDimensionPixelSize(R.styleable.RippleDrawable_rd_bottomPadding, mMaskBottom));
+			maskType(a.getInteger(R.styleable.HDWRippleDrawable_hdw_rd_maskType, Mask.TYPE_RECTANGLE));
+			cornerRadius(a.getDimensionPixelSize(R.styleable.HDWRippleDrawable_hdw_rd_cornerRadius, 0));
+			topLeftCornerRadius(a.getDimensionPixelSize(R.styleable.HDWRippleDrawable_hdw_rd_topLeftCornerRadius, mMaskTopLeftCornerRadius));
+			topRightCornerRadius(a.getDimensionPixelSize(R.styleable.HDWRippleDrawable_hdw_rd_topRightCornerRadius, mMaskTopRightCornerRadius));
+			bottomRightCornerRadius(a.getDimensionPixelSize(R.styleable.HDWRippleDrawable_hdw_rd_bottomRightCornerRadius, mMaskBottomRightCornerRadius));
+			bottomLeftCornerRadius(a.getDimensionPixelSize(R.styleable.HDWRippleDrawable_hdw_rd_bottomLeftCornerRadius, mMaskBottomLeftCornerRadius));
+			padding(a.getDimensionPixelSize(R.styleable.HDWRippleDrawable_hdw_rd_padding, 0));
+			left(a.getDimensionPixelSize(R.styleable.HDWRippleDrawable_hdw_rd_leftPadding, mMaskLeft));
+			right(a.getDimensionPixelSize(R.styleable.HDWRippleDrawable_hdw_rd_rightPadding, mMaskRight));
+			top(a.getDimensionPixelSize(R.styleable.HDWRippleDrawable_hdw_rd_topPadding, mMaskTop));
+			bottom(a.getDimensionPixelSize(R.styleable.HDWRippleDrawable_hdw_rd_bottomPadding, mMaskBottom));
 			
 			a.recycle();			
 		}

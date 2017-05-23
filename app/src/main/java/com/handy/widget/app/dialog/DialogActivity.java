@@ -6,10 +6,8 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.v4.widget.DrawerLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,12 +15,10 @@ import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Button;
-import android.widget.FrameLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.handy.widget.app.R;
-import com.handy.widget.app.material.demo.CustomViewPager;
 import com.handy.widget.dialog.StyledDialog;
 import com.handy.widget.dialog.Tool;
 import com.handy.widget.dialog.adapter.SuperRcvAdapter;
@@ -31,9 +27,6 @@ import com.handy.widget.dialog.bottomsheet.BottomSheetBean;
 import com.handy.widget.dialog.config.ConfigBean;
 import com.handy.widget.dialog.interfaces.MyDialogListener;
 import com.handy.widget.dialog.interfaces.MyItemDialogListener;
-import com.handy.widget.material.widget.ListView;
-import com.handy.widget.material.widget.SnackBar;
-import com.handy.widget.material.widget.TabIndicatorView;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -48,32 +41,46 @@ import butterknife.OnClick;
 
 
 public class DialogActivity extends Activity {
-
-    @BindView(R.id.main_toolbar)
-    Toolbar mainToolbar;
-    @BindView(R.id.main_tiv)
-    TabIndicatorView mainTiv;
-    @BindView(R.id.main_vp)
-    CustomViewPager mainVp;
-    @BindView(R.id.main_sn)
-    SnackBar mainSn;
-    @BindView(R.id.main_lv_drawer)
-    ListView mainLvDrawer;
-    @BindView(R.id.main_fl_drawer)
-    FrameLayout mainFlDrawer;
-    @BindView(R.id.main_dl)
-    DrawerLayout mainDl;
-
-    /**
-     * ATTENTION: This was auto-generated to implement the App Indexing API.
-     * See https://g.co/AppIndexing/AndroidStudio for more information.
-     */
-
     Activity activity;
     Context context;
     Handler handler;
     Dialog gloablDialog;
     String msg = "如果你有心理咨询师般的敏锐，你会进一步发现——这个姑娘企图用考研来掩饰自己对于毕业的恐惧。";
+
+    @BindView(R.id.btn_dismiss)
+    Button btnDismiss;
+    @BindView(R.id.btn_common_progress)
+    Button btnCommonProgress;
+    @BindView(R.id.btn_context_progress)
+    Button btnContextProgress;
+    @BindView(R.id.btn_context_progress_h)
+    Button btnContextProgressH;
+    @BindView(R.id.btn_context_progress_c)
+    Button btnContextProgressC;
+    @BindView(R.id.btn_material_alert)
+    Button btnMaterialAlert;
+    @BindView(R.id.btn_multichoose)
+    Button btnMultichoose;
+    @BindView(R.id.btn_singlechoose)
+    Button btnSinglechoose;
+    @BindView(R.id.btn_ios_alert)
+    Button btnIosAlert;
+    @BindView(R.id.btn_ios_alert_vertical)
+    Button btnIosAlertVertical;
+    @BindView(R.id.btn_input)
+    Button btnInput;
+    @BindView(R.id.btn_ios_bottom_sheet)
+    Button btnIosBottomSheet;
+    @BindView(R.id.btn_ios_center_list)
+    Button btnIosCenterList;
+    @BindView(R.id.btn_md_bs)
+    Button btnMdBs;
+    @BindView(R.id.btn_md_bs_listview)
+    Button btnMdBsListview;
+    @BindView(R.id.btn_md_bs_Gridview)
+    Button btnMdBsGridview;
+    @BindView(R.id.btn_customview)
+    Button btnCustomview;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

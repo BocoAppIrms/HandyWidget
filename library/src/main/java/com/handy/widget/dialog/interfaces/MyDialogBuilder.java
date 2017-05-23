@@ -6,7 +6,10 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.support.design.widget.BottomSheetDialog;
 import android.support.v7.app.AlertDialog;
+import android.text.Spannable;
+import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
+import android.text.style.AbsoluteSizeSpan;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -257,8 +260,15 @@ public class MyDialogBuilder {
 
     protected ConfigBean buildMdAlert(final ConfigBean bean) {
         AlertDialog.Builder builder = new AlertDialog.Builder(bean.context);
-        builder.setTitle(bean.title)
-                .setMessage(bean.msg)
+
+        SpannableStringBuilder stringBuilderTitle = new SpannableStringBuilder(bean.title);
+        stringBuilderTitle.setSpan(new AbsoluteSizeSpan((int) bean.context.getResources().getDimension(R.dimen.hdw_dialog_title_txt_size)), 0, bean.title.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+
+        SpannableStringBuilder stringBuilderMsg = new SpannableStringBuilder(bean.msg);
+        stringBuilderMsg.setSpan(new AbsoluteSizeSpan((int) bean.context.getResources().getDimension(R.dimen.hdw_dialog_title_txt_size)), 0, bean.msg.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+
+        builder.setTitle(stringBuilderTitle)
+                .setMessage(stringBuilderMsg)
                 .setPositiveButton(bean.text1, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {

@@ -21,11 +21,11 @@
             android:hint="Contact"
             android:imeOptions="actionNext|flagNoEnterAction|flagNoExtractUi"
             android:inputType="textEmailSubject|textMultiLine"
-            app:cet_spanFontFamily="asset:FreeSans.ttf"
-            app:et_autoCompleteMode="multi"
-            app:et_inputId="@+id/textfield_et_contact_input"
-            app:et_supportMode="none"
-            app:v_styleId="@array/edittext_contact"/>
+            app:hdw_cet_spanFontFamily="asset:FreeSans.ttf"
+            app:hdw_et_autoCompleteMode="multi"
+            app:hdw_et_inputId="@+id/textfield_et_contact_input"
+            app:hdw_et_supportMode="none"
+            app:hdw_v_styleId="@array/edittext_contact"/>
 
         <com.handy.widget.material.widget.EditText
             android:id="@+id/textfield_et_label"
@@ -33,9 +33,9 @@
             android:layout_height="wrap_content"
             android:hint="Input with label"
             android:inputType="text"
-            app:et_inputId="@+id/textfield_et_label_input"
-            app:et_supportMode="none"
-            app:v_styleId="@array/edittext"/>
+            app:hdw_et_inputId="@+id/textfield_et_label_input"
+            app:hdw_et_supportMode="none"
+            app:hdw_v_styleId="@array/edittext"/>
 
         <com.handy.widget.material.widget.EditText
             android:id="@+id/textfield_et_char_counter"
@@ -44,10 +44,10 @@
             android:layout_marginTop="8dp"
             android:hint="Input with char counter"
             android:inputType="textMultiLine"
-            app:et_inputId="@+id/textfield_et_char_counter_input"
-            app:et_supportMaxChars="20"
-            app:et_supportMode="charCounter"
-            app:v_styleId="@array/edittext"/>
+            app:hdw_et_inputId="@+id/textfield_et_char_counter_input"
+            app:hdw_et_supportMaxChars="20"
+            app:hdw_et_supportMode="charCounter"
+            app:hdw_v_styleId="@array/edittext"/>
 
         <com.handy.widget.material.widget.EditText
             android:id="@+id/textfield_et_helper"
@@ -56,10 +56,10 @@
             android:layout_marginTop="8dp"
             android:hint="Input with helper"
             android:inputType="textPassword"
-            app:et_helper="Enter password"
-            app:et_inputId="@+id/textfield_et_helper_input"
-            app:et_supportMode="helper"
-            app:v_styleId="@array/edittext"/>
+            app:hdw_et_helper="Enter password"
+            app:hdw_et_inputId="@+id/textfield_et_helper_input"
+            app:hdw_et_supportMode="helper"
+            app:hdw_v_styleId="@array/edittext"/>
 
         <com.handy.widget.material.widget.EditText
             android:id="@+id/textfield_et_helper_error"
@@ -68,10 +68,10 @@
             android:layout_marginTop="8dp"
             android:hint="Input with helper + error"
             android:inputType="textPassword"
-            app:et_helper="Enter password"
-            app:et_inputId="@+id/textfield_et_label_error_input"
-            app:et_supportMode="helperWithError"
-            app:v_styleId="@array/edittext"/>
+            app:hdw_et_helper="Enter password"
+            app:hdw_et_inputId="@+id/textfield_et_label_error_input"
+            app:hdw_et_supportMode="helperWithError"
+            app:hdw_v_styleId="@array/edittext"/>
 
         <com.handy.widget.material.widget.EditText
             android:id="@+id/textfield_et_disable"
@@ -82,9 +82,9 @@
             android:hint="Disabled"
             android:inputType="text"
             android:text="Input text"
-            app:et_inputId="@+id/textfield_et_disable_input"
-            app:et_supportMode="none"
-            app:v_styleId="@array/edittext"/>
+            app:hdw_et_inputId="@+id/textfield_et_disable_input"
+            app:hdw_et_supportMode="none"
+            app:hdw_v_styleId="@array/edittext"/>
 
     </LinearLayout>
 

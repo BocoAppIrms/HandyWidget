@@ -17,7 +17,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Continuous"
-            app:v_styleId="@array/text_title"/>
+            app:hdw_v_styleId="@array/text_title"/>
 
         <com.handy.widget.material.widget.Slider
             android:id="@+id/slider_sl_continuous"
@@ -25,15 +25,15 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:padding="16dp"
-            app:sl_value="50"
-            app:v_styleId="@array/slider"/>
+            app:hdw_sl_value="50"
+            app:hdw_v_styleId="@array/slider"/>
 
         <com.handy.widget.material.widget.TextView
             android:id="@+id/slider_tv_continuous"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            app:v_styleId="@array/text_body"/>
+            app:hdw_v_styleId="@array/text_body"/>
 
         <com.handy.widget.material.widget.Slider
             android:id="@+id/slider_sl_continuous_disable"
@@ -42,13 +42,13 @@
             android:enabled="false"
             android:gravity="center"
             android:padding="16dp"
-            app:v_styleId="@array/slider"/>
+            app:hdw_v_styleId="@array/slider"/>
 
         <com.handy.widget.material.widget.TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Discrete"
-            app:v_styleId="@array/text_title"/>
+            app:hdw_v_styleId="@array/text_title"/>
 
         <com.handy.widget.material.widget.Slider
             android:id="@+id/slider_sl_discrete"
@@ -56,15 +56,15 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:padding="16dp"
-            app:sl_value="50"
-            app:v_styleId="@array/slider_discrete"/>
+            app:hdw_sl_value="50"
+            app:hdw_v_styleId="@array/slider_discrete"/>
 
         <com.handy.widget.material.widget.TextView
             android:id="@+id/slider_tv_discrete"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            app:v_styleId="@array/text_body"/>
+            app:hdw_v_styleId="@array/text_body"/>
 
         <com.handy.widget.material.widget.Slider
             android:id="@+id/slider_sl_discrete_disable"
@@ -73,8 +73,8 @@
             android:enabled="false"
             android:gravity="center"
             android:padding="16dp"
-            app:sl_value="50"
-            app:v_styleId="@array/slider_discrete"/>
+            app:hdw_sl_value="50"
+            app:hdw_v_styleId="@array/slider_discrete"/>
 
     </LinearLayout>
 

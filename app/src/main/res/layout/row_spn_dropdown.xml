@@ -8,5 +8,5 @@
                                            android:paddingLeft="16dp"
                                            android:paddingRight="16dp"
                                            android:textDirection="locale"
-                                           app:v_styleId="@array/spinner_item"/>
+                                           app:hdw_v_styleId="@array/spinner_item"/>
 

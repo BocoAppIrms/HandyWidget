@@ -28,7 +28,7 @@
                 android:layout_height="48dp"
                 android:clipToPadding="false"
                 android:paddingLeft="60dp"
-                app:v_styleId="@array/tab_indicator"/>
+                app:hdw_v_styleId="@array/tab_indicator"/>
 
             <com.handy.widget.app.demo.CustomViewPager
                 android:id="@+id/main_vp"
@@ -61,7 +61,7 @@
             android:divider="@null"
             android:dividerHeight="0dp"
             android:listSelector="@android:color/transparent"
-            app:v_styleId="@array/listview"/>
+            app:hdw_v_styleId="@array/listview"/>
 
     </FrameLayout>
 

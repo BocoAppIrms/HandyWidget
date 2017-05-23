@@ -113,7 +113,7 @@ public class ContactEditText extends EditText {
     protected void applyStyle(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         super.applyStyle(context, attrs, defStyleAttr, defStyleRes);
 
-        TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.ContactEditText, defStyleAttr, defStyleRes);
+        TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.HDWContactEditText, defStyleAttr, defStyleRes);
 
         String familyName = null;
         int textStyle = 0;
@@ -121,26 +121,26 @@ public class ContactEditText extends EditText {
 
         for (int i = 0, count = a.getIndexCount(); i < count; i++) {
             int attr = a.getIndex(i);
-            if (attr == R.styleable.ContactEditText_cet_spanHeight)
+            if (attr == R.styleable.HDWContactEditText_hdw_cet_spanHeight)
                 mSpanHeight = a.getDimensionPixelSize(attr, 0);
-            else if (attr == R.styleable.ContactEditText_cet_spanMaxWidth)
+            else if (attr == R.styleable.HDWContactEditText_hdw_cet_spanMaxWidth)
                 mSpanMaxWidth = a.getDimensionPixelSize(attr, 0);
-            else if (attr == R.styleable.ContactEditText_cet_spanPaddingLeft)
+            else if (attr == R.styleable.HDWContactEditText_hdw_cet_spanPaddingLeft)
                 mSpanPaddingLeft = a.getDimensionPixelOffset(attr, 0);
-            else if (attr == R.styleable.ContactEditText_cet_spanPaddingRight)
+            else if (attr == R.styleable.HDWContactEditText_hdw_cet_spanPaddingRight)
                 mSpanPaddingRight = a.getDimensionPixelOffset(attr, 0);
-            else if (attr == R.styleable.ContactEditText_cet_spanTextSize)
+            else if (attr == R.styleable.HDWContactEditText_hdw_cet_spanTextSize)
                 mSpanTextSize = a.getDimensionPixelSize(attr, 0);
-            else if (attr == R.styleable.ContactEditText_cet_spanTextColor)
+            else if (attr == R.styleable.HDWContactEditText_hdw_cet_spanTextColor)
                 mSpanTextColor = a.getColor(attr, 0);
-            else if (attr == R.styleable.ContactEditText_cet_spanBackgroundColor)
+            else if (attr == R.styleable.HDWContactEditText_hdw_cet_spanBackgroundColor)
                 mSpanBackgroundColor = a.getColor(attr, 0);
-            else if (attr == R.styleable.ContactEditText_cet_spanSpacing)
+            else if (attr == R.styleable.HDWContactEditText_hdw_cet_spanSpacing)
                 mSpanSpacing = a.getDimensionPixelOffset(attr, 0);
-            else if (attr == R.styleable.ContactEditText_cet_spanFontFamily) {
+            else if (attr == R.styleable.HDWContactEditText_hdw_cet_spanFontFamily) {
                 familyName = a.getString(attr);
                 typefaceDefined = true;
-            } else if (attr == R.styleable.ContactEditText_cet_spanTextStyle) {
+            } else if (attr == R.styleable.HDWContactEditText_hdw_cet_spanTextStyle) {
                 textStyle = a.getInteger(attr, 0);
                 typefaceDefined = true;
             }

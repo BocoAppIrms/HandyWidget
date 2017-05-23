@@ -17,7 +17,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Checkbox"
-            app:v_styleId="@array/text_title"/>
+            app:hdw_v_styleId="@array/text_title"/>
 
         <com.handy.widget.material.widget.CheckBox
             android:id="@+id/switches_cb1"
@@ -26,7 +26,7 @@
             android:checked="true"
             android:gravity="center_vertical"
             android:text="Checkbox 1"
-            app:v_styleId="@array/checkbox"/>
+            app:hdw_v_styleId="@array/checkbox"/>
 
         <com.handy.widget.material.widget.CheckBox
             android:id="@+id/switches_cb2"
@@ -35,7 +35,7 @@
             android:checked="false"
             android:gravity="center_vertical"
             android:text="Checkbox 2"
-            app:v_styleId="@array/checkbox"/>
+            app:hdw_v_styleId="@array/checkbox"/>
 
         <com.handy.widget.material.widget.CheckBox
             android:id="@+id/switches_cb3"
@@ -44,13 +44,13 @@
             android:checked="false"
             android:gravity="center_vertical"
             android:text="Checkbox 3"
-            app:v_styleId="@array/checkbox"/>
+            app:hdw_v_styleId="@array/checkbox"/>
 
         <com.handy.widget.material.widget.TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Radio Button"
-            app:v_styleId="@array/text_title"/>
+            app:hdw_v_styleId="@array/text_title"/>
 
         <com.handy.widget.material.widget.RadioButton
             android:id="@+id/switches_rb1"
@@ -59,7 +59,7 @@
             android:checked="true"
             android:gravity="center_vertical"
             android:text="Radio Button 1"
-            app:v_styleId="@array/radio_button"/>
+            app:hdw_v_styleId="@array/radio_button"/>
 
         <com.handy.widget.material.widget.RadioButton
             android:id="@+id/switches_rb2"
@@ -68,7 +68,7 @@
             android:checked="false"
             android:gravity="center_vertical"
             android:text="Radio Button 2"
-            app:v_styleId="@array/radio_button"/>
+            app:hdw_v_styleId="@array/radio_button"/>
 
         <com.handy.widget.material.widget.RadioButton
             android:id="@+id/switches_rb3"
@@ -77,13 +77,13 @@
             android:checked="false"
             android:gravity="center_vertical"
             android:text="Radio Button 3"
-            app:v_styleId="@array/radio_button"/>
+            app:hdw_v_styleId="@array/radio_button"/>
 
         <com.handy.widget.material.widget.TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Switch"
-            app:v_styleId="@array/text_title"/>
+            app:hdw_v_styleId="@array/text_title"/>
 
         <com.handy.widget.material.widget.Switch
             android:id="@+id/switches_sw1"
@@ -92,7 +92,7 @@
             android:checked="false"
             android:gravity="center"
             android:padding="16dp"
-            app:v_styleId="@array/switches"/>
+            app:hdw_v_styleId="@array/switches"/>
 
         <com.handy.widget.material.widget.Switch
             android:id="@+id/switches_sw2"
@@ -101,7 +101,7 @@
             android:layout_marginTop="16dp"
             android:checked="true"
             android:gravity="center"
-            app:v_styleId="@array/switches"/>
+            app:hdw_v_styleId="@array/switches"/>
 
     </LinearLayout>
 

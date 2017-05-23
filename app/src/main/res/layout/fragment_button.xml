@@ -17,7 +17,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Flat"
-            app:v_styleId="@array/text_title"/>
+            app:hdw_v_styleId="@array/text_title"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -33,7 +33,7 @@
                 android:layout_weight="0.4"
                 android:background="@null"
                 android:text="BUTTON"
-                app:v_styleId="@array/button_flat"/>
+                app:hdw_v_styleId="@array/button_flat"/>
 
             <View
                 android:layout_width="0dp"
@@ -47,7 +47,7 @@
                 android:layout_weight="0.4"
                 android:background="@null"
                 android:text="BUTTON"
-                app:v_styleId="@array/button_flat_color"/>
+                app:hdw_v_styleId="@array/button_flat_color"/>
 
         </LinearLayout>
 
@@ -66,7 +66,7 @@
                 android:layout_weight="0.4"
                 android:background="@null"
                 android:text="BUTTON"
-                app:v_styleId="@array/button_flat_wave"/>
+                app:hdw_v_styleId="@array/button_flat_wave"/>
 
             <View
                 android:layout_width="0dp"
@@ -80,7 +80,7 @@
                 android:layout_weight="0.4"
                 android:background="@null"
                 android:text="BUTTON"
-                app:v_styleId="@array/button_flat_wave_color"/>
+                app:hdw_v_styleId="@array/button_flat_wave_color"/>
 
         </LinearLayout>
 
@@ -88,7 +88,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Raise"
-            app:v_styleId="@array/text_title"/>
+            app:hdw_v_styleId="@array/text_title"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -103,7 +103,7 @@
                 android:layout_height="@dimen/bt_height"
                 android:layout_weight="0.4"
                 android:text="BUTTON"
-                app:v_styleId="@array/button_raise"/>
+                app:hdw_v_styleId="@array/button_raise"/>
 
             <View
                 android:layout_width="0dp"
@@ -116,7 +116,7 @@
                 android:layout_height="@dimen/bt_height"
                 android:layout_weight="0.4"
                 android:text="BUTTON"
-                app:v_styleId="@array/button_raise_color"/>
+                app:hdw_v_styleId="@array/button_raise_color"/>
 
         </LinearLayout>
 
@@ -134,7 +134,7 @@
                 android:layout_height="@dimen/bt_height"
                 android:layout_weight="0.4"
                 android:text="BUTTON"
-                app:v_styleId="@array/button_raise_wave"/>
+                app:hdw_v_styleId="@array/button_raise_wave"/>
 
             <View
                 android:layout_width="0dp"
@@ -147,7 +147,7 @@
                 android:layout_height="@dimen/bt_height"
                 android:layout_weight="0.4"
                 android:text="BUTTON"
-                app:v_styleId="@array/button_raise_wave_color"/>
+                app:hdw_v_styleId="@array/button_raise_wave_color"/>
 
         </LinearLayout>
 
@@ -155,7 +155,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Float"
-            app:v_styleId="@array/text_title"/>
+            app:hdw_v_styleId="@array/text_title"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -168,7 +168,7 @@
                 android:id="@+id/button_bt_float"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:v_styleId="@array/fab"/>
+                app:hdw_v_styleId="@array/fab"/>
 
             <View
                 android:layout_width="100dp"
@@ -178,7 +178,7 @@
                 android:id="@+id/button_bt_float_color"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:v_styleId="@array/fab_color"/>
+                app:hdw_v_styleId="@array/fab_color"/>
 
         </LinearLayout>
 
@@ -194,7 +194,7 @@
                 android:id="@+id/button_bt_float_wave"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:v_styleId="@array/fab_wave"/>
+                app:hdw_v_styleId="@array/fab_wave"/>
 
             <View
                 android:layout_width="100dp"
@@ -204,7 +204,7 @@
                 android:id="@+id/button_bt_float_wave_color"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:v_styleId="@array/fab_wave_color"/>
+                app:hdw_v_styleId="@array/fab_wave_color"/>
 
         </LinearLayout>
 

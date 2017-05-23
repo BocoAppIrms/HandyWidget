@@ -17,7 +17,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Simple"
-            app:v_styleId="@array/text_title"/>
+            app:hdw_v_styleId="@array/text_title"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -35,7 +35,7 @@
                 android:text="TITLE ONLY"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Button"
                 android:textColor="#FF000000"
-                app:v_styleId="@array/button_raise"/>
+                app:hdw_v_styleId="@array/button_raise"/>
 
             <View
                 android:layout_width="0dp"
@@ -51,7 +51,7 @@
                 android:text="MESSAGE ONLY"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Button"
                 android:textColor="#FF000000"
-                app:v_styleId="@array/button_raise"/>
+                app:hdw_v_styleId="@array/button_raise"/>
 
         </LinearLayout>
 
@@ -72,7 +72,7 @@
                 android:text="TITLE &amp; MSG"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Button"
                 android:textColor="#FF000000"
-                app:v_styleId="@array/button_raise"/>
+                app:hdw_v_styleId="@array/button_raise"/>
 
             <View
                 android:layout_width="0dp"
@@ -88,7 +88,7 @@
                 android:text="CUSTOM"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Button"
                 android:textColor="#FF000000"
-                app:v_styleId="@array/button_raise"/>
+                app:hdw_v_styleId="@array/button_raise"/>
 
         </LinearLayout>
 
@@ -109,7 +109,7 @@
                 android:text="CHOICE"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Button"
                 android:textColor="#FF000000"
-                app:v_styleId="@array/button_raise"/>
+                app:hdw_v_styleId="@array/button_raise"/>
 
             <View
                 android:layout_width="0dp"
@@ -125,7 +125,7 @@
                 android:text="MULTI CHOICE"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Button"
                 android:textColor="#FF000000"
-                app:v_styleId="@array/button_raise"/>
+                app:hdw_v_styleId="@array/button_raise"/>
 
         </LinearLayout>
 
@@ -133,7 +133,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Picker"
-            app:v_styleId="@array/text_title"/>
+            app:hdw_v_styleId="@array/text_title"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -152,7 +152,7 @@
                 android:text="TIME"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Button"
                 android:textColor="#FF000000"
-                app:v_styleId="@array/button_raise"/>
+                app:hdw_v_styleId="@array/button_raise"/>
 
             <View
                 android:layout_width="0dp"
@@ -168,7 +168,7 @@
                 android:text="DATE"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Button"
                 android:textColor="#FF000000"
-                app:v_styleId="@array/button_raise"/>
+                app:hdw_v_styleId="@array/button_raise"/>
 
         </LinearLayout>
 
@@ -176,7 +176,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Bottom Sheet"
-            app:v_styleId="@array/text_title"/>
+            app:hdw_v_styleId="@array/text_title"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -195,7 +195,7 @@
                 android:text="BOTTOM SHEET"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Button"
                 android:textColor="#FF000000"
-                app:v_styleId="@array/button_raise"/>
+                app:hdw_v_styleId="@array/button_raise"/>
 
         </LinearLayout>
 

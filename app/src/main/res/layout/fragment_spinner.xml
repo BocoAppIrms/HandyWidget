@@ -20,8 +20,8 @@
             android:gravity="center"
             android:minWidth="128dp"
             android:padding="8dp"
-            app:spn_label="Spinner with arrow"
-            app:v_styleId="@array/spinner"/>
+            app:hdw_spn_label="Spinner with arrow"
+            app:hdw_v_styleId="@array/spinner"/>
 
         <com.handy.widget.material.widget.Spinner
             android:id="@+id/spinner_no_arrow"
@@ -30,8 +30,8 @@
             android:gravity="left"
             android:minWidth="128dp"
             android:padding="8dp"
-            app:spn_label="Spinner without arrow"
-            app:v_styleId="@array/spinner_no_arrow"/>
+            app:hdw_spn_label="Spinner without arrow"
+            app:hdw_v_styleId="@array/spinner_no_arrow"/>
 
 
     </LinearLayout>

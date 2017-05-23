@@ -82,48 +82,48 @@ public class ContactView extends FrameLayout implements Target {
 
         mRippleManager.onCreate(this, context, attrs, defStyleAttr, defStyleRes);
 
-        TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.ContactView, defStyleAttr, defStyleRes);
+        TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.HDWContactView, defStyleAttr, defStyleRes);
 
-        mAvatarSize = a.getDimensionPixelSize(R.styleable.ContactView_cv_avatarSize, ThemeUtil.dpToPx(context, 40));
-        mSpacing = a.getDimensionPixelOffset(R.styleable.ContactView_cv_spacing, ThemeUtil.dpToPx(context, 8));
-        mMinHeight = a.getDimensionPixelOffset(R.styleable.ContactView_android_minHeight, 0);
-        int avatarSrc = a.getResourceId(R.styleable.ContactView_cv_avatarSrc, 0);
+        mAvatarSize = a.getDimensionPixelSize(R.styleable.HDWContactView_hdw_cv_avatarSize, ThemeUtil.dpToPx(context, 40));
+        mSpacing = a.getDimensionPixelOffset(R.styleable.HDWContactView_hdw_cv_spacing, ThemeUtil.dpToPx(context, 8));
+        mMinHeight = a.getDimensionPixelOffset(R.styleable.HDWContactView_android_minHeight, 0);
+        int avatarSrc = a.getResourceId(R.styleable.HDWContactView_hdw_cv_avatarSrc, 0);
 
         mNameView = new TextView(context);
         mNameView.setGravity(GravityCompat.START);
         mNameView.setSingleLine(true);
         mNameView.setEllipsize(TextUtils.TruncateAt.END);
-        int nameTextSize = a.getDimensionPixelSize(R.styleable.ContactView_cv_nameTextSize, 0);
-        ColorStateList nameTextColor = a.getColorStateList(R.styleable.ContactView_cv_nameTextColor);
-        int nameTextAppearance = a.getResourceId(R.styleable.ContactView_cv_nameTextAppearance, 0);
+        int nameTextSize = a.getDimensionPixelSize(R.styleable.HDWContactView_hdw_cv_nameTextSize, 0);
+        ColorStateList nameTextColor = a.getColorStateList(R.styleable.HDWContactView_hdw_cv_nameTextColor);
+        int nameTextAppearance = a.getResourceId(R.styleable.HDWContactView_hdw_cv_nameTextAppearance, 0);
         if (nameTextAppearance > 0)
             mNameView.setTextAppearance(context, nameTextAppearance);
         if (nameTextSize > 0)
             mNameView.setTextSize(TypedValue.COMPLEX_UNIT_PX, nameTextSize);
         if (nameTextColor != null)
             mNameView.setTextColor(nameTextColor);
-        setNameText(a.getString(R.styleable.ContactView_cv_name));
+        setNameText(a.getString(R.styleable.HDWContactView_hdw_cv_name));
 
         mAddressView = new TextView(context);
         mAddressView.setGravity(GravityCompat.START);
         mAddressView.setSingleLine(true);
         mAddressView.setEllipsize(TextUtils.TruncateAt.END);
-        int addressTextSize = a.getDimensionPixelSize(R.styleable.ContactView_cv_addressTextSize, 0);
-        ColorStateList addressTextColor = a.getColorStateList(R.styleable.ContactView_cv_addressTextColor);
-        int addressTextAppearance = a.getResourceId(R.styleable.ContactView_cv_addressTextAppearance, 0);
+        int addressTextSize = a.getDimensionPixelSize(R.styleable.HDWContactView_hdw_cv_addressTextSize, 0);
+        ColorStateList addressTextColor = a.getColorStateList(R.styleable.HDWContactView_hdw_cv_addressTextColor);
+        int addressTextAppearance = a.getResourceId(R.styleable.HDWContactView_hdw_cv_addressTextAppearance, 0);
         if (addressTextAppearance > 0)
             mAddressView.setTextAppearance(context, addressTextAppearance);
         if (addressTextSize > 0)
             mAddressView.setTextSize(TypedValue.COMPLEX_UNIT_PX, addressTextSize);
         if (addressTextColor != null)
             mAddressView.setTextColor(addressTextColor);
-        setAddressText(a.getString(R.styleable.ContactView_cv_address));
+        setAddressText(a.getString(R.styleable.HDWContactView_hdw_cv_address));
 
-        mButtonSize = a.getDimensionPixelOffset(R.styleable.ContactView_cv_buttonSize, 0);
+        mButtonSize = a.getDimensionPixelOffset(R.styleable.HDWContactView_hdw_cv_buttonSize, 0);
 
         if (mButtonSize > 0) {
             mButton = new ImageButton(context);
-            int resId = a.getResourceId(R.styleable.ContactView_cv_buttonSrc, 0);
+            int resId = a.getResourceId(R.styleable.HDWContactView_hdw_cv_buttonSrc, 0);
             if (resId != 0)
                 mButton.setImageResource(resId);
             ViewUtil.setBackground(mButton, BlankDrawable.getInstance());

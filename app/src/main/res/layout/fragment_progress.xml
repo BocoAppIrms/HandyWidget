@@ -16,7 +16,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Circular"
-            app:v_styleId="@array/text_title"/>
+            app:hdw_v_styleId="@array/text_title"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -36,7 +36,7 @@
                     android:layout_width="32dp"
                     android:layout_height="32dp"
                     android:layout_gravity="center"
-                    app:v_styleId="@array/pv_circular"/>
+                    app:hdw_v_styleId="@array/pv_circular"/>
 
             </FrameLayout>
 
@@ -51,7 +51,7 @@
                     android:layout_width="32dp"
                     android:layout_height="32dp"
                     android:layout_gravity="center"
-                    app:v_styleId="@array/pv_circular_colors"/>
+                    app:hdw_v_styleId="@array/pv_circular_colors"/>
 
             </FrameLayout>
 
@@ -75,7 +75,7 @@
                     android:layout_width="32dp"
                     android:layout_height="32dp"
                     android:layout_gravity="center"
-                    app:v_styleId="@array/pv_circular_in"/>
+                    app:hdw_v_styleId="@array/pv_circular_in"/>
 
             </FrameLayout>
 
@@ -90,7 +90,7 @@
                     android:layout_width="32dp"
                     android:layout_height="32dp"
                     android:layout_gravity="center"
-                    app:v_styleId="@array/pv_circular_in_colors"/>
+                    app:hdw_v_styleId="@array/pv_circular_in_colors"/>
 
             </FrameLayout>
 
@@ -114,7 +114,7 @@
                     android:layout_width="32dp"
                     android:layout_height="32dp"
                     android:layout_gravity="center"
-                    app:v_styleId="@array/pv_circular_determinate"/>
+                    app:hdw_v_styleId="@array/pv_circular_determinate"/>
 
             </FrameLayout>
 
@@ -128,7 +128,7 @@
                     android:layout_width="32dp"
                     android:layout_height="32dp"
                     android:layout_gravity="center"
-                    app:v_styleId="@array/pv_circular_determinate_in"/>
+                    app:hdw_v_styleId="@array/pv_circular_determinate_in"/>
 
             </FrameLayout>
 
@@ -138,7 +138,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Linear"
-            app:v_styleId="@array/text_title"/>
+            app:hdw_v_styleId="@array/text_title"/>
 
         <FrameLayout
             android:layout_width="match_parent"
@@ -150,7 +150,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="4dp"
                 android:layout_gravity="center"
-                app:v_styleId="@array/pv_linear"/>
+                app:hdw_v_styleId="@array/pv_linear"/>
 
         </FrameLayout>
 
@@ -164,7 +164,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="4dp"
                 android:layout_gravity="center"
-                app:v_styleId="@array/pv_linear_color"/>
+                app:hdw_v_styleId="@array/pv_linear_color"/>
 
         </FrameLayout>
 
@@ -178,7 +178,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="4dp"
                 android:layout_gravity="center"
-                app:v_styleId="@array/pv_linear_determinate"/>
+                app:hdw_v_styleId="@array/pv_linear_determinate"/>
 
         </FrameLayout>
 
@@ -192,7 +192,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="4dp"
                 android:layout_gravity="center"
-                app:v_styleId="@array/pv_linear_query"/>
+                app:hdw_v_styleId="@array/pv_linear_query"/>
 
         </FrameLayout>
 
@@ -206,7 +206,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="4dp"
                 android:layout_gravity="center"
-                app:v_styleId="@array/pv_linear_buffer"/>
+                app:hdw_v_styleId="@array/pv_linear_buffer"/>
 
         </FrameLayout>
 

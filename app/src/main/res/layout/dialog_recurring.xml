@@ -20,12 +20,12 @@
             android:minWidth="72dp"
             android:paddingLeft="8dp"
             android:paddingRight="8dp"
-            app:rd_style="@style/Material.Drawable.Ripple.Wave"
-            app:spn_arrowColor="#FFFFFFFF"
-            app:spn_dividerHeight="0dp"
-            app:spn_label="@string/rd_repeat"
-            app:spn_labelEnable="true"
-            app:spn_labelTextColor="#FFFFFFFF"/>
+            app:hdw_rd_style="@style/Material.Drawable.Ripple.Wave"
+            app:hdw_spn_arrowColor="#FFFFFFFF"
+            app:hdw_spn_dividerHeight="0dp"
+            app:hdw_spn_label="@string/rd_repeat"
+            app:hdw_spn_labelEnable="true"
+            app:hdw_spn_labelTextColor="#FFFFFFFF"/>
 
     </FrameLayout>
 
@@ -64,8 +64,8 @@
                     android:gravity="center"
                     android:inputType="number"
                     android:singleLine="true"
-                    app:et_inputId="@+id/rd_et_period_input"
-                    app:et_labelEnable="false"
+                    app:hdw_et_inputId="@+id/rd_et_period_input"
+                    app:hdw_et_labelEnable="false"
                     tools:text="1"/>
 
                 <com.handy.widget.material.widget.TextView
@@ -87,9 +87,9 @@
                 android:singleLine="true"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                 android:textColor="@drawable/color_wv_text"
-                app:wv_animDuration="@android:integer/config_mediumAnimTime"
-                app:wv_horizontalPadding="8dp"
-                app:wv_verticalPadding="8dp"/>
+                app:hdw_wv_animDuration="@android:integer/config_mediumAnimTime"
+                app:hdw_wv_horizontalPadding="8dp"
+                app:hdw_wv_verticalPadding="8dp"/>
 
             <com.handy.widget.material.widget.RadioButton
                 android:id="@+id/rd_month_rb_same"
@@ -129,7 +129,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:padding="8dp"
-                    app:rd_style="@style/Material.Drawable.Ripple.Wave.Light"/>
+                    app:hdw_rd_style="@style/Material.Drawable.Ripple.Wave.Light"/>
 
                 <com.handy.widget.material.widget.EditText
                     android:id="@+id/rd_et_end_num"
@@ -142,8 +142,8 @@
                     android:gravity="center"
                     android:inputType="number"
                     android:singleLine="true"
-                    app:et_inputId="@+id/rd_et_end_num_input"
-                    app:et_labelEnable="false"
+                    app:hdw_et_inputId="@+id/rd_et_end_num_input"
+                    app:hdw_et_labelEnable="false"
                     tools:text="1"/>
 
                 <com.handy.widget.material.widget.TextView

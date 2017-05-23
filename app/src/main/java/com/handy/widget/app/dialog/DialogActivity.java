@@ -311,7 +311,6 @@ android:pivotY="50%" />
 
 
                 })
-                        .setBtnSize(29)
                         .setBtnText("i", "b", "3")
                         .setBtnColor(R.color.colorPrimary, R.color.colorPrimaryDark, R.color.hdw_dialog_text_black)
                         .show();

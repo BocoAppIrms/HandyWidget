@@ -131,7 +131,7 @@ public class SnackBar extends FrameLayout implements ThemeManager.OnThemeChanged
 	protected void applyStyle(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes){
         super.applyStyle(context, attrs, defStyleAttr, defStyleRes);
 
-		TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.SnackBar, defStyleAttr, defStyleRes);
+		TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.HDWSnackBar, defStyleAttr, defStyleRes);
 
         int horizontalPadding = -1;
         int verticalPadding = -1;
@@ -145,56 +145,53 @@ public class SnackBar extends FrameLayout implements ThemeManager.OnThemeChanged
 
         for(int i = 0, count = a.getIndexCount(); i < count; i++){
             int attr = a.getIndex(i);
-            if(attr == R.styleable.SnackBar_sb_backgroundColor)
-                backgroundColor(a.getColor(attr, 0));
-            else if(attr == R.styleable.SnackBar_sb_backgroundCornerRadius)
-                backgroundRadius(a.getDimensionPixelSize(attr, 0));
-            else if(attr == R.styleable.SnackBar_sb_horizontalPadding)
-                horizontalPadding = a.getDimensionPixelSize(attr, 0);
-            else if(attr == R.styleable.SnackBar_sb_verticalPadding)
-                verticalPadding = a.getDimensionPixelSize(attr, 0);
-            else if(attr == R.styleable.SnackBar_sb_width){
-                if(ThemeUtil.getType(a, attr) == TypedValue.TYPE_INT_DEC)
+			if (attr == R.styleable.HDWSnackBar_hdw_sb_backgroundColor)
+				backgroundColor(a.getColor(attr, 0));
+			else if (attr == R.styleable.HDWSnackBar_hdw_sb_backgroundCornerRadius)
+				backgroundRadius(a.getDimensionPixelSize(attr, 0));
+			else if (attr == R.styleable.HDWSnackBar_hdw_sb_horizontalPadding)
+				horizontalPadding = a.getDimensionPixelSize(attr, 0);
+			else if (attr == R.styleable.HDWSnackBar_hdw_sb_verticalPadding)
+				verticalPadding = a.getDimensionPixelSize(attr, 0);
+			else if (attr == R.styleable.HDWSnackBar_hdw_sb_width) {
+				if(ThemeUtil.getType(a, attr) == TypedValue.TYPE_INT_DEC)
                     width(a.getInteger(attr, 0));
                 else
                     width(a.getDimensionPixelSize(attr, 0));
-            }
-            else if(attr == R.styleable.SnackBar_sb_height){
-                if(ThemeUtil.getType(a, attr) == TypedValue.TYPE_INT_DEC)
+            } else if (attr == R.styleable.HDWSnackBar_hdw_sb_height) {
+				if(ThemeUtil.getType(a, attr) == TypedValue.TYPE_INT_DEC)
                     height(a.getInteger(attr, 0));
                 else
                     height(a.getDimensionPixelSize(attr, 0));
-            }
-            else if(attr == R.styleable.SnackBar_sb_minWidth)
-                minWidth(a.getDimensionPixelSize(attr, 0));
-            else if(attr == R.styleable.SnackBar_sb_maxWidth)
-                maxWidth(a.getDimensionPixelSize(attr, 0));
-            else if(attr == R.styleable.SnackBar_sb_minHeight)
-                minHeight(a.getDimensionPixelSize(attr, 0));
-            else if(attr == R.styleable.SnackBar_sb_maxHeight)
-                maxHeight(a.getDimensionPixelSize(attr, 0));
-            else if(attr == R.styleable.SnackBar_sb_marginStart)
-                marginStart(a.getDimensionPixelSize(attr, 0));
-            else if(attr == R.styleable.SnackBar_sb_marginBottom)
-                marginBottom(a.getDimensionPixelSize(attr, 0));
-            else if(attr == R.styleable.SnackBar_sb_textSize)
-                textSize = a.getDimensionPixelSize(attr, 0);
-            else if(attr == R.styleable.SnackBar_sb_textColor) {
-                textColor = a.getColor(attr, 0);
+            } else if (attr == R.styleable.HDWSnackBar_hdw_sb_minWidth)
+				minWidth(a.getDimensionPixelSize(attr, 0));
+			else if (attr == R.styleable.HDWSnackBar_hdw_sb_maxWidth)
+				maxWidth(a.getDimensionPixelSize(attr, 0));
+			else if (attr == R.styleable.HDWSnackBar_hdw_sb_minHeight)
+				minHeight(a.getDimensionPixelSize(attr, 0));
+			else if (attr == R.styleable.HDWSnackBar_hdw_sb_maxHeight)
+				maxHeight(a.getDimensionPixelSize(attr, 0));
+			else if (attr == R.styleable.HDWSnackBar_hdw_sb_marginStart)
+				marginStart(a.getDimensionPixelSize(attr, 0));
+			else if (attr == R.styleable.HDWSnackBar_hdw_sb_marginBottom)
+				marginBottom(a.getDimensionPixelSize(attr, 0));
+			else if (attr == R.styleable.HDWSnackBar_hdw_sb_textSize)
+				textSize = a.getDimensionPixelSize(attr, 0);
+			else if (attr == R.styleable.HDWSnackBar_hdw_sb_textColor) {
+				textColor = a.getColor(attr, 0);
                 textColorDefined = true;
-            }
-            else if(attr == R.styleable.SnackBar_sb_textAppearance)
-                textAppearance = a.getResourceId(attr, 0);
-            else if(attr == R.styleable.SnackBar_sb_text)
-                text(a.getString(attr));
-            else if(attr == R.styleable.SnackBar_sb_singleLine)
-                singleLine(a.getBoolean(attr, true));
-            else if(attr == R.styleable.SnackBar_sb_maxLines)
-                maxLines(a.getInteger(attr, 0));
-            else if(attr == R.styleable.SnackBar_sb_lines)
-                lines(a.getInteger(attr, 0));
-            else if(attr == R.styleable.SnackBar_sb_ellipsize){
-                int ellipsize = a.getInteger(attr, 0);
+            } else if (attr == R.styleable.HDWSnackBar_hdw_sb_textAppearance)
+				textAppearance = a.getResourceId(attr, 0);
+			else if (attr == R.styleable.HDWSnackBar_hdw_sb_text)
+				text(a.getString(attr));
+			else if (attr == R.styleable.HDWSnackBar_hdw_sb_singleLine)
+				singleLine(a.getBoolean(attr, true));
+			else if (attr == R.styleable.HDWSnackBar_hdw_sb_maxLines)
+				maxLines(a.getInteger(attr, 0));
+			else if (attr == R.styleable.HDWSnackBar_hdw_sb_lines)
+				lines(a.getInteger(attr, 0));
+			else if (attr == R.styleable.HDWSnackBar_hdw_sb_ellipsize) {
+				int ellipsize = a.getInteger(attr, 0);
                 switch (ellipsize) {
                     case 1:
                         ellipsize(TruncateAt.START);
@@ -212,25 +209,24 @@ public class SnackBar extends FrameLayout implements ThemeManager.OnThemeChanged
                         ellipsize(TruncateAt.END);
                         break;
                 }
-            }
-            else if(attr == R.styleable.SnackBar_sb_actionTextSize)
-                actionTextSize = a.getDimensionPixelSize(attr, 0);
-            else if(attr == R.styleable.SnackBar_sb_actionTextColor)
-                actionTextColor = a.getColorStateList(attr);
-            else if(attr == R.styleable.SnackBar_sb_actionTextAppearance)
-                actionTextAppearance = a.getResourceId(attr, 0);
-            else if(attr == R.styleable.SnackBar_sb_actionText)
-                actionText(a.getString(attr));
-            else if(attr == R.styleable.SnackBar_sb_actionRipple)
-                actionRipple(a.getResourceId(attr, 0));
-            else if(attr == R.styleable.SnackBar_sb_duration)
-                duration(a.getInteger(attr, 0));
-            else if(attr == R.styleable.SnackBar_sb_removeOnDismiss)
-                removeOnDismiss(a.getBoolean(attr, true));
-            else if(attr == R.styleable.SnackBar_sb_inAnimation)
-                animationIn(AnimationUtils.loadAnimation(getContext(), a.getResourceId(attr, 0)));
-            else if(attr == R.styleable.SnackBar_sb_outAnimation)
-                animationOut(AnimationUtils.loadAnimation(getContext(), a.getResourceId(attr, 0)));
+            } else if (attr == R.styleable.HDWSnackBar_hdw_sb_actionTextSize)
+				actionTextSize = a.getDimensionPixelSize(attr, 0);
+			else if (attr == R.styleable.HDWSnackBar_hdw_sb_actionTextColor)
+				actionTextColor = a.getColorStateList(attr);
+			else if (attr == R.styleable.HDWSnackBar_hdw_sb_actionTextAppearance)
+				actionTextAppearance = a.getResourceId(attr, 0);
+			else if (attr == R.styleable.HDWSnackBar_hdw_sb_actionText)
+				actionText(a.getString(attr));
+			else if (attr == R.styleable.HDWSnackBar_hdw_sb_actionRipple)
+				actionRipple(a.getResourceId(attr, 0));
+			else if (attr == R.styleable.HDWSnackBar_hdw_sb_duration)
+				duration(a.getInteger(attr, 0));
+			else if (attr == R.styleable.HDWSnackBar_hdw_sb_removeOnDismiss)
+				removeOnDismiss(a.getBoolean(attr, true));
+			else if (attr == R.styleable.HDWSnackBar_hdw_sb_inAnimation)
+				animationIn(AnimationUtils.loadAnimation(getContext(), a.getResourceId(attr, 0)));
+			else if (attr == R.styleable.HDWSnackBar_hdw_sb_outAnimation)
+				animationOut(AnimationUtils.loadAnimation(getContext(), a.getResourceId(attr, 0)));
         }
 
         a.recycle();

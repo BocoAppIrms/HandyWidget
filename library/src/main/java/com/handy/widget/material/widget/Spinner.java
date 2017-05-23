@@ -121,7 +121,7 @@ public class Spinner extends FrameLayout implements ThemeManager.OnThemeChangedL
 
         removeAllViews();
 
-        TypedArray a = context.obtainStyledAttributes(attrs,  R.styleable.Spinner, defStyleAttr, defStyleRes);
+        TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.HDWSpinner, defStyleAttr, defStyleRes);
 
         int arrowAnimDuration = -1;
         ColorStateList arrowColor = null;
@@ -135,17 +135,17 @@ public class Spinner extends FrameLayout implements ThemeManager.OnThemeChangedL
         for(int i = 0, count = a.getIndexCount(); i < count; i++){
             int attr = a.getIndex(i);
 
-            if(attr == R.styleable.Spinner_spn_labelEnable)
+            if (attr == R.styleable.HDWSpinner_hdw_spn_labelEnable)
                 mLabelEnable = a.getBoolean(attr, false);
-            else if(attr == R.styleable.Spinner_spn_labelPadding)
+            else if (attr == R.styleable.HDWSpinner_hdw_spn_labelPadding)
                 getLabelView().setPadding(0, 0, 0, a.getDimensionPixelSize(attr, 0));
-            else if (attr == R.styleable.Spinner_spn_labelTextSize)
+            else if (attr == R.styleable.HDWSpinner_hdw_spn_labelTextSize)
                 labelTextSize = a.getDimensionPixelSize(attr, 0);
-            else if(attr == R.styleable.Spinner_spn_labelTextColor)
+            else if (attr == R.styleable.HDWSpinner_hdw_spn_labelTextColor)
                 labelTextColor = a.getColorStateList(attr);
-            else if(attr == R.styleable.Spinner_spn_labelTextAppearance)
+            else if (attr == R.styleable.HDWSpinner_hdw_spn_labelTextAppearance)
                 getLabelView().setTextAppearance(context, a.getResourceId(attr, 0));
-            else if(attr == R.styleable.Spinner_spn_labelEllipsize){
+            else if (attr == R.styleable.HDWSpinner_hdw_spn_labelEllipsize) {
                 int labelEllipsize = a.getInteger(attr, 0);
                 switch (labelEllipsize) {
                     case 1:
@@ -164,50 +164,48 @@ public class Spinner extends FrameLayout implements ThemeManager.OnThemeChangedL
                         getLabelView().setEllipsize(TextUtils.TruncateAt.END);
                         break;
                 }
-            }
-            else if(attr == R.styleable.Spinner_spn_label)
+            } else if (attr == R.styleable.HDWSpinner_hdw_spn_label)
                 getLabelView().setText(a.getString(attr));
-            else if(attr == R.styleable.Spinner_android_gravity)
+            else if (attr == R.styleable.HDWSpinner_android_gravity)
                 mGravity = a.getInt(attr, 0);
-            else if(attr == R.styleable.Spinner_android_minWidth)
+            else if (attr == R.styleable.HDWSpinner_android_minWidth)
                 setMinimumWidth(a.getDimensionPixelOffset(attr, 0));
-            else if(attr == R.styleable.Spinner_android_minHeight)
+            else if (attr == R.styleable.HDWSpinner_android_minHeight)
                 setMinimumHeight(a.getDimensionPixelOffset(attr, 0));
-            else if(attr == R.styleable.Spinner_android_dropDownWidth)
+            else if (attr == R.styleable.HDWSpinner_android_dropDownWidth)
                 mDropDownWidth = a.getLayoutDimension(attr, LayoutParams.WRAP_CONTENT);
-            else if(attr == R.styleable.Spinner_android_popupBackground)
+            else if (attr == R.styleable.HDWSpinner_android_popupBackground)
                 mPopup.setBackgroundDrawable(a.getDrawable(attr));
-            else if(attr == R.styleable.Spinner_android_prompt)
+            else if (attr == R.styleable.HDWSpinner_android_prompt)
                 mPopup.setPromptText(a.getString(attr));
-            else if(attr == R.styleable.Spinner_spn_popupItemAnimation)
+            else if (attr == R.styleable.HDWSpinner_hdw_spn_popupItemAnimation)
                 mPopup.setItemAnimation(a.getResourceId(attr, 0));
-            else if(attr == R.styleable.Spinner_spn_popupItemAnimOffset)
+            else if (attr == R.styleable.HDWSpinner_hdw_spn_popupItemAnimOffset)
                 mPopup.setItemAnimationOffset(a.getInteger(attr, 0));
-            else if(attr == R.styleable.Spinner_spn_disableChildrenWhenDisabled)
+            else if (attr == R.styleable.HDWSpinner_hdw_spn_disableChildrenWhenDisabled)
                 mDisableChildrenWhenDisabled = a.getBoolean(attr, false);
-            else if(attr == R.styleable.Spinner_spn_arrowSwitchMode)
+            else if (attr == R.styleable.HDWSpinner_hdw_spn_arrowSwitchMode)
                 mArrowAnimSwitchMode = a.getBoolean(attr, false);
-            else if(attr == R.styleable.Spinner_spn_arrowAnimDuration)
+            else if (attr == R.styleable.HDWSpinner_hdw_spn_arrowAnimDuration)
                 arrowAnimDuration = a.getInteger(attr, 0);
-            else if(attr == R.styleable.Spinner_spn_arrowSize)
+            else if (attr == R.styleable.HDWSpinner_hdw_spn_arrowSize)
                 mArrowSize = a.getDimensionPixelSize(attr, 0);
-            else if(attr == R.styleable.Spinner_spn_arrowPadding)
+            else if (attr == R.styleable.HDWSpinner_hdw_spn_arrowPadding)
                 mArrowPadding = a.getDimensionPixelSize(attr, 0);
-            else if(attr == R.styleable.Spinner_spn_arrowColor)
+            else if (attr == R.styleable.HDWSpinner_hdw_spn_arrowColor)
                 arrowColor = a.getColorStateList(attr);
-            else if(attr == R.styleable.Spinner_spn_arrowInterpolator){
+            else if (attr == R.styleable.HDWSpinner_hdw_spn_arrowInterpolator) {
                 int resId = a.getResourceId(attr, 0);
                 arrowInterpolator = AnimationUtils.loadInterpolator(context, resId);
-            }
-            else if(attr == R.styleable.Spinner_spn_arrowAnimClockwise)
+            } else if (attr == R.styleable.HDWSpinner_hdw_spn_arrowAnimClockwise)
                 arrowClockwise = a.getBoolean(attr, true);
-            else if(attr == R.styleable.Spinner_spn_dividerHeight)
+            else if (attr == R.styleable.HDWSpinner_hdw_spn_dividerHeight)
                 mDividerHeight = a.getDimensionPixelOffset(attr, 0);
-            else if(attr == R.styleable.Spinner_spn_dividerPadding)
+            else if (attr == R.styleable.HDWSpinner_hdw_spn_dividerPadding)
                 mDividerPadding = a.getDimensionPixelOffset(attr, 0);
-            else if(attr == R.styleable.Spinner_spn_dividerAnimDuration)
+            else if (attr == R.styleable.HDWSpinner_hdw_spn_dividerAnimDuration)
                 dividerAnimDuration = a.getInteger(attr, 0);
-            else if(attr == R.styleable.Spinner_spn_dividerColor)
+            else if (attr == R.styleable.HDWSpinner_hdw_spn_dividerColor)
                 dividerColor = a.getColorStateList(attr);
         }
 

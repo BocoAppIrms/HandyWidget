@@ -116,15 +116,15 @@ public class Switch extends View implements Checkable, ThemeManager.OnThemeChang
     protected void applyStyle(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         getRippleManager().onCreate(this, context, attrs, defStyleAttr, defStyleRes);
 
-        TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.Switch, defStyleAttr, defStyleRes);
+        TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.HDWSwitch, defStyleAttr, defStyleRes);
 
         for (int i = 0, count = a.getIndexCount(); i < count; i++) {
             int attr = a.getIndex(i);
-            if (attr == R.styleable.Switch_sw_trackSize)
+            if (attr == R.styleable.HDWSwitch_hdw_sw_trackSize)
                 mTrackSize = a.getDimensionPixelSize(attr, 0);
-            else if (attr == R.styleable.Switch_sw_trackColor)
+            else if (attr == R.styleable.HDWSwitch_hdw_sw_trackColor)
                 mTrackColors = a.getColorStateList(attr);
-            else if (attr == R.styleable.Switch_sw_trackCap) {
+            else if (attr == R.styleable.HDWSwitch_hdw_sw_trackCap) {
                 int cap = a.getInteger(attr, 0);
                 if (cap == 0)
                     mTrackCap = Paint.Cap.BUTT;
@@ -132,21 +132,21 @@ public class Switch extends View implements Checkable, ThemeManager.OnThemeChang
                     mTrackCap = Paint.Cap.ROUND;
                 else
                     mTrackCap = Paint.Cap.SQUARE;
-            } else if (attr == R.styleable.Switch_sw_thumbColor)
+            } else if (attr == R.styleable.HDWSwitch_hdw_sw_thumbColor)
                 mThumbColors = a.getColorStateList(attr);
-            else if (attr == R.styleable.Switch_sw_thumbRadius)
+            else if (attr == R.styleable.HDWSwitch_hdw_sw_thumbRadius)
                 mThumbRadius = a.getDimensionPixelSize(attr, 0);
-            else if (attr == R.styleable.Switch_sw_thumbElevation) {
+            else if (attr == R.styleable.HDWSwitch_hdw_sw_thumbElevation) {
                 mShadowSize = a.getDimensionPixelSize(attr, 0);
                 mShadowOffset = mShadowSize / 2;
-            } else if (attr == R.styleable.Switch_sw_animDuration)
+            } else if (attr == R.styleable.HDWSwitch_hdw_sw_animDuration)
                 mMaxAnimDuration = a.getInt(attr, 0);
-            else if (attr == R.styleable.Switch_android_gravity)
+            else if (attr == R.styleable.HDWSwitch_android_gravity)
                 mGravity = a.getInt(attr, 0);
-            else if (attr == R.styleable.Switch_android_checked)
+            else if (attr == R.styleable.HDWSwitch_android_checked)
                 setCheckedImmediately(a.getBoolean(attr, mChecked));
-            else if (attr == R.styleable.Switch_sw_interpolator) {
-                int resId = a.getResourceId(R.styleable.Switch_sw_interpolator, 0);
+            else if (attr == R.styleable.HDWSwitch_hdw_sw_interpolator) {
+                int resId = a.getResourceId(R.styleable.HDWSwitch_hdw_sw_interpolator, 0);
                 if (resId != 0)
                     mInterpolator = AnimationUtils.loadInterpolator(context, resId);
             }

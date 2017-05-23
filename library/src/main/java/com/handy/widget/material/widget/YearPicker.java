@@ -93,7 +93,7 @@ public class YearPicker extends ListView {
     protected void applyStyle(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes){
         super.applyStyle(context, attrs, defStyleAttr, defStyleRes);
 
-        TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.YearPicker, defStyleAttr, defStyleRes);
+        TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.HDWYearPicker, defStyleAttr, defStyleRes);
 
         int year = -1;
         int yearMin = -1;
@@ -104,31 +104,31 @@ public class YearPicker extends ListView {
         for(int i = 0, count = a.getIndexCount(); i < count; i++){
             int attr = a.getIndex(i);
 
-            if(attr == R.styleable.YearPicker_dp_yearTextSize)
+            if (attr == R.styleable.HDWYearPicker_hdw_dp_yearTextSize)
                 mTextSize = a.getDimensionPixelSize(attr, 0);
-            else if(attr == R.styleable.YearPicker_dp_year)
+            else if (attr == R.styleable.HDWYearPicker_hdw_dp_year)
                 year = a.getInteger(attr, 0);
-            else if(attr == R.styleable.YearPicker_dp_yearMin)
+            else if (attr == R.styleable.HDWYearPicker_hdw_dp_yearMin)
                 yearMin = a.getInteger(attr, 0);
-            else if(attr == R.styleable.YearPicker_dp_yearMax)
+            else if (attr == R.styleable.HDWYearPicker_hdw_dp_yearMax)
                 yearMax = a.getInteger(attr, 0);
-            else if(attr == R.styleable.YearPicker_dp_yearItemHeight)
+            else if (attr == R.styleable.HDWYearPicker_hdw_dp_yearItemHeight)
                 mItemHeight = a.getDimensionPixelSize(attr, 0);
-            else if(attr == R.styleable.YearPicker_dp_textColor)
+            else if (attr == R.styleable.HDWYearPicker_hdw_dp_textColor)
                 mTextColors[0] = a.getColor(attr, 0);
-            else if(attr == R.styleable.YearPicker_dp_textHighlightColor)
+            else if (attr == R.styleable.HDWYearPicker_hdw_dp_textHighlightColor)
                 mTextColors[1] = a.getColor(attr, 0);
-            else if(attr == R.styleable.YearPicker_dp_selectionColor)
+            else if (attr == R.styleable.HDWYearPicker_hdw_dp_selectionColor)
                 mSelectionColor = a.getColor(attr, 0);
-            else if(attr == R.styleable.YearPicker_dp_animDuration)
+            else if (attr == R.styleable.HDWYearPicker_hdw_dp_animDuration)
                 mAnimDuration = a.getInteger(attr, 0);
-            else if(attr == R.styleable.YearPicker_dp_inInterpolator)
+            else if (attr == R.styleable.HDWYearPicker_hdw_dp_inInterpolator)
                 mInInterpolator = AnimationUtils.loadInterpolator(context, a.getResourceId(attr, 0));
-            else if(attr == R.styleable.YearPicker_dp_outInterpolator)
+            else if (attr == R.styleable.HDWYearPicker_hdw_dp_outInterpolator)
                 mOutInterpolator = AnimationUtils.loadInterpolator(context, a.getResourceId(attr, 0));
-            else if(attr == R.styleable.YearPicker_dp_fontFamily)
+            else if (attr == R.styleable.HDWYearPicker_hdw_dp_fontFamily)
                 familyName = a.getString(attr);
-            else if(attr == R.styleable.YearPicker_dp_textStyle)
+            else if (attr == R.styleable.HDWYearPicker_hdw_dp_textStyle)
                 style = a.getInteger(attr, 0);
         }
 

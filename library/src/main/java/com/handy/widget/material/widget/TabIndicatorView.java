@@ -123,7 +123,7 @@ public class TabIndicatorView extends RecyclerView implements ThemeManager.OnThe
     }
 
     protected void applyStyle(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes){
-        TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.TabPageIndicator, defStyleAttr, defStyleRes);
+        TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.HDWTabPageIndicator, defStyleAttr, defStyleRes);
 
         int tabPadding = -1;
         int textAppearance = 0;
@@ -134,25 +134,24 @@ public class TabIndicatorView extends RecyclerView implements ThemeManager.OnThe
 
         for(int i = 0, count = a.getIndexCount(); i < count; i++){
             int attr = a.getIndex(i);
-            if(attr == R.styleable.TabPageIndicator_tpi_tabPadding)
+            if (attr == R.styleable.HDWTabPageIndicator_hdw_tpi_tabPadding)
                 tabPadding = a.getDimensionPixelSize(attr, 0);
-            else if(attr == R.styleable.TabPageIndicator_tpi_tabRipple)
+            else if (attr == R.styleable.HDWTabPageIndicator_hdw_tpi_tabRipple)
                 rippleStyle = a.getResourceId(attr, 0);
-            else if(attr == R.styleable.TabPageIndicator_tpi_indicatorColor)
+            else if (attr == R.styleable.HDWTabPageIndicator_hdw_tpi_indicatorColor)
                 mPaint.setColor(a.getColor(attr, 0));
-            else if(attr == R.styleable.TabPageIndicator_tpi_indicatorHeight)
+            else if (attr == R.styleable.HDWTabPageIndicator_hdw_tpi_indicatorHeight)
                 mIndicatorHeight = a.getDimensionPixelSize(attr, 0);
-            else if(attr == R.styleable.TabPageIndicator_tpi_indicatorAtTop)
+            else if (attr == R.styleable.HDWTabPageIndicator_hdw_tpi_indicatorAtTop)
                 mIndicatorAtTop = a.getBoolean(attr, true);
-            else if(attr == R.styleable.TabPageIndicator_tpi_tabSingleLine) {
+            else if (attr == R.styleable.HDWTabPageIndicator_hdw_tpi_tabSingleLine) {
                 tabSingleLine = a.getBoolean(attr, true);
                 singleLineDefined = true;
-            }
-            else if(attr == R.styleable.TabPageIndicator_tpi_centerCurrentTab)
+            } else if (attr == R.styleable.HDWTabPageIndicator_hdw_tpi_centerCurrentTab)
                 mCenterCurrentTab = a.getBoolean(attr, true);
-            else if(attr == R.styleable.TabPageIndicator_android_textAppearance)
+            else if (attr == R.styleable.HDWTabPageIndicator_android_textAppearance)
                 textAppearance = a.getResourceId(attr, 0);
-            else if(attr == R.styleable.TabPageIndicator_tpi_mode)
+            else if (attr == R.styleable.HDWTabPageIndicator_hdw_tpi_mode)
                 mode = a.getInteger(attr, 0);
         }
 

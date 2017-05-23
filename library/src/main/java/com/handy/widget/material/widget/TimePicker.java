@@ -126,7 +126,7 @@ public class TimePicker extends View implements ThemeManager.OnThemeChangedListe
     }
 
     protected void applyStyle(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes){
-        TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.TimePicker, defStyleAttr, defStyleRes);
+        TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.HDWTimePicker, defStyleAttr, defStyleRes);
 
         boolean hourDefined = false;
         String familyName = null;
@@ -135,39 +135,38 @@ public class TimePicker extends View implements ThemeManager.OnThemeChangedListe
         for(int i = 0, count = a.getIndexCount(); i < count; i++){
             int attr = a.getIndex(i);
 
-            if(attr == R.styleable.TimePicker_tp_backgroundColor)
+            if (attr == R.styleable.HDWTimePicker_hdw_tp_backgroundColor)
                 mBackgroundColor = a.getColor(attr, 0);
-            else if(attr == R.styleable.TimePicker_tp_selectionColor)
+            else if (attr == R.styleable.HDWTimePicker_hdw_tp_selectionColor)
                 mSelectionColor = a.getColor(attr, 0);
-            else if(attr == R.styleable.TimePicker_tp_selectionRadius)
+            else if (attr == R.styleable.HDWTimePicker_hdw_tp_selectionRadius)
                 mSelectionRadius = a.getDimensionPixelOffset(attr, 0);
-            else if(attr == R.styleable.TimePicker_tp_tickSize)
+            else if (attr == R.styleable.HDWTimePicker_hdw_tp_tickSize)
                 mTickSize = a.getDimensionPixelOffset(attr, 0);
-            else if(attr == R.styleable.TimePicker_tp_textSize)
+            else if (attr == R.styleable.HDWTimePicker_hdw_tp_textSize)
                 mTextSize = a.getDimensionPixelOffset(attr, 0);
-            else if(attr == R.styleable.TimePicker_tp_textColor)
+            else if (attr == R.styleable.HDWTimePicker_hdw_tp_textColor)
                 mTextColor = a.getColor(attr, 0);
-            else if(attr == R.styleable.TimePicker_tp_textHighlightColor)
+            else if (attr == R.styleable.HDWTimePicker_hdw_tp_textHighlightColor)
                 mTextHighlightColor = a.getColor(attr, 0);
-            else if(attr == R.styleable.TimePicker_tp_animDuration)
+            else if (attr == R.styleable.HDWTimePicker_hdw_tp_animDuration)
                 mAnimDuration = a.getInteger(attr, 0);
-            else if(attr == R.styleable.TimePicker_tp_inInterpolator)
+            else if (attr == R.styleable.HDWTimePicker_hdw_tp_inInterpolator)
                 mInInterpolator = AnimationUtils.loadInterpolator(context, a.getResourceId(attr, 0));
-            else if(attr == R.styleable.TimePicker_tp_outInterpolator)
+            else if (attr == R.styleable.HDWTimePicker_hdw_tp_outInterpolator)
                 mOutInterpolator = AnimationUtils.loadInterpolator(context, a.getResourceId(attr, 0));
-            else if(attr == R.styleable.TimePicker_tp_mode)
+            else if (attr == R.styleable.HDWTimePicker_hdw_tp_mode)
                 setMode(a.getInteger(attr, 0), false);
-            else if(attr == R.styleable.TimePicker_tp_24Hour) {
+            else if (attr == R.styleable.HDWTimePicker_hdw_tp_24Hour) {
                 set24Hour(a.getBoolean(attr, false));
                 hourDefined = true;
-            }
-            else if(attr == R.styleable.TimePicker_tp_hour)
+            } else if (attr == R.styleable.HDWTimePicker_hdw_tp_hour)
                 setHour(a.getInteger(attr, 0));
-            else if(attr == R.styleable.TimePicker_tp_minute)
+            else if (attr == R.styleable.HDWTimePicker_hdw_tp_minute)
                 setMinute(a.getInteger(attr, 0));
-            else if(attr == R.styleable.TimePicker_tp_fontFamily)
+            else if (attr == R.styleable.HDWTimePicker_hdw_tp_fontFamily)
                 familyName = a.getString(attr);
-            else if(attr == R.styleable.TimePicker_tp_textStyle)
+            else if (attr == R.styleable.HDWTimePicker_hdw_tp_textStyle)
                 style = a.getInteger(attr, 0);
         }
 

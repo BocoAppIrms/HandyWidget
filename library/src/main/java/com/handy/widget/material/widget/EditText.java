@@ -181,7 +181,7 @@ public class EditText extends FrameLayout implements ThemeManager.OnThemeChanged
         CharSequence text = mInputView == null ? null : mInputView.getText();
         removeAllViews();
 
-        TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.EditText, defStyleAttr, defStyleRes);
+        TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.HDWEditText, defStyleAttr, defStyleRes);
 
         int labelPadding = -1;
         int labelTextSize = -1;
@@ -198,7 +198,7 @@ public class EditText extends FrameLayout implements ThemeManager.OnThemeChanged
         int dividerPadding = -1;
         int dividerAnimDuration = -1;
 
-        mAutoCompleteMode = a.getInteger(R.styleable.EditText_et_autoCompleteMode, mAutoCompleteMode);
+        mAutoCompleteMode = a.getInteger(R.styleable.HDWEditText_hdw_et_autoCompleteMode, mAutoCompleteMode);
         if(needCreateInputView(mAutoCompleteMode)){
             switch (mAutoCompleteMode){
                 case AUTOCOMPLETE_MODE_SINGLE:
@@ -231,17 +231,17 @@ public class EditText extends FrameLayout implements ThemeManager.OnThemeChanged
         for(int i = 0, count = a.getIndexCount(); i < count; i++){
             int attr = a.getIndex(i);
 
-            if(attr == R.styleable.EditText_et_labelEnable)
+            if (attr == R.styleable.HDWEditText_hdw_et_labelEnable)
                 mLabelEnable = a.getBoolean(attr, false);
-            else if(attr == R.styleable.EditText_et_labelPadding)
+            else if (attr == R.styleable.HDWEditText_hdw_et_labelPadding)
                 labelPadding = a.getDimensionPixelSize(attr, 0);
-            else if(attr == R.styleable.EditText_et_labelTextSize)
+            else if (attr == R.styleable.HDWEditText_hdw_et_labelTextSize)
                 labelTextSize = a.getDimensionPixelSize(attr, 0);
-            else if(attr == R.styleable.EditText_et_labelTextColor)
+            else if (attr == R.styleable.HDWEditText_hdw_et_labelTextColor)
                 labelTextColor = a.getColorStateList(attr);
-            else if(attr == R.styleable.EditText_et_labelTextAppearance)
+            else if (attr == R.styleable.HDWEditText_hdw_et_labelTextAppearance)
                 getLabelView().setTextAppearance(context, a.getResourceId(attr, 0));
-            else if(attr == R.styleable.EditText_et_labelEllipsize){
+            else if (attr == R.styleable.HDWEditText_hdw_et_labelEllipsize) {
                 int labelEllipsize = a.getInteger(attr, 0);
                 switch (labelEllipsize) {
                     case 1:
@@ -260,24 +260,23 @@ public class EditText extends FrameLayout implements ThemeManager.OnThemeChanged
                         getLabelView().setEllipsize(TruncateAt.END);
                         break;
                 }
-            }
-            else if(attr == R.styleable.EditText_et_labelInAnim)
+            } else if (attr == R.styleable.HDWEditText_hdw_et_labelInAnim)
                 mLabelInAnimId = a.getResourceId(attr, 0);
-            else if(attr == R.styleable.EditText_et_labelOutAnim)
+            else if (attr == R.styleable.HDWEditText_hdw_et_labelOutAnim)
                 mLabelOutAnimId = a.getResourceId(attr, 0);
-            else if(attr == R.styleable.EditText_et_supportMode)
+            else if (attr == R.styleable.HDWEditText_hdw_et_supportMode)
                 mSupportMode = a.getInteger(attr, 0);
-            else if(attr == R.styleable.EditText_et_supportPadding)
+            else if (attr == R.styleable.HDWEditText_hdw_et_supportPadding)
                 supportPadding = a.getDimensionPixelSize(attr, 0);
-            else if(attr == R.styleable.EditText_et_supportTextSize)
+            else if (attr == R.styleable.HDWEditText_hdw_et_supportTextSize)
                 supportTextSize = a.getDimensionPixelSize(attr, 0);
-            else if(attr == R.styleable.EditText_et_supportTextColor)
+            else if (attr == R.styleable.HDWEditText_hdw_et_supportTextColor)
                 supportColors = a.getColorStateList(attr);
-            else if(attr == R.styleable.EditText_et_supportTextErrorColor)
+            else if (attr == R.styleable.HDWEditText_hdw_et_supportTextErrorColor)
                 supportErrorColors = a.getColorStateList(attr);
-            else if(attr == R.styleable.EditText_et_supportTextAppearance)
+            else if (attr == R.styleable.HDWEditText_hdw_et_supportTextAppearance)
                 getSupportView().setTextAppearance(context, a.getResourceId(attr, 0));
-            else if(attr == R.styleable.EditText_et_supportEllipsize){
+            else if (attr == R.styleable.HDWEditText_hdw_et_supportEllipsize) {
                 int supportEllipsize = a.getInteger(attr, 0);
                 switch (supportEllipsize) {
                     case 1:
@@ -296,32 +295,31 @@ public class EditText extends FrameLayout implements ThemeManager.OnThemeChanged
                         getSupportView().setEllipsize(TruncateAt.END);
                         break;
                 }
-            }
-            else if(attr == R.styleable.EditText_et_supportMaxLines)
+            } else if (attr == R.styleable.HDWEditText_hdw_et_supportMaxLines)
                 getSupportView().setMaxLines(a.getInteger(attr, 0));
-            else if(attr == R.styleable.EditText_et_supportLines)
+            else if (attr == R.styleable.HDWEditText_hdw_et_supportLines)
                 getSupportView().setLines(a.getInteger(attr, 0));
-            else if(attr == R.styleable.EditText_et_supportSingleLine)
+            else if (attr == R.styleable.HDWEditText_hdw_et_supportSingleLine)
                 getSupportView().setSingleLine(a.getBoolean(attr, false));
-            else if(attr == R.styleable.EditText_et_supportMaxChars)
+            else if (attr == R.styleable.HDWEditText_hdw_et_supportMaxChars)
                 mSupportMaxChars = a.getInteger(attr, 0);
-            else if(attr == R.styleable.EditText_et_helper)
+            else if (attr == R.styleable.HDWEditText_hdw_et_helper)
                 supportHelper = a.getString(attr);
-            else if(attr == R.styleable.EditText_et_error)
+            else if (attr == R.styleable.HDWEditText_hdw_et_error)
                 supportError = a.getString(attr);
-            else if(attr == R.styleable.EditText_et_inputId)
+            else if (attr == R.styleable.HDWEditText_hdw_et_inputId)
                 mInputView.setId(a.getResourceId(attr, 0));
-            else if(attr == R.styleable.EditText_et_dividerColor)
+            else if (attr == R.styleable.HDWEditText_hdw_et_dividerColor)
                 dividerColors = a.getColorStateList(attr);
-            else if(attr == R.styleable.EditText_et_dividerErrorColor)
+            else if (attr == R.styleable.HDWEditText_hdw_et_dividerErrorColor)
                 dividerErrorColors = a.getColorStateList(attr);
-            else if(attr == R.styleable.EditText_et_dividerHeight)
+            else if (attr == R.styleable.HDWEditText_hdw_et_dividerHeight)
                 dividerHeight = a.getDimensionPixelSize(attr, 0);
-            else if(attr == R.styleable.EditText_et_dividerPadding)
+            else if (attr == R.styleable.HDWEditText_hdw_et_dividerPadding)
                 dividerPadding = a.getDimensionPixelSize(attr, 0);
-            else if(attr == R.styleable.EditText_et_dividerAnimDuration)
+            else if (attr == R.styleable.HDWEditText_hdw_et_dividerAnimDuration)
                 dividerAnimDuration = a.getInteger(attr, 0);
-            else if(attr == R.styleable.EditText_et_dividerCompoundPadding)
+            else if (attr == R.styleable.HDWEditText_hdw_et_dividerCompoundPadding)
                 mDividerCompoundPadding = a.getBoolean(attr, true);
         }
 
@@ -1335,6 +1333,10 @@ public class EditText extends FrameLayout implements ThemeManager.OnThemeChanged
 		return mInputView.getText();
 	}
 
+    public final void setText(int resid) {
+        mInputView.setText(resid);
+    }
+
     public final void setText(CharSequence text) {
         mInputView.setText(text);
     }
@@ -1843,6 +1845,19 @@ public class EditText extends FrameLayout implements ThemeManager.OnThemeChanged
 	}
 
 	/**
+     * Sets the text to be displayed when the text of the TextView is empty.
+     * Null means to use the normal empty text. The hint does not currently
+     * participate in determining the size of the view.
+     *
+     * @attr ref android.R.styleable#TextView_hint
+     */
+    public final void setHint(CharSequence hint) {
+        mInputView.setHint(hint);
+        if (mLabelView != null)
+            mLabelView.setText(hint);
+    }
+
+    /**
      * Sets the text to be displayed when the text of the TextView is empty,
      * from a resource.
      *
@@ -3251,19 +3266,6 @@ public class EditText extends FrameLayout implements ThemeManager.OnThemeChanged
 	}
 
 	/**
-     * Sets the text to be displayed when the text of the TextView is empty.
-     * Null means to use the normal empty text. The hint does not currently
-     * participate in determining the size of the view.
-     *
-     * @attr ref android.R.styleable#TextView_hint
-     */
-	public final void setHint (CharSequence hint){
-		mInputView.setHint(hint);
-		if(mLabelView != null)
-			mLabelView.setText(hint);
-	}
-
-	/**
      * Sets the color of the hint text.
      *
      * @see #getHintTextColors()
@@ -3479,10 +3481,6 @@ public class EditText extends FrameLayout implements ThemeManager.OnThemeChanged
      */
 	public final void setSpannableFactory (Spannable.Factory factory){
 		mInputView.setSpannableFactory(factory);
-	}
-
-	public final void setText (int resid){
-		mInputView.setText(resid);
 	}
 
 	public final void setText (char[] text, int start, int len){

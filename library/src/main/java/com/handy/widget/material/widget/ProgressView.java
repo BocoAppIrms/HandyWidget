@@ -67,7 +67,7 @@ public class ProgressView extends View implements ThemeManager.OnThemeChangedLis
     }
 
     protected void applyStyle(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes){
-        TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.ProgressView, defStyleAttr, defStyleRes);
+        TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.HDWProgressView, defStyleAttr, defStyleRes);
 
         int progressId = 0;
         int progressMode = -1;
@@ -77,17 +77,17 @@ public class ProgressView extends View implements ThemeManager.OnThemeChangedLis
         for(int i = 0, count = a.getIndexCount(); i < count; i++){
             int attr = a.getIndex(i);
 
-            if(attr == R.styleable.ProgressView_pv_autostart)
+            if (attr == R.styleable.HDWProgressView_hdw_pv_autostart)
                 mAutostart = a.getBoolean(attr, false);
-            else if(attr == R.styleable.ProgressView_pv_circular)
+            else if (attr == R.styleable.HDWProgressView_hdw_pv_circular)
                 mCircular = a.getBoolean(attr, true);
-            else if(attr == R.styleable.ProgressView_pv_progressStyle)
+            else if (attr == R.styleable.HDWProgressView_hdw_pv_progressStyle)
                 progressId = a.getResourceId(attr, 0);
-            else if(attr == R.styleable.ProgressView_pv_progressMode)
+            else if (attr == R.styleable.HDWProgressView_hdw_pv_progressMode)
                 progressMode = a.getInteger(attr, 0);
-            else if(attr == R.styleable.ProgressView_pv_progress)
+            else if (attr == R.styleable.HDWProgressView_hdw_pv_progress)
                 progress = a.getFloat(attr, 0);
-            else if(attr == R.styleable.ProgressView_pv_secondaryProgress)
+            else if (attr == R.styleable.HDWProgressView_hdw_pv_secondaryProgress)
                 secondaryProgress = a.getFloat(attr, 0);
         }
 

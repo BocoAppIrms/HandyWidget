@@ -143,7 +143,7 @@ public class DatePicker extends ListView implements AbsListView.OnScrollListener
     protected void applyStyle(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes){
         super.applyStyle(context, attrs, defStyleAttr, defStyleRes);
 
-        TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.DatePicker, defStyleAttr, defStyleRes);
+        TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.HDWDatePicker, defStyleAttr, defStyleRes);
 
         String familyName = null;
         int style = -1;
@@ -158,45 +158,41 @@ public class DatePicker extends ListView implements AbsListView.OnScrollListener
         for(int i = 0, count = a.getIndexCount(); i < count; i++){
             int attr = a.getIndex(i);
 
-            if(attr == R.styleable.DatePicker_dp_dayTextSize)
+            if (attr == R.styleable.HDWDatePicker_hdw_dp_dayTextSize)
                 mTextSize = a.getDimensionPixelSize(attr, 0);
-            else if(attr == R.styleable.DatePicker_dp_textColor)
+            else if (attr == R.styleable.HDWDatePicker_hdw_dp_textColor)
                 mTextColor = a.getColor(attr, 0);
-            else if(attr == R.styleable.DatePicker_dp_textHighlightColor)
+            else if (attr == R.styleable.HDWDatePicker_hdw_dp_textHighlightColor)
                 mTextHighlightColor = a.getColor(attr, 0);
-            else if(attr == R.styleable.DatePicker_dp_textLabelColor)
+            else if (attr == R.styleable.HDWDatePicker_hdw_dp_textLabelColor)
                 mTextLabelColor = a.getColor(attr, 0);
-            else if(attr == R.styleable.DatePicker_dp_textDisableColor)
+            else if (attr == R.styleable.HDWDatePicker_hdw_dp_textDisableColor)
                 mTextDisableColor = a.getColor(attr, 0);
-            else if(attr == R.styleable.DatePicker_dp_selectionColor)
+            else if (attr == R.styleable.HDWDatePicker_hdw_dp_selectionColor)
                 mSelectionColor = a.getColor(attr, 0);
-            else if(attr == R.styleable.DatePicker_dp_animDuration)
+            else if (attr == R.styleable.HDWDatePicker_hdw_dp_animDuration)
                 mAnimDuration = a.getInteger(attr, 0);
-            else if(attr == R.styleable.DatePicker_dp_inInterpolator)
+            else if (attr == R.styleable.HDWDatePicker_hdw_dp_inInterpolator)
                 mInInterpolator = AnimationUtils.loadInterpolator(context, a.getResourceId(attr, 0));
-            else if(attr == R.styleable.DatePicker_dp_outInterpolator)
+            else if (attr == R.styleable.HDWDatePicker_hdw_dp_outInterpolator)
                 mOutInterpolator = AnimationUtils.loadInterpolator(context, a.getResourceId(attr, 0));
-            else if(attr == R.styleable.DatePicker_dp_fontFamily)
+            else if (attr == R.styleable.HDWDatePicker_hdw_dp_fontFamily)
                 familyName = a.getString(attr);
-            else if(attr == R.styleable.DatePicker_dp_textStyle)
+            else if (attr == R.styleable.HDWDatePicker_hdw_dp_textStyle)
                 style = a.getInteger(attr, 0);
-            else if(attr == R.styleable.DatePicker_android_padding) {
+            else if (attr == R.styleable.HDWDatePicker_android_padding) {
                 padding = a.getDimensionPixelSize(attr, 0);
                 paddingDefined = true;
-            }
-            else if(attr == R.styleable.DatePicker_android_paddingLeft) {
+            } else if (attr == R.styleable.HDWDatePicker_android_paddingLeft) {
                 paddingLeft = a.getDimensionPixelSize(attr, 0);
                 paddingDefined = true;
-            }
-            else if(attr == R.styleable.DatePicker_android_paddingTop) {
+            } else if (attr == R.styleable.HDWDatePicker_android_paddingTop) {
                 paddingTop = a.getDimensionPixelSize(attr, 0);
                 paddingDefined = true;
-            }
-            else if(attr == R.styleable.DatePicker_android_paddingRight) {
+            } else if (attr == R.styleable.HDWDatePicker_android_paddingRight) {
                 paddingRight = a.getDimensionPixelSize(attr, 0);
                 paddingDefined = true;
-            }
-            else if(attr == R.styleable.DatePicker_android_paddingBottom) {
+            } else if (attr == R.styleable.HDWDatePicker_android_paddingBottom) {
                 paddingBottom = a.getDimensionPixelSize(attr, 0);
                 paddingDefined = true;
             }

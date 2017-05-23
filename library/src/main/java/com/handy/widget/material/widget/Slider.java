@@ -136,7 +136,7 @@ public class Slider extends View implements ThemeManager.OnThemeChangedListener{
     protected void applyStyle(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes){
         getRippleManager().onCreate(this, context, attrs, defStyleAttr, defStyleRes);
 
-        TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.Slider, defStyleAttr, defStyleRes);
+        TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.HDWSlider, defStyleAttr, defStyleRes);
         int minValue = getMinValue();
         int maxValue = getMaxValue();
         boolean valueRangeDefined = false;
@@ -147,15 +147,15 @@ public class Slider extends View implements ThemeManager.OnThemeChangedListener{
         boolean textStyleDefined = false;
         for(int i = 0, count = a.getIndexCount(); i < count; i++){
             int attr = a.getIndex(i);
-            if(attr == R.styleable.Slider_sl_discreteMode)
+            if (attr == R.styleable.HDWSlider_hdw_sl_discreteMode)
                 mDiscreteMode = a.getBoolean(attr, false);
-            else if(attr == R.styleable.Slider_sl_primaryColor)
+            else if (attr == R.styleable.HDWSlider_hdw_sl_primaryColor)
                 mPrimaryColor = a.getColor(attr, 0);
-            else if(attr == R.styleable.Slider_sl_secondaryColor)
+            else if (attr == R.styleable.HDWSlider_hdw_sl_secondaryColor)
                 mSecondaryColor = a.getColor(attr, 0);
-            else if(attr == R.styleable.Slider_sl_trackSize)
+            else if (attr == R.styleable.HDWSlider_hdw_sl_trackSize)
                 mTrackSize = a.getDimensionPixelSize(attr, 0);
-            else if(attr == R.styleable.Slider_sl_trackCap) {
+            else if (attr == R.styleable.HDWSlider_hdw_sl_trackCap) {
                 int cap = a.getInteger(attr, 0);
                 if(cap == 0)
                     mTrackCap = Paint.Cap.BUTT;
@@ -163,57 +163,48 @@ public class Slider extends View implements ThemeManager.OnThemeChangedListener{
                     mTrackCap = Paint.Cap.ROUND;
                 else
                     mTrackCap = Paint.Cap.SQUARE;
-            }
-            else if(attr == R.styleable.Slider_sl_thumbBorderSize)
+            } else if (attr == R.styleable.HDWSlider_hdw_sl_thumbBorderSize)
                 mThumbBorderSize = a.getDimensionPixelSize(attr, 0);
-            else if(attr == R.styleable.Slider_sl_thumbRadius)
+            else if (attr == R.styleable.HDWSlider_hdw_sl_thumbRadius)
                 mThumbRadius = a.getDimensionPixelSize(attr, 0);
-            else if(attr == R.styleable.Slider_sl_thumbFocusRadius)
+            else if (attr == R.styleable.HDWSlider_hdw_sl_thumbFocusRadius)
                 mThumbFocusRadius = a.getDimensionPixelSize(attr, 0);
-            else if(attr == R.styleable.Slider_sl_thumbTouchRadius)
+            else if (attr == R.styleable.HDWSlider_hdw_sl_thumbTouchRadius)
                 mThumbTouchRadius = a.getDimensionPixelSize(attr, 0);
-            else if(attr == R.styleable.Slider_sl_travelAnimDuration) {
+            else if (attr == R.styleable.HDWSlider_hdw_sl_travelAnimDuration) {
                 mTravelAnimationDuration = a.getInteger(attr, 0);
                 mTransformAnimationDuration = mTravelAnimationDuration;
-            }
-            else if(attr == R.styleable.Slider_sl_alwaysFillThumb) {
-                mAlwaysFillThumb = a.getBoolean(R.styleable.Slider_sl_alwaysFillThumb, false);
-            }
-            else if(attr == R.styleable.Slider_sl_interpolator){
-                int resId = a.getResourceId(R.styleable.Slider_sl_interpolator, 0);
+            } else if (attr == R.styleable.HDWSlider_hdw_sl_alwaysFillThumb) {
+                mAlwaysFillThumb = a.getBoolean(R.styleable.HDWSlider_hdw_sl_alwaysFillThumb, false);
+            } else if (attr == R.styleable.HDWSlider_hdw_sl_interpolator) {
+                int resId = a.getResourceId(R.styleable.HDWSlider_hdw_sl_interpolator, 0);
                 mInterpolator = AnimationUtils.loadInterpolator(context, resId);
-            }
-            else if(attr == R.styleable.Slider_android_gravity)
+            } else if (attr == R.styleable.HDWSlider_android_gravity)
                 mGravity = a.getInteger(attr, 0);
-            else if(attr == R.styleable.Slider_sl_minValue) {
+            else if (attr == R.styleable.HDWSlider_hdw_sl_minValue) {
                 minValue = a.getInteger(attr, 0);
                 valueRangeDefined = true;
-            }
-            else if(attr == R.styleable.Slider_sl_maxValue) {
+            } else if (attr == R.styleable.HDWSlider_hdw_sl_maxValue) {
                 maxValue = a.getInteger(attr, 0);
                 valueRangeDefined = true;
-            }
-            else if(attr == R.styleable.Slider_sl_stepValue)
+            } else if (attr == R.styleable.HDWSlider_hdw_sl_stepValue)
                 mStepValue = a.getInteger(attr, 0);
-            else if(attr == R.styleable.Slider_sl_value) {
+            else if (attr == R.styleable.HDWSlider_hdw_sl_value) {
                 value = a.getInteger(attr, 0);
                 valueDefined = true;
-            }
-            else if(attr == R.styleable.Slider_sl_fontFamily) {
+            } else if (attr == R.styleable.HDWSlider_hdw_sl_fontFamily) {
                 familyName = a.getString(attr);
                 textStyleDefined = true;
-            }
-            else if(attr == R.styleable.Slider_sl_textStyle) {
+            } else if (attr == R.styleable.HDWSlider_hdw_sl_textStyle) {
                 style = a.getInteger(attr, 0);
                 textStyleDefined = true;
-            }
-            else if(attr == R.styleable.Slider_sl_textColor)
+            } else if (attr == R.styleable.HDWSlider_hdw_sl_textColor)
                 mTextColor = a.getColor(attr, 0);
-            else if(attr == R.styleable.Slider_sl_textSize)
+            else if (attr == R.styleable.HDWSlider_hdw_sl_textSize)
                 mTextSize = a.getDimensionPixelSize(attr, 0);
-            else if(attr == R.styleable.Slider_android_enabled)
+            else if (attr == R.styleable.HDWSlider_android_enabled)
                 setEnabled(a.getBoolean(attr, true));
-            else if(attr == R.styleable.Slider_sl_baselineOffset)
+            else if (attr == R.styleable.HDWSlider_hdw_sl_baselineOffset)
                 mBaselineOffset = a.getDimensionPixelOffset(attr, 0);
         }
 

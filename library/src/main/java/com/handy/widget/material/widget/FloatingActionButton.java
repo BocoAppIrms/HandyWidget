@@ -81,7 +81,7 @@ public class FloatingActionButton extends View implements ThemeManager.OnThemeCh
     }
 
     protected void applyStyle(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
-        TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.FloatingActionButton, defStyleAttr, defStyleRes);
+        TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.HDWFloatingActionButton, defStyleAttr, defStyleRes);
 
         int radius = -1;
         int elevation = -1;
@@ -93,24 +93,24 @@ public class FloatingActionButton extends View implements ThemeManager.OnThemeCh
         for(int i = 0, count = a.getIndexCount(); i < count; i++){
             int attr = a.getIndex(i);
 
-            if(attr == R.styleable.FloatingActionButton_fab_radius)
+            if (attr == R.styleable.HDWFloatingActionButton_hdw_fab_radius)
                 radius = a.getDimensionPixelSize(attr, 0);
-            else if(attr == R.styleable.FloatingActionButton_fab_elevation)
+            else if (attr == R.styleable.HDWFloatingActionButton_hdw_fab_elevation)
                 elevation = a.getDimensionPixelSize(attr, 0);
-            else if(attr == R.styleable.FloatingActionButton_fab_backgroundColor)
+            else if (attr == R.styleable.HDWFloatingActionButton_hdw_fab_backgroundColor)
                 bgColor = a.getColorStateList(attr);
-            else if(attr == R.styleable.FloatingActionButton_fab_backgroundAnimDuration)
+            else if (attr == R.styleable.HDWFloatingActionButton_hdw_fab_backgroundAnimDuration)
                 bgAnimDuration = a.getInteger(attr, 0);
-            else if(attr == R.styleable.FloatingActionButton_fab_iconSrc)
+            else if (attr == R.styleable.HDWFloatingActionButton_hdw_fab_iconSrc)
                 iconSrc = a.getResourceId(attr, 0);
-            else if(attr == R.styleable.FloatingActionButton_fab_iconLineMorphing)
+            else if (attr == R.styleable.HDWFloatingActionButton_hdw_fab_iconLineMorphing)
                 iconLineMorphing = a.getResourceId(attr, 0);
-            else if(attr == R.styleable.FloatingActionButton_fab_iconSize)
+            else if (attr == R.styleable.HDWFloatingActionButton_hdw_fab_iconSize)
                 mIconSize = a.getDimensionPixelSize(attr, 0);
-            else if(attr == R.styleable.FloatingActionButton_fab_animDuration)
+            else if (attr == R.styleable.HDWFloatingActionButton_hdw_fab_animDuration)
                 mAnimDuration = a.getInteger(attr, 0);
-            else if(attr == R.styleable.FloatingActionButton_fab_interpolator){
-                int resId = a.getResourceId(R.styleable.FloatingActionButton_fab_interpolator, 0);
+            else if (attr == R.styleable.HDWFloatingActionButton_hdw_fab_interpolator) {
+                int resId = a.getResourceId(R.styleable.HDWFloatingActionButton_hdw_fab_interpolator, 0);
                 if(resId != 0)
                     mInterpolator = AnimationUtils.loadInterpolator(context, resId);
             }
@@ -261,6 +261,11 @@ public class FloatingActionButton extends View implements ThemeManager.OnThemeCh
 		return mBackground.getColor();
 	}
 
+    public void setBackgroundColor(ColorStateList color) {
+        mBackground.setColor(color);
+        invalidate();
+    }
+
     @Override
     public void setBackgroundColor(int color) {
         mBackground.setColor(color);
@@ -299,11 +304,6 @@ public class FloatingActionButton extends View implements ThemeManager.OnThemeCh
             mIcon.setCallback(this);
             invalidate();
         }
-	}
-
-	public void setBackgroundColor(ColorStateList color){
-		mBackground.setColor(color);
-		invalidate();
 	}
 
     /**

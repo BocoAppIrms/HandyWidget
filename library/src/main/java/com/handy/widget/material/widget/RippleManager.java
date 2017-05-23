@@ -50,14 +50,14 @@ public final class RippleManager implements View.OnClickListener{
 		if(v.isInEditMode())
 			return;
 
-		TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.RippleView, defStyleAttr, defStyleRes);
-        int rippleStyle = a.getResourceId(R.styleable.RippleView_rd_style, 0);
+		TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.HDWRippleView, defStyleAttr, defStyleRes);
+		int rippleStyle = a.getResourceId(R.styleable.HDWRippleView_hdw_rd_style, 0);
 		RippleDrawable drawable = null;
 
 		if(rippleStyle != 0)
 			drawable = new RippleDrawable.Builder(context, rippleStyle).backgroundDrawable(getBackground(v)).build();
 		else{
-			boolean rippleEnable = a.getBoolean(R.styleable.RippleView_rd_enable, false);
+			boolean rippleEnable = a.getBoolean(R.styleable.HDWRippleView_hdw_rd_enable, false);
 			if(rippleEnable)
 				drawable = new RippleDrawable.Builder(context, attrs, defStyleAttr, defStyleRes).backgroundDrawable(getBackground(v)).build();
 		}

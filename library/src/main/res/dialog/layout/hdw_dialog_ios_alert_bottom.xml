@@ -48,9 +48,10 @@
     <Button
         android:id="@+id/btn_bottom"
         android:layout_width="match_parent"
-
         android:layout_height="wrap_content"
         android:background="@drawable/hdw_dialog_ios_roundcorner_bottom"
+        android:minHeight="0dp"
+        android:padding="12dp"
         android:text="cancle"
         android:textColor="@color/hdw_dialog_ios_btntext_blue"
         android:textSize="@dimen/hdw_dialog_btn_txt_size"/>

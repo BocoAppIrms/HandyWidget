@@ -290,7 +290,7 @@ public class OptionsPickerView<T> extends BasePickerView implements View.OnClick
         private int Color_Background_Title;//标题背景颜色
         private int Size_Submit_Cancel = 15;//确定取消按钮大小
         private int Size_Title = 15;//标题文字大小
-        private int Size_Content = 15;//内容文字大小
+        private int Size_Content = 17;//内容文字大小
         private boolean cancelable = true;//是否能取消
         private boolean linkage = true;//是否联动
         private boolean isCenterLabel = true;//是否只显示中间的label

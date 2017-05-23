@@ -9,7 +9,7 @@
               android:minWidth="130dp"
               android:orientation="vertical">
 
-    <com.hss01248.dialog.view.GifMovieView
+    <com.handy.widget.dialog.view.GifMovieView
         android:id="@+id/iv_loading"
         android:layout_width="30dp"
         android:layout_height="30dp"
@@ -21,22 +21,20 @@
 
     <TextView
         android:id="@+id/loading_msg"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="15dp"
         android:layout_marginTop="20dp"
 
         android:ellipsize="end"
+        android:gravity="center"
         android:maxLines="1"
         android:maxWidth="300dp"
-        android:paddingLeft="20dp"
-        android:paddingRight="20dp"
         android:text="加载中..."
         android:textColor="#ffffff"
-        android:textSize="12sp"/>
+        android:textSize="@dimen/hdw_dialog_msg_txt_size"/>
 
     <!--http://loadingapng.com/-->
     <!-- <LinearLayout

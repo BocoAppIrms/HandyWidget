@@ -16,6 +16,7 @@ import com.squareup.leakcanary.RefWatcher;
 public class DemoApplication extends Application {
 
     private RefWatcher refWatcher;
+    private ActivityLifecycleCallbacks activityLifecycleCallbacks;
 
     public static RefWatcher getRefWatcher(Context context) {
         DemoApplication application = (DemoApplication) context.getApplicationContext();
@@ -31,8 +32,14 @@ public class DemoApplication extends Application {
         registCallback();
     }
 
+    @Override
+    public void onTerminate() {
+        super.onTerminate();
+        unregisterActivityLifecycleCallbacks(activityLifecycleCallbacks);
+    }
+
     private void registCallback() {
-        registerActivityLifecycleCallbacks(new ActivityLifecycleCallbacks() {
+        activityLifecycleCallbacks = new ActivityLifecycleCallbacks() {
             @Override
             public void onActivityCreated(Activity activity, Bundle savedInstanceState) {
 
@@ -67,6 +74,7 @@ public class DemoApplication extends Application {
             public void onActivityDestroyed(Activity activity) {
 
             }
-        });
+        };
+        registerActivityLifecycleCallbacks(activityLifecycleCallbacks);
     }
 }

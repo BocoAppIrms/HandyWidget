@@ -9,14 +9,18 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppTheme">
-        <activity android:name=".material.demo.MainActivity">
+        <activity android:name=".DemoActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
         <activity android:name=".dialog.DialogActivity"/>
+        <activity android:name=".picker.PickerActivity"/>
         <activity android:name=".spinner.SpinnerActivity"/>
+        <activity android:name=".material.demo.MaterialActivity"/>
+        <activity android:name=".picker.JsonDataActivity"/>
+        <activity android:name=".picker.FragmentTestActivity"/>
     </application>
 
 </manifest>

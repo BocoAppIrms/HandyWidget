@@ -73,7 +73,7 @@ public class SnackbarFragment extends Fragment {
         bt_tablet_single.setOnClickListener(listener);
         bt_tablet_multi.setOnClickListener(listener);
 
-        mSnackBar = ((MainActivity) getActivity()).getSnackBar();
+        mSnackBar = ((MaterialActivity) getActivity()).getSnackBar();
 
         return v;
     }

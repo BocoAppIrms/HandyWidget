@@ -26,7 +26,7 @@ import java.text.SimpleDateFormat;
 
 public class DialogsFragment extends Fragment implements View.OnClickListener {
 
-    private MainActivity mActivity;
+    private MaterialActivity mActivity;
     private BottomSheetDialog mBottomSheetDialog;
 
     public static DialogsFragment newInstance() {
@@ -65,7 +65,7 @@ public class DialogsFragment extends Fragment implements View.OnClickListener {
             }
         });
 
-        mActivity = (MainActivity) getActivity();
+        mActivity = (MaterialActivity) getActivity();
 
         return v;
     }

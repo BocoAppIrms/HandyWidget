@@ -31,7 +31,7 @@ import com.handy.widget.material.widget.TabIndicatorView;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity implements ToolbarManager.OnToolbarGroupChangedListener {
+public class MaterialActivity extends AppCompatActivity implements ToolbarManager.OnToolbarGroupChangedListener {
 
     private DrawerLayout dl_navigator;
     private FrameLayout fl_drawer;
@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity implements ToolbarManager.On
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_material);
 
         dl_navigator = (DrawerLayout) findViewById(R.id.main_dl);
         fl_drawer = (FrameLayout) findViewById(R.id.main_fl_drawer);
@@ -120,7 +120,7 @@ public class MainActivity extends AppCompatActivity implements ToolbarManager.On
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        mToolbarManager.createMenu(R.menu.menu_main);
+        mToolbarManager.createMenu(R.menu.menu_picker);
         return true;
     }
 
@@ -351,7 +351,7 @@ public class MainActivity extends AppCompatActivity implements ToolbarManager.On
         public View getView(int position, View convertView, ViewGroup parent) {
             View v = convertView;
             if (v == null) {
-                v = LayoutInflater.from(MainActivity.this).inflate(R.layout.row_drawer, null);
+                v = LayoutInflater.from(MaterialActivity.this).inflate(R.layout.row_drawer, null);
                 v.setOnClickListener(this);
             }
 

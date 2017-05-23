@@ -55,7 +55,7 @@ public class OptionsPickerView<T> extends BasePickerView implements View.OnClick
     private int dividerColor; //分割线的颜色
     private int backgroundId; //显示时的外部背景色颜色,默认是灰色
     // 条目间距倍数 默认1.6
-    private float lineSpacingMultiplier = 1.6F;
+    private float lineSpacingMultiplier = 1.8F;
     private boolean isDialog;//是否是对话框模式
 
     private boolean cancelable;//是否能取消
@@ -299,7 +299,7 @@ public class OptionsPickerView<T> extends BasePickerView implements View.OnClick
         private int dividerColor; //分割线的颜色
         private int backgroundId; //显示时的外部背景色颜色,默认是灰色
         // 条目间距倍数 默认1.6
-        private float lineSpacingMultiplier = 1.6F;
+        private float lineSpacingMultiplier = 1.8F;
         private boolean isDialog;//是否是对话框模式
 
         private String label1;

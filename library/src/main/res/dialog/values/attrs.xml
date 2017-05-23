@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="HDWGifMoviewView">
+        <attr name="hdw_dialog_gif" format="reference"/>
+        <attr name="hdw_dialog_paused" format="boolean"/>
+    </declare-styleable>
+    <declare-styleable name="HDWCustomTheme">
+        <attr name="hdw_dialog_gifMoviewViewStyle" format="reference"/>
+    </declare-styleable>
+</resources>

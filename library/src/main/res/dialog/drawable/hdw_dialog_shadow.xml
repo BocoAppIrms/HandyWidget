@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="@color/hdw_dialog_cardShadowColor_1"/>
+            <corners android:radius="@dimen/hdw_dialog_cardRadius"/>
+            <padding
+                android:bottom="@dimen/hdw_dialog_shadowBottom"
+                android:left="@dimen/hdw_dialog_shadowleft"
+                android:right="@dimen/hdw_dialog_shadowRight"
+                android:top="@dimen/hdw_dialog_shadowTop"/>
+        </shape>
+    </item>
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="@color/hdw_dialog_cardShadowColor_2"/>
+            <corners android:radius="@dimen/hdw_dialog_cardRadius"/>
+            <padding
+                android:bottom="@dimen/hdw_dialog_shadowBottom"
+                android:left="@dimen/hdw_dialog_shadowleft"
+                android:right="@dimen/hdw_dialog_shadowRight"
+                android:top="@dimen/hdw_dialog_shadowTop"/>
+        </shape>
+    </item>
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="@color/hdw_dialog_cardShadowColor_3"/>
+            <corners android:radius="@dimen/hdw_dialog_cardRadius"/>
+            <padding
+                android:bottom="@dimen/hdw_dialog_shadowBottom"
+                android:left="@dimen/hdw_dialog_shadowleft"
+                android:right="@dimen/hdw_dialog_shadowRight"
+                android:top="@dimen/hdw_dialog_shadowTop"/>
+        </shape>
+    </item>
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="@color/hdw_dialog_cardShadowColor_4"/>
+            <corners android:radius="@dimen/hdw_dialog_cardRadius"/>
+            <padding
+                android:bottom="@dimen/hdw_dialog_shadowBottom"
+                android:left="@dimen/hdw_dialog_shadowleft"
+                android:right="@dimen/hdw_dialog_shadowRight"
+                android:top="@dimen/hdw_dialog_shadowTop"/>
+        </shape>
+    </item>
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="@color/hdw_dialog_cardShadowColor_5"/>
+            <corners android:radius="@dimen/hdw_dialog_cardRadius"/>
+            <padding
+                android:bottom="@dimen/hdw_dialog_shadowBottom"
+                android:left="@dimen/hdw_dialog_shadowleft"
+                android:right="@dimen/hdw_dialog_shadowRight"
+                android:top="@dimen/hdw_dialog_shadowTop"/>
+        </shape>
+    </item>
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="@color/hdw_dialog_cardShadowColor_6"/>
+            <corners android:radius="@dimen/hdw_dialog_cardRadius"/>
+            <padding
+                android:bottom="@dimen/hdw_dialog_shadowBottom"
+                android:left="@dimen/hdw_dialog_shadowleft"
+                android:right="@dimen/hdw_dialog_shadowRight"
+                android:top="@dimen/hdw_dialog_shadowTop"/>
+        </shape>
+    </item>
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="@color/hdw_dialog_cardShadowColor_7"/>
+            <corners android:radius="@dimen/hdw_dialog_cardRadius"/>
+            <padding
+                android:bottom="@dimen/hdw_dialog_shadowBottom"
+                android:left="@dimen/hdw_dialog_shadowleft"
+                android:right="@dimen/hdw_dialog_shadowRight"
+                android:top="@dimen/hdw_dialog_shadowTop"/>
+        </shape>
+    </item>
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="@color/hdw_dialog_cardShadowColor_8"/>
+            <corners android:radius="@dimen/hdw_dialog_cardRadius"/>
+            <padding
+                android:bottom="@dimen/hdw_dialog_shadowBottom"
+                android:left="@dimen/hdw_dialog_shadowleft"
+                android:right="@dimen/hdw_dialog_shadowRight"
+                android:top="@dimen/hdw_dialog_shadowTop"/>
+        </shape>
+    </item>
+    <item>
+        <shape android:shape="rectangle">
+            <corners android:radius="@dimen/hdw_dialog_round_corner"/>
+            <solid android:color="@color/hdw_dialog_cardBodyColor"/>
+            <!--<padding android:bottom="@dimen/cardRadius"
+                android:top="@dimen/cardRadius"
+                android:left="@dimen/cardRadius"
+                android:right="@dimen/cardRadius"
+                />-->
+        </shape>
+    </item>
+</layer-list>
+

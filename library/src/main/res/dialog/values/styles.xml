@@ -1,0 +1,29 @@
+<resources>
+
+    <style name="hdw_dialog_mystyle" parent="android:Animation">
+        <item name="@android:windowEnterAnimation">@anim/hdw_dialog_enter</item>
+        //进入时的动画
+        <item name="@android:windowExitAnimation">@anim/hdw_dialog_exit</item>
+        //退出时的动画
+    </style>
+
+    <style name="hdw_dialog_center" parent="android:Animation">
+        <item name="@android:windowEnterAnimation">@anim/hdw_dialog_enter_center</item>
+        //进入时的动画
+        <item name="@android:windowExitAnimation">@anim/hdw_dialog_exit_center</item>
+        //退出时的动画
+    </style>
+
+    <style name="hdw_dialog_notitle">
+        <item name="android:windowNoTitle">true</item>
+    </style>
+
+    <style name="hdw_dialog_widget_gifmoviewview" parent="@android:style/Widget"/>
+
+    <style name="hdw_dialog_mydialog" parent="AlertDialog.AppCompat.Light">
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+    </style>
+</resources>

@@ -295,9 +295,9 @@ public class TimePickerView extends BasePickerView implements View.OnClickListen
         private int Color_Title;//标题颜色
         private int Color_Background_Wheel;//滚轮背景颜色
         private int Color_Background_Title;//标题背景颜色
-        private int Size_Submit_Cancel = 17;//确定取消按钮大小
-        private int Size_Title = 18;//标题字体大小
-        private int Size_Content = 18;//内容字体大小
+        private int Size_Submit_Cancel = 15;//确定取消按钮大小
+        private int Size_Title = 15;//标题字体大小
+        private int Size_Content = 15;//内容字体大小
         private Calendar date;//当前选中时间
         private Calendar startDate;//开始时间
         private Calendar endDate;//终止时间

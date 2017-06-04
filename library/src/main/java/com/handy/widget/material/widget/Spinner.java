@@ -335,7 +335,7 @@ public class Spinner extends FrameLayout implements ThemeManager.OnThemeChangedL
             mSelectedPosition = position;
 
             if (mOnItemSelectedListener != null)
-                mOnItemSelectedListener.onItemSelected(this, getSelectedView(), position, mAdapter == null ? -1 : mAdapter.getItemId(position));
+                mOnItemSelectedListener.onItemSelected(this, getSelectedView(), position, (mAdapter == null || mAdapter.getCount() == 0) ? -1 : mAdapter.getItemId(position));
 
             onDataInvalidated();
         }

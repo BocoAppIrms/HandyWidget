@@ -24,6 +24,7 @@ import android.view.ViewTreeObserver;
 import android.view.animation.AnimationUtils;
 import android.view.animation.Interpolator;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 import android.widget.SpinnerAdapter;
 
@@ -34,9 +35,9 @@ import com.handy.widget.material.drawable.DividerDrawable;
 import com.handy.widget.material.util.ThemeUtil;
 
 public class Spinner extends FrameLayout implements ThemeManager.OnThemeChangedListener{
-		
+
 	private static final int MAX_ITEMS_MEASURED = 15;
-	
+
 	private static final int INVALID_POSITION = -1;
     private boolean mLabelEnable;
     private TextView mLabelView;
@@ -383,6 +384,11 @@ public class Spinner extends FrameLayout implements ThemeManager.OnThemeChangedL
         else
             mTempAdapter = new DropDownAdapter(adapter);
 	}
+
+    public void clear(Context context) {
+        mSelectedPosition = INVALID_POSITION;
+        setAdapter(new ArrayAdapter<String>(context, android.R.layout.test_list_item));
+    }
 
     /**
      * Set the background drawable for the spinner's popup window of choices.
@@ -823,7 +829,7 @@ public class Spinner extends FrameLayout implements ThemeManager.OnThemeChangedL
 
         return false;
     }
-    
+
 	private void onDataChanged(){
 		if(mSelectedPosition == INVALID_POSITION)
 			setSelection(0);
@@ -843,19 +849,21 @@ public class Spinner extends FrameLayout implements ThemeManager.OnThemeChangedL
             for(int i = getChildCount() - 1; i > 0; i--)
                 removeViewAt(i);
 
-		int type = mAdapter.getItemViewType(mSelectedPosition);
-        View v = mAdapter.getView(mSelectedPosition, mRecycler.get(type), this);
-		v.setFocusable(false);
-		v.setClickable(false);
+        if (mAdapter.getCount() > 0) {
+            int type = mAdapter.getItemViewType(mSelectedPosition);
+            View v = mAdapter.getView(mSelectedPosition, mRecycler.get(type), this);
+            v.setFocusable(false);
+            v.setClickable(false);
 
-        if(v.getParent() != null)
-            ((ViewGroup)v.getParent()).removeView(v);
+            if (v.getParent() != null)
+                ((ViewGroup) v.getParent()).removeView(v);
 
-		super.addView(v);
+            super.addView(v);
 
-		mRecycler.put(type, v);
-	}
-	
+            mRecycler.put(type, v);
+        }
+    }
+
 	private void showPopup(){
 		if (!mPopup.isShowing()){
             mPopup.show();
@@ -877,7 +885,7 @@ public class Spinner extends FrameLayout implements ThemeManager.OnThemeChangedL
 
         }
 	}
-	
+
 	private void onPopupDismissed(){
         if(mArrowDrawable != null)
 		    mArrowDrawable.setMode(ArrowDrawable.MODE_DOWN, true);
@@ -922,7 +930,7 @@ public class Spinner extends FrameLayout implements ThemeManager.OnThemeChangedL
 
         return width;
     }
-	
+
     @Override
     public Parcelable onSaveInstanceState() {
         Parcelable superState = super.onSaveInstanceState();
@@ -1031,7 +1039,7 @@ public class Spinner extends FrameLayout implements ThemeManager.OnThemeChangedL
                     + " showDropdown=" + showDropdown + "}";
         }
     }
-	
+
 	private static class DropDownAdapter implements ListAdapter, SpinnerAdapter, OnClickListener {
 
         private SpinnerAdapter mAdapter;
@@ -1176,7 +1184,7 @@ public class Spinner extends FrameLayout implements ThemeManager.OnThemeChangedL
     }
 
 	private class DropdownPopup extends ListPopupWindow {
-		
+
         private CharSequence mHintText;
 
         private DropDownAdapter mAdapter;
@@ -1191,16 +1199,16 @@ public class Spinner extends FrameLayout implements ThemeManager.OnThemeChangedL
                 DropdownPopup.super.show();
             }
         };
-        
+
         public DropdownPopup(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
             super(context, attrs, defStyleAttr, defStyleRes);
 
             setAnchorView(Spinner.this);
             setModal(true);
             setPromptPosition(POSITION_PROMPT_ABOVE);
-            
+
             setOnDismissListener(new PopupWindow.OnDismissListener() {
-            	
+
                 @SuppressWarnings("deprecation")
 				@TargetApi(Build.VERSION_CODES.JELLY_BEAN)
 				@Override
@@ -1214,7 +1222,7 @@ public class Spinner extends FrameLayout implements ThemeManager.OnThemeChangedL
                     }
                     onPopupDismissed();
                 }
-                
+
             });
         }
 
@@ -1224,8 +1232,8 @@ public class Spinner extends FrameLayout implements ThemeManager.OnThemeChangedL
             mAdapter = (DropDownAdapter)adapter;
             mAdapter.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
-                public void onItemClick(AdapterView<?> parent, View v, int position, long id) {                	
-                    Spinner.this.performItemClick(v, position, mAdapter.getItemId(position));                    
+                public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
+                    Spinner.this.performItemClick(v, position, mAdapter.getItemId(position));
                     dismiss();
                 }
             });
@@ -1246,7 +1254,7 @@ public class Spinner extends FrameLayout implements ThemeManager.OnThemeChangedL
                 background.getPadding(mTempRect);
                 hOffset = mIsRtl ? mTempRect.right : -mTempRect.left;
             } else
-                mTempRect.left = mTempRect.right = 0;            
+                mTempRect.left = mTempRect.right = 0;
 
             final int spinnerPaddingLeft = Spinner.this.getPaddingLeft();
             final int spinnerPaddingRight = Spinner.this.getPaddingRight();
@@ -1257,27 +1265,27 @@ public class Spinner extends FrameLayout implements ThemeManager.OnThemeChangedL
                 final int contentWidthLimit = getContext().getResources().getDisplayMetrics().widthPixels - mTempRect.left - mTempRect.right;
                 if (contentWidth > contentWidthLimit)
                     contentWidth = contentWidthLimit;
-                
-                setContentWidth(Math.max(contentWidth, spinnerWidth - spinnerPaddingLeft - spinnerPaddingRight));                
+
+                setContentWidth(Math.max(contentWidth, spinnerWidth - spinnerPaddingLeft - spinnerPaddingRight));
             } else if (mDropDownWidth == MATCH_PARENT)
                 setContentWidth(spinnerWidth - spinnerPaddingLeft - spinnerPaddingRight);
             else
                 setContentWidth(mDropDownWidth);
-            
+
             if (mIsRtl)
                 hOffset += spinnerWidth - spinnerPaddingRight - getWidth();
             else
                 hOffset += spinnerPaddingLeft;
-            
+
             setHorizontalOffset(hOffset);
         }
 
         public void show() {
             final boolean wasShowing = isShowing();
 
-            computeContentWidth();            
+            computeContentWidth();
             setInputMethodMode(ListPopupWindow.INPUT_METHOD_NOT_NEEDED);
-            super.show();            
+            super.show();
 
             if (wasShowing) {
                 // Skip setting up the layout/dismiss listener below. If we were previously
@@ -1289,7 +1297,7 @@ public class Spinner extends FrameLayout implements ThemeManager.OnThemeChangedL
             // TODO: This might be appropriate to push all the way down to PopupWindow,
             // but it may have other side effects to investigate first. (Text editing handles, etc.)
             final ViewTreeObserver vto = getViewTreeObserver();
-            if (vto != null)            	
+            if (vto != null)
                 vto.addOnGlobalLayoutListener(layoutListener);
         }
     }

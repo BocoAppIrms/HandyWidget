@@ -836,7 +836,7 @@ public class Spinner extends FrameLayout implements ThemeManager.OnThemeChangedL
         if (mLabelView == null)
             removeAllViews();
         else
-            for (int i = getChildCount() - 1; i > 0; i--)
+            for (int i = getChildCount() - 1; mLabelEnable ? i > 0 : i >= 0; i--)
                 removeViewAt(i);
 
         if (mAdapter.getCount() > 0) {

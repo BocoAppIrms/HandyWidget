@@ -104,7 +104,7 @@ public class Spinner extends FrameLayout implements ThemeManager.OnThemeChangedL
         super.init(context, attrs, defStyleAttr, defStyleRes);
     }
 
-    private android.widget.TextView getLabelView() {
+    public android.widget.TextView getLabelView() {
         if (mLabelView == null) {
             mLabelView = new TextView(getContext());
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1)

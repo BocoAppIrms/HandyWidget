@@ -30,7 +30,6 @@ import android.support.v4.view.ViewPropertyAnimatorCompat;
 import android.support.v4.widget.ListViewAutoScrollHelper;
 import android.support.v4.widget.PopupWindowCompat;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
@@ -124,7 +123,7 @@ public class ListPopupWindow {
             sClipToWindowEnabledMethod = android.widget.PopupWindow.class.getDeclaredMethod(
                     "setClipToScreenEnabled", boolean.class);
         } catch (NoSuchMethodException e) {
-            Log.i(TAG, "Could not find method setClipToScreenEnabled() on PopupWindow. Oh well.");
+//            Log.i(TAG, "Could not find method setClipToScreenEnabled() on PopupWindow. Oh well.");
         }
     }
 
@@ -915,7 +914,7 @@ public class ListPopupWindow {
                 }
 
                 consumed = mDropDownList.onKeyDown(keyCode, event);
-                if (DEBUG) Log.v(TAG, "Key down: code=" + keyCode + " list consumed=" + consumed);
+//                if (DEBUG) Log.v(TAG, "Key down: code=" + keyCode + " list consumed=" + consumed);
 
                 if (consumed) {
                     // If it handled the key event, then the user is
@@ -1136,7 +1135,7 @@ public class ListPopupWindow {
                         break;
 
                     default:
-                        Log.e(TAG, "Invalid hint position " + mPromptPosition);
+//                        Log.e(TAG, "Invalid hint position " + mPromptPosition);
                         break;
                 }
 
@@ -1235,7 +1234,7 @@ public class ListPopupWindow {
             try {
                 sClipToWindowEnabledMethod.invoke(mPopup, clip);
             } catch (Exception e) {
-                Log.i(TAG, "Could not call setClipToScreenEnabled() on PopupWindow. Oh well.");
+//                Log.i(TAG, "Could not call setClipToScreenEnabled() on PopupWindow. Oh well.");
             }
         } else if (clip && Build.VERSION.SDK_INT >= Build.VERSION_CODES.CUPCAKE) {
             mPopup.setClippingEnabled(false);

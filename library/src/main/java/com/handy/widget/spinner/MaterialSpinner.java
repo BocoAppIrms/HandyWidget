@@ -32,7 +32,6 @@ import android.support.annotation.ColorInt;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
@@ -214,7 +213,7 @@ public class MaterialSpinner extends android.support.v7.widget.AppCompatTextView
                     drawable.setColor(colors[i]);
                 }
             } catch (Exception e) {
-                Log.e("MaterialSpinner", "Error setting background color", e);
+//                Log.e("MaterialSpinner", "Error setting background color", e);
             }
         } else if (background != null) { // 21+ (RippleDrawable)
             background.setColorFilter(color, PorterDuff.Mode.SRC_IN);

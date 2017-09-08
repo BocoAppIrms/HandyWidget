@@ -13,7 +13,6 @@ import android.os.Parcelable;
 import android.os.SystemClock;
 import android.support.annotation.NonNull;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
@@ -261,13 +260,13 @@ public class FloatingActionButton extends View implements ThemeManager.OnThemeCh
 		return mBackground.getColor();
 	}
 
-    public void setBackgroundColor(ColorStateList color) {
+    @Override
+    public void setBackgroundColor(int color) {
         mBackground.setColor(color);
         invalidate();
     }
 
-    @Override
-    public void setBackgroundColor(int color) {
+    public void setBackgroundColor(ColorStateList color) {
         mBackground.setColor(color);
         invalidate();
     }
@@ -361,9 +360,9 @@ public class FloatingActionButton extends View implements ThemeManager.OnThemeCh
 	public void updateLocation(int x, int y, int gravity){
 		if(getParent() != null)
 			updateParams(x, y, gravity, getLayoutParams());
-        else
-            Log.v(FloatingActionButton.class.getSimpleName(), "updateLocation() is called without parent");
-	}
+//        else
+//            Log.v(FloatingActionButton.class.getSimpleName(), "updateLocation() is called without parent");
+    }
 	
 	private void updateParams(int x, int y, int gravity, ViewGroup.LayoutParams params){		
 		int horizontalGravity = gravity & Gravity.HORIZONTAL_GRAVITY_MASK;
@@ -406,16 +405,16 @@ public class FloatingActionButton extends View implements ThemeManager.OnThemeCh
 	private void setLeftMargin(ViewGroup.LayoutParams params, int value){
 		if(params instanceof ViewGroup.MarginLayoutParams)
 			((ViewGroup.MarginLayoutParams)params).leftMargin = value;
-        else
-            Log.v(FloatingActionButton.class.getSimpleName(), "cannot recognize LayoutParams: " + params);
-	}
+//        else
+//            Log.v(FloatingActionButton.class.getSimpleName(), "cannot recognize LayoutParams: " + params);
+    }
 	
 	private void setTopMargin(ViewGroup.LayoutParams params, int value){
 		if(params instanceof ViewGroup.MarginLayoutParams)
 			((ViewGroup.MarginLayoutParams)params).topMargin = value;
-        else
-            Log.v(FloatingActionButton.class.getSimpleName(), "cannot recognize LayoutParams: " + params);
-	}
+//        else
+//            Log.v(FloatingActionButton.class.getSimpleName(), "cannot recognize LayoutParams: " + params);
+    }
 
     /**
      * Remove this button from parent view.

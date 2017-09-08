@@ -8,7 +8,6 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
@@ -307,7 +306,7 @@ public class Tool {
                         continue;
                     }
                     CheckedTextView itemView = (CheckedTextView) childAt.findViewById(android.R.id.text1);
-                    Log.e("dd", itemView + "-----" + i);
+//                    Log.e("dd", itemView + "-----" + i);
                     if (itemView != null) {
                         itemView.setCheckMarkDrawable(R.drawable.hdw_dialog_toast);
                         //itemView.setCheckMarkTintList();

@@ -151,6 +151,10 @@ public class EditText extends FrameLayout implements ThemeManager.OnThemeChanged
         return mLabelView;
     }
 
+    public android.widget.EditText getmInputView() {
+        return mInputView;
+    }
+
     private LabelView getSupportView() {
         if (mSupportView == null)
             mSupportView = new LabelView(getContext());
@@ -1029,6 +1033,56 @@ public class EditText extends FrameLayout implements ThemeManager.OnThemeChanged
     }
 
     /**
+     * 全局点击事件监听设置
+     *
+     * @param l 点击事件监听
+     */
+    public boolean setGlobalOnClickListener(OnClickListener l) {
+        if (mLabelView != null && mInputView != null && mSupportView != null) {
+            mLabelView.setOnClickListener(l);
+            mInputView.setOnClickListener(l);
+            mSupportView.setOnClickListener(l);
+            return true;
+        }
+        return false;
+    }
+
+    public boolean setRespectiveOnClickListener(OnClickListener labelL, OnClickListener inputL, OnClickListener supportL) {
+        if (mLabelView != null && mInputView != null && mSupportView != null) {
+            mLabelView.setOnClickListener(labelL);
+            mInputView.setOnClickListener(inputL);
+            mSupportView.setOnClickListener(supportL);
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * 全局触摸事件监听设置
+     *
+     * @param t 触摸事件监听
+     */
+    public boolean setGlobalOnTouchListener(OnTouchListener t) {
+        if (mLabelView != null && mInputView != null && mSupportView != null) {
+            mLabelView.setOnTouchListener(t);
+            mInputView.setOnTouchListener(t);
+            mSupportView.setOnTouchListener(t);
+            return true;
+        }
+        return false;
+    }
+
+    public boolean setRespectiveOnTouchListener(OnTouchListener labelT, OnTouchListener inputT, OnTouchListener supportT) {
+        if (mLabelView != null && mInputView != null && mSupportView != null) {
+            mLabelView.setOnTouchListener(labelT);
+            mInputView.setOnTouchListener(inputT);
+            mSupportView.setOnTouchListener(supportT);
+            return true;
+        }
+        return false;
+    }
+
+    /**
      * <p>Returns the listener that is notified whenever the user clicks an item
      * in the drop down list.</p>
      * <p>Only work when autoComplete mode is {@link #AUTOCOMPLETE_MODE_SINGLE} or {@link #AUTOCOMPLETE_MODE_MULTI}</p>
@@ -1306,12 +1360,12 @@ public class EditText extends FrameLayout implements ThemeManager.OnThemeChanged
         return mInputView.getText();
     }
 
-    public final void setText(CharSequence text) {
-        mInputView.setText(text);
-    }
-
     public final void setText(int resid) {
         mInputView.setText(resid);
+    }
+
+    public final void setText(CharSequence text) {
+        mInputView.setText(text);
     }
 
     /**
@@ -1814,18 +1868,6 @@ public class EditText extends FrameLayout implements ThemeManager.OnThemeChanged
     }
 
     /**
-     * Sets the text to be displayed when the text of the TextView is empty,
-     * from a resource.
-     *
-     * @attr ref android.R.styleable#TextView_hint
-     */
-    public final void setHint(int resid) {
-        mInputView.setHint(resid);
-        if (mLabelView != null)
-            mLabelView.setText(resid);
-    }
-
-    /**
      * Sets the text to be displayed when the text of the TextView is empty.
      * Null means to use the normal empty text. The hint does not currently
      * participate in determining the size of the view.
@@ -1836,6 +1878,18 @@ public class EditText extends FrameLayout implements ThemeManager.OnThemeChanged
         mInputView.setHint(hint);
         if (mLabelView != null)
             mLabelView.setText(hint);
+    }
+
+    /**
+     * Sets the text to be displayed when the text of the TextView is empty,
+     * from a resource.
+     *
+     * @attr ref android.R.styleable#TextView_hint
+     */
+    public final void setHint(int resid) {
+        mInputView.setHint(resid);
+        if (mLabelView != null)
+            mLabelView.setText(resid);
     }
 
     /**

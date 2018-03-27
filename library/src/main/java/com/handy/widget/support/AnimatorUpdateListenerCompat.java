@@ -14,32 +14,28 @@
  * limitations under the License.
  */
 
-package android.support.v4.animation;
+package com.handy.widget.support;
 
 import android.support.annotation.RestrictTo;
-import android.view.View;
 
 import static android.support.annotation.RestrictTo.Scope.LIBRARY_GROUP;
 
 /**
- * Compatibility implementation for {@code android.animation.ValueAnimator}.
+ * Implementors of this interface can add themselves as update listeners
+ * to a <code>ValueAnimator</code> instance to receive callbacks on every animation
+ * frame, after the current frame's values have been calculated for that
+ * <code>ValueAnimator</code>.
  *
  * @hide
  */
 @RestrictTo(LIBRARY_GROUP)
-public interface ValueAnimatorCompat {
+public interface AnimatorUpdateListenerCompat {
 
-    void setTarget(View view);
+    /**
+     * <p>Notifies the occurrence of another frame of the animation.</p>
+     *
+     * @param animation The animation which was repeated.
+     */
+    void onAnimationUpdate(ValueAnimatorCompat animation);
 
-    void addListener(AnimatorListenerCompat listener);
-
-    void setDuration(long duration);
-
-    void start();
-
-    void cancel();
-
-    void addUpdateListener(AnimatorUpdateListenerCompat animatorUpdateListener);
-
-    float getAnimatedFraction();
 }

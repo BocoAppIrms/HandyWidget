@@ -1,7 +1,7 @@
 package com.handy.widget.material.widget;
 
 import android.content.Context;
-import android.support.v7.widget.ListViewCompat;
+import com.handy.widget.support.ListViewCompat;
 import android.util.AttributeSet;
 import android.view.View;
 
